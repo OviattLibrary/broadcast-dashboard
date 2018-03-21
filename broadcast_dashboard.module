@@ -1,0 +1,17 @@
+<?php
+// $Id$
+/**
+ * @file
+ * Broadcast Dashboard module file
+ * 
+ * This module "broadcasts" pre-written text to specified areas of a website when switched on.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function broadcast_dashboard_help($path, $arg) {
+  if ($path === 'admin/help#broadcast-dashboard') {
+    return t ('The Broadcast Dashboard module allows for text notifications to be pushed to specified areas of the website when switched on.');
+  }
+}

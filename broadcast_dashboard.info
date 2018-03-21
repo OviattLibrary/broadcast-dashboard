@@ -1,0 +1,10 @@
+; $Id$
+; Broadcast Dashboard, v. 0.1
+; Written by Sam Thacker
+; For CSU Northridge's Oviatt Library
+name = Broadcast Dashboard
+description = An emergency notification broadcast system for automatic site-wide information fed to specified regions.
+core = 7.x
+package = Broadcast Dashboard
+files[] = broadcast_dashboard.module
+version = 7.x-dev
