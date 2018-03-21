@@ -15,3 +15,7 @@ function broadcast_dashboard_help($path, $arg) {
     return t ('The Broadcast Dashboard module allows for text notifications to be pushed to specified areas of the website when switched on.');
   }
 }
+
+/**
+ * Implements another hook
+ */
