@@ -20,7 +20,16 @@ function broadcast_dashboard_help($path, $arg) {
  * Implements hook_menu().
  */
 function broadcast_dashboard_menu() {
-  
+  $items = array();
+
+  $items['admin/config/system/broadcast_dashboard'] = array(
+    'title' => 'Broadcast Dashboard',
+    'description' => 'Configuration for the Broadcast Dashboard module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('broadcast_dashboard_form'),
+    'access arguments' => 'adminster content',
+    'type' => MENU_NORMAL_ITEM,
+  );
 }
 
 /**
