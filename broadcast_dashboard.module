@@ -46,12 +46,27 @@ function broadcast_dashboard_form() {
     '#maxlength' => 255,
     '#required' => TRUE,
   );
-return $form;
+  return $form;
 }
 
 /**
  * Implements hook_form_submit()
  */
 function broadcast_dashboard_form_submit($form, &$form_state) {
-  
+  $form_has_errors = FALSE;
+
+  if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
+    $current_title = $form_state['values']['broadcast_dashboard_custom_message'];
+    $previous_title = variable_get('broadcast_dashboard_custom_message');
+      // prevents check_plain from double encoding a pre-existing string
+      if ($current_title != $previous_title) {
+        $set_title = check_plain($form_state['values']['broadcast_dashboard_custom_message']);
+        variable_set('broadcast_dashboard_custom_message',
+                   $set_title);
+      }
+  }
+
+  if ($form_has_errors == FALSE) {
+    drupal_set_message(t('The settings have successfully been saved.'));
+  }
 }
