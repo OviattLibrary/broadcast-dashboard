@@ -4,7 +4,7 @@
  * @file
  * Broadcast Dashboard module file
  * 
- * This module "broadcasts" pre-written text to specified areas of a website when switched on.
+ * This module "broadcasts" pre-written or custom inserted text to specified areas of a website when switched on.
  */
 
 /**
