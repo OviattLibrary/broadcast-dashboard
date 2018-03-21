@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Broadcast Dashboard module.
+ */
+
+/*
+ * Implements hook_install().
+ * @todo Describe what function does here
+ */
+function broadcast_dashboard_install() {
+	
+}
+
+/*
+ * Implements hook_uninstall().
+ * @todo Describe what function does here
+ */
+function broadcast_dashboard_uninstall() {
+
+}
