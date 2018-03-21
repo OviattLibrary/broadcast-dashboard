@@ -36,7 +36,17 @@ function broadcast_dashboard_menu() {
  * Implements hook_form().
  */
 function broadcast_dashboard_form() {
-  
+  $form['broadcast_dashboard_custom_message'] = array (
+    '#type' => 'textfield',
+    '#default_value' => variable_get('broadcast_dashboard_custom_message',
+                                     'Broadcast Dashboard Custom Message'),
+    '#title' => t('Broadcast Dashboard Custom Message'),
+    '#description' => t('Custom message to appear in place of pre-written notification text.'),
+    '#size' => 60,
+    '#maxlength' => 255,
+    '#required' => TRUE,
+  );
+return $form;
 }
 
 /**
