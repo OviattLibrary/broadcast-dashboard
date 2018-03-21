@@ -18,5 +18,5 @@ function broadcast_dashboard_install() {
  * @todo Describe what function does here
  */
 function broadcast_dashboard_uninstall() {
-
+  variable_del('broadcast_dashboard_custom_message');
 }
