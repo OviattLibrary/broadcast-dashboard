@@ -17,5 +17,22 @@ function broadcast_dashboard_help($path, $arg) {
 }
 
 /**
- * Implements another hook
+ * Implements hook_menu().
  */
+function broadcast_dashboard_menu() {
+  
+}
+
+/**
+ * Implements hook_form().
+ */
+function broadcast_dashboard_form() {
+  
+}
+
+/**
+ * Implements hook_form_submit()
+ */
+function broadcast_dashboard_form_submit($form, &$form_state) {
+  
+}
