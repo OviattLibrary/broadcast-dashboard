@@ -43,9 +43,15 @@ function broadcast_dashboard_menu() {
  */
 
 function broadcast_dashboard_form() {
-  //global $theme_key;
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  $form['broadcast_dashboard_active'] = array(
+    '#type' => checkbox,
+    '#title' => t('Activate Broadcast'),
+    '#default_value' => FALSE,
+    '#description' => t('When activated, the selected message will be broadcast on the website.'),
+  );
 
   $form['broadcast_dashboard_region'] = array(
     '#type' => 'select',
