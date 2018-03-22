@@ -53,9 +53,23 @@ function broadcast_dashboard_form() {
     '#description' => t('When activated, the selected message will be broadcast on the website.'),
   );
 
+  $form['broadcast_dashboard_message'] = array(
+    '#type' => 'select',
+    '#title' => t('Type of Message'),
+    '#default_value' => $node->broadcast_dashboard_message,
+    '#options' => $array(
+      1 => "Drill",
+      2 => "Earthquake",
+      3 => "Fire",
+      4 => "Shooter",
+      5 => "Custom",
+    ),
+    '#description' => t('Select the type of message to broadcast.'),
+  );
+
   $form['broadcast_dashboard_region'] = array(
     '#type' => 'select',
-    '#title' => t('Select box'),
+    '#title' => t('Region Selection'),
     '#default_value' => $node->broadcast_dashboard_region,
     '#options' => $regions,
     '#description' => t('Select a location to display the message.'),
