@@ -4,7 +4,7 @@
  * @file
  * Broadcast Dashboard module file
  * 
- * This module "broadcasts" pre-written or custom inserted text to specified areas of a website when switched on.
+ * This module 'broadcasts' pre-written or custom inserted text to specified areas of a website when switched on.
  */
 
 /**
@@ -58,11 +58,11 @@ function broadcast_dashboard_form() {
     '#title' => t('Type of Message'),
     '#default_value' => $node->broadcast_dashboard_message,
     '#options' => $array(
-      1 => "Drill",
-      2 => "Earthquake",
-      3 => "Fire",
-      4 => "Shooter",
-      5 => "Custom",
+      1 => 'Drill',
+      2 => 'Earthquake',
+      3 => 'Fire',
+      4 => 'Shooter',
+      5 => 'Custom',
     ),
     '#description' => t('Select the type of message to broadcast.'),
   );
