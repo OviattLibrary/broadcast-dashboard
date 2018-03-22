@@ -22,6 +22,8 @@ function broadcast_dashboard_help($path, $arg) {
  */
 
 function broadcast_dashboard_menu() {
+  global $theme_key;
+  $regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
   $items = array();
 
   $items['admin/config/system/broadcast_dashboard'] = array(
@@ -47,10 +49,7 @@ function broadcast_dashboard_form() {
     '#type' => 'select',
     '#title' => t('Select box'),
     '#default_value' => $node->broadcast_dashboard_region,
-    '#options' => array(
-      //options to here in format of:
-      //1 => 'first option',
-    ),
+    '#options' => $regions,
     '#description' => t('Select a location to display the message.'),
   );
 
