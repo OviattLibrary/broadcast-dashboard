@@ -107,6 +107,6 @@ function broadcast_dashboard_test_display() {
 
 	$regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
 	print '<pre>';
-	print $regions;
-	print '<pre>';
+	print_r($regions);
+	print '</pre>';
 }
