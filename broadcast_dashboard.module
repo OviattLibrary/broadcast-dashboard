@@ -30,7 +30,7 @@ function broadcast_dashboard_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('broadcast_dashboard_form'),
     'access_callback' => TRUE,
-    'access arguments' => array('adminster content'),
+    //'access arguments' => array('adminster content'),
     'type' => MENU_NORMAL_ITEM,
   );
 
