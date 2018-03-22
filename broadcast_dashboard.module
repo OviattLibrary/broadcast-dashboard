@@ -43,6 +43,17 @@ function broadcast_dashboard_menu() {
  */
 
 function broadcast_dashboard_form() {
+  $form['broadcast_dashboard_region'] = array(
+    '#type' => 'select',
+    '#title' => t('Select box'),
+    '#default_value' => $node->broadcast_dashboard_region,
+    '#options' => array(
+      //options to here in format of:
+      //1 => 'first option',
+    ),
+    '#description' => t('Select a location to display the message.'),
+  );
+
   $form['broadcast_dashboard_custom_message'] = array (
     '#type' => 'textfield',
     '#default_value' => variable_get('broadcast_dashboard_custom_message',
