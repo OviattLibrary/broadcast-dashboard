@@ -47,6 +47,8 @@ function broadcast_dashboard_form() {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = FALSE);
 
+  echo $theme_default;
+
   $form['broadcast_dashboard_region'] = array(
     '#type' => 'select',
     '#title' => t('Select box'),
