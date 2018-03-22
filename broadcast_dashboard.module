@@ -10,6 +10,7 @@
 /**
  * Implements hook_help().
  */
+
 function broadcast_dashboard_help($path, $arg) {
   if ($path === 'admin/help#broadcast-dashboard') {
     return t ('The Broadcast Dashboard module allows for text notifications to be pushed to specified areas of the website when switched on.');
@@ -19,6 +20,7 @@ function broadcast_dashboard_help($path, $arg) {
 /**
  * Implements hook_menu().
  */
+
 function broadcast_dashboard_menu() {
   $items = array();
 
@@ -35,6 +37,7 @@ function broadcast_dashboard_menu() {
 /**
  * Implements hook_form().
  */
+
 function broadcast_dashboard_form() {
   $form['broadcast_dashboard_custom_message'] = array (
     '#type' => 'textfield',
@@ -52,6 +55,7 @@ function broadcast_dashboard_form() {
 /**
  * Implements hook_form_submit()
  */
+
 function broadcast_dashboard_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
