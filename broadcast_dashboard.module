@@ -64,7 +64,7 @@ function broadcast_dashboard_form() {
 }
 
 /**
- * Implements hook_form_submit()
+ * Implements hook_form_submit().
  */
 
 function broadcast_dashboard_form_submit($form, &$form_state) {
