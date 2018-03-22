@@ -22,7 +22,7 @@ function broadcast_dashboard_help($path, $arg) {
  */
 
 function broadcast_dashboard_menu() {
-//  $items = array();
+  $items = array();
 
   $items['admin/config/system/broadcast_dashboard'] = array(
     'title' => 'Broadcast Dashboard',
