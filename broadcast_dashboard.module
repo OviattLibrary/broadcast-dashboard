@@ -57,7 +57,7 @@ function broadcast_dashboard_form() {
     '#type' => 'select',
     '#title' => t('Type of Message'),
     '#default_value' => $node->broadcast_dashboard_message,
-    '#options' => $array(
+    '#options' => array(
       1 => 'Drill',
       2 => 'Earthquake',
       3 => 'Fire',
