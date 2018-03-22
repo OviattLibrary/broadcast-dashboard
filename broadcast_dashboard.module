@@ -44,7 +44,8 @@ function broadcast_dashboard_menu() {
 
 function broadcast_dashboard_form() {
   global $theme_key;
-  $regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
+  $theme_default = variable_get('theme_default', NULL);
+  $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = FALSE);
 
   $form['broadcast_dashboard_region'] = array(
     '#type' => 'select',
