@@ -105,7 +105,7 @@ function broadcast_dashboard_test_display() {
 	global $theme_key;
 	print 'Our current theme is: ' . $theme_key . '<br>';
 
-	$regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = TRUE);
+	$regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
 	print '<pre>';
 	print $regions;
 	print '<pre>';
