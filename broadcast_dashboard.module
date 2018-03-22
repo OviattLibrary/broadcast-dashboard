@@ -12,7 +12,7 @@
  */
 
 function broadcast_dashboard_help($path, $arg) {
-  if ($path === 'admin/help#broadcast-dashboard') {
+  if ($path === 'admin/help#broadcast_dashboard') {
     return t ('The Broadcast Dashboard module allows for text notifications to be pushed to specified areas of the website when switched on.');
   }
 }
@@ -22,16 +22,20 @@ function broadcast_dashboard_help($path, $arg) {
  */
 
 function broadcast_dashboard_menu() {
-  $items = array();
+//  $items = array();
 
   $items['admin/config/system/broadcast_dashboard'] = array(
     'title' => 'Broadcast Dashboard',
     'description' => 'Configuration for the Broadcast Dashboard module.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('broadcast_dashboard_form'),
-    'access arguments' => 'adminster content',
+    'access_callback' => TRUE,
+    'access arguments' => array('adminster content'),
     'type' => MENU_NORMAL_ITEM,
   );
+
+  return $items;
+
 }
 
 /**
@@ -49,6 +53,13 @@ function broadcast_dashboard_form() {
     '#maxlength' => 255,
     '#required' => TRUE,
   );
+
+  // Submit button
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save settings'),
+  );
+
   return $form;
 }
 
