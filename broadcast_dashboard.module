@@ -65,6 +65,7 @@ function broadcast_dashboard_form() {
       5 => t('Custom'),
     ),
     '#description' => t('Select the type of message to broadcast.'),
+    '#required' => TRUE,
   );
 
   $form['broadcast_dashboard_region'] = array(
@@ -73,6 +74,7 @@ function broadcast_dashboard_form() {
     '#default_value' => $node->broadcast_dashboard_region,
     '#options' => $regions,
     '#description' => t('Select a location to display the message.'),
+    '#required' => TRUE,
   );
 
   $form['broadcast_dashboard_custom_message'] = array (
