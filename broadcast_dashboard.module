@@ -88,7 +88,7 @@ function broadcast_dashboard_form() {
     '#required' => TRUE,
     '#states' => array(
       'invisible' => array(
-        ':input[name="broadcast_dashboard_message"]' => array(value="Custom" => FALSE),
+        ':input[name="broadcast_dashboard_message"]' => if (getValue('broadcast_dashboard_message') == "Custom") => FALSE),
       ),
     ),
   );
