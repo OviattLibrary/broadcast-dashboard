@@ -90,7 +90,6 @@ function broadcast_dashboard_form() {
       'invisible' => array(
         ':input[name="broadcast_dashboard_message"]' => (getValue('broadcast_dashboard_message') != "Custom")),
       ),
-    ),
   );
 
   // Submit button
