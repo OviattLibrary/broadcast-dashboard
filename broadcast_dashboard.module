@@ -86,6 +86,11 @@ function broadcast_dashboard_form() {
     '#size' => 60,
     '#maxlength' => 255,
     '#required' => TRUE,
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="broadcast_dashboard_message'] => array('value="Custom"' => FALSE),
+      ),
+    ),
   );
 
   // Submit button
