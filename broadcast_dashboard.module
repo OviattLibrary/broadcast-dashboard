@@ -65,9 +65,11 @@ function broadcast_dashboard_form() {
       5 => t('Custom'),
     ),
     '#description' => t('Select the type of message to broadcast.'),
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#states' => array(
 	  "visible" => array(
+	    "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+      "required" => array(
 	    "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
 	  ),
   );
@@ -78,9 +80,11 @@ function broadcast_dashboard_form() {
     '#default_value' => $node->broadcast_dashboard_region,
     '#options' => $regions,
     '#description' => t('Select a location to display the message.'),
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#states' => array(
 	  "visible" => array(
+	    "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+      "required" => array(
 	    "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
 	  ),
   );
@@ -98,8 +102,6 @@ function broadcast_dashboard_form() {
         ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
       "required" => array(
         ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
-      /*"visible" => array(
-	    "input[name='broadcast_dashboard_active']" => array("checked" => TRUE )),*/
 	  ),
   );
 
