@@ -88,7 +88,6 @@ function broadcast_dashboard_form() {
     '#states' => array(
       'invisible' => array(
         ':input[name="broadcast_dashboard_message"]' => array('value' => 'Custom')),
-      ),
       'required' => array(
         ':input[name="broadcast_dashboard_message"]' => array('value' => 'Custom')),
       ),
