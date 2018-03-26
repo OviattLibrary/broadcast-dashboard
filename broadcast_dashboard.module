@@ -85,9 +85,11 @@ function broadcast_dashboard_form() {
     '#description' => t('Custom message to appear in place of pre-written notification text.'),
     '#size' => 60,
     '#maxlength' => 255,
-    '#required' => TRUE,
     '#states' => array(
       'invisible' => array(
+        ':input[name="broadcast_dashboard_message"]' => array('value' => 'Custom')),
+      ),
+      'required' => array(
         ':input[name="broadcast_dashboard_message"]' => array('value' => 'Custom')),
       ),
   );
