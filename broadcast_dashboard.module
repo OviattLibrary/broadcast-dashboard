@@ -128,10 +128,10 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   	$current_active = $form_state['values']['broadcast_dashboard_active'];
   	$previous_active = variable_get('broadcast_dashboard_active');
 
-  	if ($current_active != $previous_active) {
+  	//if ($current_active != $previous_active) {
   		$set_active = $form_state['values']['broadcast_dashboard_active'];
   		variable_set('broadcast_dashboard_active', $set_active);
-  	}
+  	//}
   }
 
   if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
