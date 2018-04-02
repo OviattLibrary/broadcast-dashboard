@@ -125,17 +125,12 @@ function broadcast_dashboard_form() {
 function broadcast_dashboard_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
-  //if (!empty($form_state['values']['broadcast_dashboard_active'])) {
-  	$current_active = $form_state['values']['broadcast_dashboard_active'];
-  	$previous_active = variable_get('broadcast_dashboard_active');
+  $current_active = $form_state['values']['broadcast_dashboard_active'];
+  $previous_active = variable_get('broadcast_dashboard_active');
 
-  	//if ($current_active != $previous_active) {
-  		$set_active = $form_state['values']['broadcast_dashboard_active'];
-  		variable_set('broadcast_dashboard_active', $set_active);
-  		drupal_set_message('For variable set: ' . $set_active, 'warning');
-  	//}
-  //}
-
+  $set_active = $form_state['values']['broadcast_dashboard_active'];
+  variable_set('broadcast_dashboard_active', $set_active);
+  
   /*if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
     $current_title = $form_state['values']['broadcast_dashboard_custom_message'];
     $previous_title = variable_get('broadcast_dashboard_custom_message');
