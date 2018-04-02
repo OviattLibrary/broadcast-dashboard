@@ -42,6 +42,7 @@ function broadcast_dashboard_menu() {
  * Implements hook_form().
  */
 
+
 function broadcast_dashboard_form() {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
@@ -49,9 +50,9 @@ function broadcast_dashboard_form() {
   $form['broadcast_dashboard_active'] = array(
     '#type' => checkbox,
     '#title' => t('Activate Broadcast'),
-    '#return_value' => TRUE,
+    '#return_value' => 1,
     '#default_value' => variable_get('broadcast_dashboard_active',
-                                     FALSE),
+                                     0),
     '#description' => t('When activated, the selected message will be broadcast on the website.'),
   );
 
