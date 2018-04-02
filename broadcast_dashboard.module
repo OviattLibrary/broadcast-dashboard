@@ -51,6 +51,7 @@ function broadcast_dashboard_form() {
     '#title' => t('Activate Broadcast'),
     '#default_value' => variable_get('broadcast_dashboard_active',
                                      FALSE),
+    '#return_value' => TRUE,
     '#description' => t('When activated, the selected message will be broadcast on the website.'),
   );
 
