@@ -133,7 +133,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   	//if ($current_active != $previous_active) {
   		$set_active = $form_state['values']['broadcast_dashboard_active'];
   		variable_set('broadcast_dashboard_active', $set_active);
-  		drupal_set_message($set_active, 'warning');
+  		drupal_set_message('For variable set: ' . $set_active, 'warning');
   	//}
   }
 
