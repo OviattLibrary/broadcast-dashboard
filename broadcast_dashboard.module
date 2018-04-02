@@ -127,7 +127,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   	$current_active = $form_state['values']['broadcast_dashboard_active'];
   	$previous_active = variable_get('broadcast_dashboard_active');
   	  // prevents check_plain double encoding
-  	if ($current_title != $previous_active) {
+  	if ($current_active != $previous_active) {
   		$set_active = check_plain($form_state['values']['broadcast_dashboard_active']);
   		variable_set('broadcast_dashboard_active', $set_active);
   	}
