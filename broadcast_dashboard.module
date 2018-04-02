@@ -146,12 +146,25 @@ function broadcast_dashboard_form() {
 function broadcast_dashboard_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
+  // Active Check
   $current_active = $form_state['values']['broadcast_dashboard_active'];
   $previous_active = variable_get('broadcast_dashboard_active');
-
   $set_active = $form_state['values']['broadcast_dashboard_active'];
   variable_set('broadcast_dashboard_active', $set_active);
+
+  // Type of Message Check
+  $current_msg_type = $form_state['values']['broadcast_dashboard_message'];
+  $previous_msg_type = variable_get('broadcast_dashboard_message');
+  $set_msg_type = $form_state['values']['broadcast_dashboard_message'];
+  variable_set('broadcast_dashboard_message', $set_msg_type);
+
+  // Region Check
+  $current_region = $form_state['values']['broadcast_dashboard_region'];
+  $previous_region = variable_get('broadcast_dashboard_region');
+  $set_region = $form_state['values']['broadcast_dashboard_region'];
+  variable_set('broadcast_dashboard_region', $set_region);
   
+  // Custom Message Check
   if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
     $current_title = $form_state['values']['broadcast_dashboard_custom_message'];
     $previous_title = variable_get('broadcast_dashboard_custom_message');
@@ -162,6 +175,12 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
                    $set_title);
       }
   }
+
+  // Custom Message Color Check
+  $current_color = $form_state['values']['broadcast_dashboard_custom_message_color'];
+  $previous_color = variable_get('broadcast_dashboard_custom_message_color');
+  $set_color = $form_state['values']['broadcast_dashboard_custom_message_color'];
+  variable_set('broadcast_dashboard_custom_message_color', $set_color);
 
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
