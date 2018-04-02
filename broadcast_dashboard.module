@@ -58,7 +58,7 @@ function broadcast_dashboard_form() {
   $form['broadcast_dashboard_message'] = array(
     '#type' => 'select',
     '#title' => t('Type of Message'),
-    '#default_value' => $node->broadcast_dashboard_message,
+    '#default_value' => variable_get('broadcast_dashboard_message', 0),
     '#options' => array(
       1 => t('Drill'),
       2 => t('Earthquake'),
@@ -79,7 +79,7 @@ function broadcast_dashboard_form() {
   $form['broadcast_dashboard_region'] = array(
     '#type' => 'select',
     '#title' => t('Region Selection'),
-    '#default_value' => $node->broadcast_dashboard_region,
+    '#default_value' => variable_get('broadcast_dashboard_region', 0),
     '#options' => $regions,
     '#description' => t('Select a location to display the message.'),
     '#required' => FALSE,
@@ -93,12 +93,33 @@ function broadcast_dashboard_form() {
 
   $form['broadcast_dashboard_custom_message'] = array (
     '#type' => 'textfield',
-    '#default_value' => variable_get('broadcast_dashboard_custom_message',
-                                     'Broadcast Dashboard Custom Message'),
+    '#default_value' => variable_get('broadcast_dashboard_custom_message', 'Broadcast Dashboard Custom Message'),
     '#title' => t('Broadcast Dashboard Custom Message'),
     '#description' => t('Custom message to appear in place of pre-written notification text.'),
     '#size' => 60,
     '#maxlength' => 255,
+    '#states' => array(
+      "visible" => array(
+      	"input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
+      "required" => array(
+      	"input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
+	  ),
+  );
+
+  $form['broadcast_dashboard_custom_message_color'] = array(
+    '#type' => 'select',
+    '#title' => t('Color of Message'),
+    '#default_value' => variable_get('broadcast_dashboard_custom_message_color', 0),
+    '#options' => array(
+      1 => t('Success - Green'),
+      2 => t('Info - Blue'),
+      3 => t('Warning - Yellow'),
+      4 => t('Danger - Red'),
+    ),
+    '#description' => t('Set the custom message color based on Bootstrap alerts.'),
+    '#required' => FALSE,
     '#states' => array(
       "visible" => array(
       	"input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
