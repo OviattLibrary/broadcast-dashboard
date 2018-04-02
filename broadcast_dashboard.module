@@ -51,12 +51,11 @@ function broadcast_dashboard_form() {
     '#type' => checkbox,
     '#title' => t('Activate Broadcast'),
     '#return_value' => 1,
-    '#default_value' => variable_get('broadcast_dashboard_active',
-                                     0),
+    '#default_value' => variable_get('broadcast_dashboard_active', 0),
     '#description' => t('When activated, the selected message will be broadcast on the website.'),
   );
 
-  $form['broadcast_dashboard_message'] = array(
+  /*$form['broadcast_dashboard_message'] = array(
     '#type' => 'select',
     '#title' => t('Type of Message'),
     '#default_value' => $node->broadcast_dashboard_message,
@@ -108,7 +107,7 @@ function broadcast_dashboard_form() {
       	"input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
 	  ),
-  );
+  );*/
 
   // Submit button
   $form['submit'] = array(
@@ -137,7 +136,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   	//}
   }
 
-  if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
+  /*if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
     $current_title = $form_state['values']['broadcast_dashboard_custom_message'];
     $previous_title = variable_get('broadcast_dashboard_custom_message');
       // prevents check_plain from double encoding a pre-existing string
@@ -146,7 +145,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
         variable_set('broadcast_dashboard_custom_message',
                    $set_title);
       }
-  }
+  }*/
 
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
