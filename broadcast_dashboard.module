@@ -191,16 +191,26 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
  * Implements hook_test_display().
  */
 
-function broadcast_dashboard_test_display() {
-	global $theme_key;
-	/*print 'Our current theme is: ' . $theme_key . '<br>';
+function broadcast_dashboard_test_display() {                  
+        global $theme_key; 
+        /*print 'Our current theme is: ' . $theme_key . '<br>';
 
-	$regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
-	print '<pre>';
-	print_r($regions);
-	print '</pre>';*/
-	if (variable_get('broadcast_dashboard_active')) {
-	  $string = variable_get('broadcast_dashboard_active');
-	}
-	print 'Active state is ' . $string;
+        $regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
+        print '<pre>';
+        print_r($regions);
+        print '</pre>';*/
+        if (variable_get('broadcast_dashboard_active')) {
+          $active = variable_get('broadcast_dashboard_active'); 
+          $msg_type = variable_get('broadcast_dashboard_message');  
+          $region = variable_get('broadcast_dashboard_region');
+          $cust_msg = variable_get('broadcast_dashboard_custom_message');
+          $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
+        }
+        print 'Active state is: ' . $active;
+        if (variable_get('broadcast_dashboard_active')) {
+          print 'Message type is: '. $msg_type;
+          print 'Target region is: '. $region;
+          print 'Custom message is: '. $cust_msg;
+          print 'Custom message color is: '. $cust_msg_clr;
+        }
 }
