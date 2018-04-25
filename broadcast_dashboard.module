@@ -268,7 +268,7 @@ function broadcast_dashboard_page_alter(&$page) {
   );*/
   $region_markup = $page[$region]['#markup'];
   $page[$region] = array(
-  	'#markup' => t('altering the '.$region.' region' . $region_markup));,
+  	'#markup' => t('altering the '.$region.' region' . $region_markup)),
   );
 
 }
