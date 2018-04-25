@@ -250,7 +250,7 @@ function broadcast_dashboard_page_build(&$page) {
   $clr_code = null;
 
   // DEV - test notification
-  $page[$region]['main']['#markup'] = '<div class="alert alert-notice" role="alert">This system is currently being tested. Ignore any alerts.</div>';
+  $page[$region]['main']['#markup'] = '<div class="alert alert-notice" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
 
   // Pre-set messages
   if ($msg_type == 1) {
