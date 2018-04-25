@@ -309,6 +309,6 @@ function broadcast_dashboard_page_build(&$page) {
   //$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $page[$region]['main']['#markup'] . '</div>';
 
   // DEV - test notification
-  $page[$region]['main']['#markup'] = '<div class="alert alert-notice" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
+  $page[$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
 
 }
