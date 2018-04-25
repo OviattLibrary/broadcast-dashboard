@@ -296,7 +296,7 @@ function broadcast_dashboard_page_build(&$page) {
   		$clr_code = "alert alert-info";
   	}
 
-  	die(echo $clr_code);
+  	die($clr_code);
   	
   	$page[$region] = drupal_set_page_content();
   	$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
