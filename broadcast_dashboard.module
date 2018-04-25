@@ -48,7 +48,7 @@ function broadcast_dashboard_form() {
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
   $form['broadcast_dashboard_active'] = array(
-    '#type' => checkbox,
+    '#type' => "checkbox",
     '#title' => t('Activate Broadcast'),
     '#return_value' => 1,
     '#default_value' => variable_get('broadcast_dashboard_active', 0),
