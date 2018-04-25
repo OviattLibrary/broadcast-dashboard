@@ -249,11 +249,13 @@ function broadcast_dashboard_page_build(&$page) {
   $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
   $clr_code = null;
 
+  // DEV - test notification
+  $page[$region]['main']['#markup'] = '<div class="alert alert-notice" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
+
   // Pre-set messages
   if ($msg_type == 1) {
     // Drill
-    //$preset_msg = "There is currently a drill taking place. Please remain calm.";
-    $preset_msg = "This system is currently being tested. Ignore any alerts.";
+    $preset_msg = "There is currently a drill taking place. Please remain calm.";
     $preset_clr = 2;
   } elseif ($msg_type == 2) {
     // Earthquake
