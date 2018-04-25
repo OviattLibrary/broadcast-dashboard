@@ -240,10 +240,14 @@ function broadcast_dashboard_test_display() {
  */
 
 function broadcast_dashboard_page_alter(&$page) {
+  $active = variable_get('broadcast_dashboard_active');
+  $msg_type = variable_get('broadcast_dashboard_message');  
   $region = variable_get('broadcast_dashboard_region');
+  $cust_msg = variable_get('broadcast_dashboard_custom_message');
+  $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
 
   $page[$region] = array(
-    '#markup' => t('Altering the branding region'),
+    '#markup' => t('Altering the '.$region.' region'),
   );
 
 }
