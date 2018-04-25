@@ -296,7 +296,7 @@ function broadcast_dashboard_page_build(&$page) {
       $clr_code = 'alert alert-info';
     }
     
-    $page[$region]['main']['#markup'] = '<div id="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+    $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
   } // end no custom msg
 
   /*$page[$region] = array(
