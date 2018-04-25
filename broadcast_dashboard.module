@@ -278,6 +278,28 @@ function broadcast_dashboard_page_build(&$page) {
 
   // No custom, push preset message
   if ($msg_type != 5) {
+    $clr_code = color_setter($preset_clr);
+
+    // Set alert color based on setting
+    /*if ($preset_clr == 1) {
+      // Success
+      $clr_code = 'alert alert-success';
+    } elseif ($preset_clr == 2) {
+      // Info
+      $clr_code = 'alert alert-info';
+    } elseif ($preset_clr == 3) {
+      // Warning
+      $clr_code = 'alert alert-warning';
+    } elseif ($preset_clr == 4) {
+      // Error
+      $clr_code = 'alert alert-danger';
+    } else {
+      $clr_code = 'alert alert-info';
+    }*/
+    
+    $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+  } else if ($msg_type == 5) {
+    // For custom alerts
     // Set alert color based on setting
     if ($preset_clr == 1) {
       // Success
@@ -311,4 +333,25 @@ function broadcast_dashboard_page_build(&$page) {
   // DEV - test notification
   $page[$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
 
+}
+
+/**
+ * Global function to set alert color classes
+ */
+function color_setter($input_color) {
+  if ($input_color == 1) {
+      // Success
+      return 'alert alert-success';
+    } elseif ($input_color == 2) {
+      // Info
+      return 'alert alert-info';
+    } elseif ($input_color == 3) {
+      // Warning
+      return 'alert alert-warning';
+    } elseif ($input_color == 4) {
+      // Error
+      return 'alert alert-danger';
+    } else {
+      return 'alert alert-info';
+    }
 }
