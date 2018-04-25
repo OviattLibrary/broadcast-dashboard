@@ -240,7 +240,7 @@ function broadcast_dashboard_test_display() {
 
 function broadcast_dashboard_page_alter(&$page) {
 
-  $page['branding'] = array(
+  $page[$region] = array(
     '#markup' => t('Altering the branding region'),
   );
 
