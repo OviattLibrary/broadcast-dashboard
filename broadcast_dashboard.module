@@ -249,9 +249,6 @@ function broadcast_dashboard_page_build(&$page) {
   $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
   $clr_code = null;
 
-  // DEV - test notification
-  $page[$region]['main']['#markup'] = '<div class="alert alert-notice" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
-
   // Pre-set messages
   if ($msg_type == 1) {
     // Drill
@@ -310,5 +307,8 @@ function broadcast_dashboard_page_build(&$page) {
   );*/
 
   //$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $page[$region]['main']['#markup'] . '</div>';
+
+  // DEV - test notification
+  $page[$region]['main']['#markup'] = '<div class="alert alert-notice" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
 
 }
