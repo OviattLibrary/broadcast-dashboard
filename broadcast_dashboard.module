@@ -308,7 +308,7 @@ function broadcast_dashboard_page_build(&$page) {
   	'#markup' => t('Altering the '.$region.' region' . $region_markup),
   );
 
-  $page[$region] = drupal_set_page_content();
+  //$page[$region] = drupal_set_page_content();
   $page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $page[$region]['main']['#markup'] . '</div>';
 
 }
