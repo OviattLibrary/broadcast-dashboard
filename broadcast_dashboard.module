@@ -282,21 +282,21 @@ function broadcast_dashboard_page_build(&$page) {
   	// Set alert color based on setting
   	if ($preset_clr == 1) {
   		// Success
-  		$clr_code = "alert alert-success";
+  		$clr_code = 'alert alert-success';
   	} elseif ($preset_clr == 2) {
   		// Info
-  		$clr_code = "alert alert-info";
+  		$clr_code = 'alert alert-info';
   	} elseif ($preset_clr == 3) {
   		// Warning
-  		$clr_code = "alert alert-warning";
+  		$clr_code = 'alert alert-warning';
   	} elseif ($preset_clr == 4) {
   		// Error
-  		$clr_code = "alert alert-error";
+  		$clr_code = 'alert alert-error';
   	} else {
-  		$clr_code = "alert alert-info";
+  		$clr_code = 'alert alert-info';
   	}
   	
-  	$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+  	$page[$region]['main']['#markup'] = '<div id='. $clr_code .' role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
   } // end no custom msg
 
   /*$page[$region] = array(
@@ -307,7 +307,6 @@ function broadcast_dashboard_page_build(&$page) {
   	'#markup' => t('Altering the '.$region.' region' . $region_markup),
   );*/
 
-  //$page[$region] = drupal_set_page_content();
   //$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $page[$region]['main']['#markup'] . '</div>';
 
 }
