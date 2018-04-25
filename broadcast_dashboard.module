@@ -236,10 +236,10 @@ function broadcast_dashboard_test_display() {
 }
 
 /**
- * Implements hook_page_alter().
+ * Implements hook_page_build().
  */
 
-function broadcast_dashboard_page_alter(&$page) {
+function broadcast_dashboard_page_build(&$page) {
   $active = variable_get('broadcast_dashboard_active');
   $msg_type = variable_get('broadcast_dashboard_message');
   $preset_msg = null;
@@ -247,11 +247,13 @@ function broadcast_dashboard_page_alter(&$page) {
   $region = variable_get('broadcast_dashboard_region');
   $cust_msg = variable_get('broadcast_dashboard_custom_message');
   $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
+  $clr_code = null;
 
   // Pre-set messages
   if ($msg_type == 1) {
   	// Drill
-  	$preset_msg = "There is currently a drill taking place. Please remain calm.";
+  	//$preset_msg = "There is currently a drill taking place. Please remain calm.";
+  	$preset_msg = "This system is currently being tested. Ignore any alerts.";
   	$preset_clr = 2;
   } elseif ($msg_type == 2) {
   	// Earthquake
@@ -261,7 +263,42 @@ function broadcast_dashboard_page_alter(&$page) {
   	// Fire
   	$preset_msg = "A fire has been reported. Please calmly evacuate the building.";
   	$preset_clr = 4;
+  } elseif ($msg_type == 4) {
+  	// Shooter
+  	$preset_msg = "An active shooter has been reported. Take cover and, if possible, escape through a window or door.";
+  	$preset_clr = 4;
+  } elseif ($msg_type == 5) {
+  	// Custom
+
   }
+
+  /*1 => t('Success - Green'),
+      2 => t('Info - Blue'),
+      3 => t('Warning - Yellow'),
+      4 => t('Danger - Red'),*/
+
+  // No custom, push preset message
+  if ($msg_type != 5) {
+  	// Set alert color based on setting
+  	if ($preset_clr == 1) {
+  		// Success
+  		$clr_code = "alert alert-success";
+  	} elseif ($preset_clr == 2) {
+  		// Info
+  		$clr_code = "alert alert-info";
+  	} elseif ($preset_clr == 3) {
+  		// Warning
+  		$clr_code = "alert alert-warning";
+  	} elseif ($preset_clr == 4) {
+  		// Error
+  		$clr_code = "alert alert-error";
+  	} else {
+  		$clr_code = "alert alert-info";
+  	}
+  	
+  	$page[$region] = drupal_set_page_content();
+  	$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+  } // end no custom msg
 
   /*$page[$region] = array(
     '#markup' => t('Altering the '.$region.' region'),
@@ -270,5 +307,8 @@ function broadcast_dashboard_page_alter(&$page) {
   $page[$region] = array(
   	'#markup' => t('Altering the '.$region.' region' . $region_markup),
   );
+
+  $page[$region] = drupal_set_page_content();
+  $page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $page[$region]['main']['#markup'] . '</div>';
 
 }
