@@ -188,29 +188,62 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
 }
 
 /**
- * Implements hook_test_display().
+ * Custom function for testing output.
+ *
+ * @param bool $active
+ *   A boolean that indicates whether Broadcast message should be displayed or not.
+ *
+ * @param array $msg_type
+ *   Array of type of message - includes custom message option.
+ *
+ * @param string $region
+ *   String containing region name to be passed to alter function.
+ *
+ * @param string $cust_msg
+ *   String containing custom Broadcast message.
+ *
+ * @param string $cust_msg_clr
+ *   String containing semantic color for message box.
+ *
  */
 
 function broadcast_dashboard_test_display() {                  
-        global $theme_key; 
-        /*print 'Our current theme is: ' . $theme_key . '<br>';
 
-        $regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
-        print '<pre>';
-        print_r($regions);
-        print '</pre>';*/
-        if (variable_get('broadcast_dashboard_active')) {
-          $active = variable_get('broadcast_dashboard_active'); 
-          $msg_type = variable_get('broadcast_dashboard_message');  
-          $region = variable_get('broadcast_dashboard_region');
-          $cust_msg = variable_get('broadcast_dashboard_custom_message');
-          $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
-        }
-        print 'Active state is: ' . $active;
-        if (variable_get('broadcast_dashboard_active')) {
-          print 'Message type is: '. $msg_type;
-          print 'Target region is: '. $region;
-          print 'Custom message is: '. $cust_msg;
-          print 'Custom message color is: '. $cust_msg_clr;
-        }
+  global $theme_key; 
+  /*print 'Our current theme is: ' . $theme_key . '<br>';
+
+  $regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = FALSE);
+  print '<pre>';
+  print_r($regions);
+  print '</pre>';*/
+  
+  if (variable_get('broadcast_dashboard_active')) {
+    $active = variable_get('broadcast_dashboard_active'); 
+    $msg_type = variable_get('broadcast_dashboard_message');  
+    $region = variable_get('broadcast_dashboard_region');
+    $cust_msg = variable_get('broadcast_dashboard_custom_message');
+    $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
+  }
+ 
+  print 'Active state is: ' . $active;
+
+  if (variable_get('broadcast_dashboard_active')) {
+    print 'Message type is: '. $msg_type;
+    print 'Target region is: '. $region;
+    print 'Custom message is: '. $cust_msg;
+    print 'Custom message color is: '. $cust_msg_clr;
+  }
+
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+
+function broadcast_dashboard_page_alter(&$page) {
+
+  $page['branding'] = array(
+    '#markup' => t('Altering the branding region'),
+  );
+
 }
