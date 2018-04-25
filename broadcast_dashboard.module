@@ -228,9 +228,9 @@ function broadcast_dashboard_test_display() {
   print 'Active state is: ' . $active;
 
   if (variable_get('broadcast_dashboard_active')) {
-    print 'Message type is: '. $msg_type;
-    print 'Target region is: '. $region;
-    print 'Custom message is: '. $cust_msg;
+    print 'Message type is: '. $msg_type; print "<br>";
+    print 'Target region is: '. $region; print "<br>";
+    print 'Custom message is: '. $cust_msg; print "<br>";
     print 'Custom message color is: '. $cust_msg_clr;
   }
 
