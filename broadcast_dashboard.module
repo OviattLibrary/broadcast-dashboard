@@ -241,13 +241,34 @@ function broadcast_dashboard_test_display() {
 
 function broadcast_dashboard_page_alter(&$page) {
   $active = variable_get('broadcast_dashboard_active');
-  $msg_type = variable_get('broadcast_dashboard_message');  
+  $msg_type = variable_get('broadcast_dashboard_message');
+  $preset_msg = null;
+  $preset_clr = null;
   $region = variable_get('broadcast_dashboard_region');
   $cust_msg = variable_get('broadcast_dashboard_custom_message');
   $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
 
-  $page[$region] = array(
+  // Pre-set messages
+  if ($msg_type == 1) {
+  	// Drill
+  	$preset_msg = "There is currently a drill taking place. Please remain calm.";
+  	$preset_clr = 2;
+  } elseif ($msg_type == 2) {
+  	// Earthquake
+  	$preset_msg = "There is currently an earthquake. Drop, cover, and hold.";
+  	$preset_clr = 3;
+  } elseif ($msg_type == 3) {
+  	// Fire
+  	$preset_msg = "A fire has been reported. Please calmly evacuate the building.";
+  	$preset_clr = 4;
+  }
+
+  /*$page[$region] = array(
     '#markup' => t('Altering the '.$region.' region'),
+  );*/
+  $region_markup = $page[$region]['#markup'];
+  $new_markup = $page[$region] array(
+  	'#markup' => t($altering the '.$region.' region' . $region_markup');,
   );
 
 }
