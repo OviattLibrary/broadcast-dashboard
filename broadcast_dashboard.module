@@ -233,12 +233,6 @@ function broadcast_dashboard_test_display(&$page) {
     print 'Custom message color is: '. $cust_msg_clr;
   }
 
-  $page[$region]['main']['#markup'] = "test";
-
-  print '<pre>';
-  print_r($page);
-  print '</pre>';
-
 }
 
 /**
@@ -321,6 +315,9 @@ function broadcast_dashboard_page_build(&$page) {
     
     if (!empty($clr_code) && !empty($cust_msg)) {
       $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page[$region]['main']['#markup'] . '</div>';
+        print '<pre>';
+        print_r($page);
+        print '</pre>';
     }
   } // end custom msg
 
