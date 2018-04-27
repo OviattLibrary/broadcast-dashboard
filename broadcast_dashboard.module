@@ -265,6 +265,11 @@ function broadcast_dashboard_test_display(&$page) {
  * Global function to set alert color classes in page_build()
  */
 function color_setter($input_color) {
+  /* 1 => Success - Green
+     2 => Info - Blue
+     3 => Warning - Yellow
+     4 => Danger - Red')
+  */
   if ($input_color == 1) {
       // Success
       return 'alert alert-success';
@@ -333,17 +338,11 @@ function broadcast_dashboard_page_build(&$page) {
     }
   }
 
-  /*1 => t('Success - Green'),
-      2 => t('Info - Blue'),
-      3 => t('Warning - Yellow'),
-      4 => t('Danger - Red'),*/
-
   // No custom, push preset message
   if (($active == 1) && ($msg_type != 5)) {
     $clr_code = color_setter($preset_clr);
     
     if (!empty($clr_code) && !empty($preset_msg)) {
-//      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
       $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
     }
   } else if ($msg_type == 5) { // end no custom msg
@@ -355,15 +354,5 @@ function broadcast_dashboard_page_build(&$page) {
       $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
     }
   } // end custom msg
-
-  /*$page[$region] = array(
-    '#markup' => t('Altering the '.$region.' region'),
-  );
-  /*$region_markup = $page[$region]['#markup'];
-  $page[$region] = array(
-    '#markup' => t('Altering the '.$region.' region' . $region_markup),
-  );*/
-
-  //$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $page[$region]['main']['#markup'] . '</div>';
 
 }
