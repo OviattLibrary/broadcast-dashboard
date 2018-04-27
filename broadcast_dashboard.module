@@ -245,7 +245,7 @@ function broadcast_dashboard_test_display(&$page) {
   }
 
   print '<br>';
-  $msg_date = date("m/d/Y h:ia");
+  $msg_date = date("m/d/Y h:i:sa");
   print $msg_date;
 
 }
