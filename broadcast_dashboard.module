@@ -147,6 +147,25 @@ function broadcast_dashboard_form() {
     '#value' => t('Save settings'),
   );
 
+  // Fieldset for additional settings
+  $renderable['fieldset'] = array(
+  '#type' => 'fieldset',
+  '#title' => t('Title'),
+  'example content' => array (
+    '#theme' => 'item_list',
+    '#items' => array(
+      t('Example item')
+    )
+  ),
+  '#attributes' => array (
+    'class' => array(
+      'collapsible', 'collapsed'
+    )
+  )
+);
+
+drupal_render($renderable);
+
   return $form;
 }
 
