@@ -303,13 +303,17 @@ function broadcast_dashboard_page_build(&$page) {
   if ($msg_type != 5) {
     $clr_code = color_setter($preset_clr);
     
-    $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+    if (isset($clr_code) && isset($preset_msg)) {
+      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+    }
   } else if ($msg_type == 5) { // end no custom msg
     // For custom alerts
     // Set alert color based on setting
     $clr_code = color_setter($cust_msg_clr);
     
-    $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page[$region]['main']['#markup'] . '</div>';
+    if (isset($clr_code) && isset($cust_msg)) {
+      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page[$region]['main']['#markup'] . '</div>';
+    }
   } // end custom msg
 
   /*$page[$region] = array(
