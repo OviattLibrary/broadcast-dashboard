@@ -39,6 +39,18 @@ function broadcast_dashboard_menu() {
 }
 
 /**
+ * Implements hook_permission().
+ */
+function broadcast_dashboard_permission() {
+  return array(
+    'administer broadcast dashboard' => array (
+      'title' => t('Administer Broadcast Dashboard'),
+      'description' => t('Change configuration for, and send out, Broadcash Dashboard alerts.'),
+    ),
+  );
+}
+
+/**
  * Implements hook_form().
  */
 
