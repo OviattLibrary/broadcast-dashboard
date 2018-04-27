@@ -141,6 +141,14 @@ function broadcast_dashboard_form() {
     ),
   );
 
+  $form['broadcast_dashboard_date_message_posted'] = array(
+    '#type' => 'hidden',
+    '#title' => t('Date Message Posted'),
+    '#default_value' => null,
+    '#description' => t('The date and time the message was posted.'),
+    '#required' => FALSE,
+  );
+
   // Submit button
   $form['submit'] = array(
     '#type' => 'submit',
@@ -192,6 +200,9 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   $previous_color = variable_get('broadcast_dashboard_custom_message_color');
   $set_color = $form_state['values']['broadcast_dashboard_custom_message_color'];
   variable_set('broadcast_dashboard_custom_message_color', $set_color);
+
+  // Set date and time message posted
+  variable_set('broadcast_dashboard_date_message_posted', date("m/d/Y h:i:sa"));
 
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
@@ -293,6 +304,7 @@ function broadcast_dashboard_page_build(&$page) {
   $cust_msg = variable_get('broadcast_dashboard_custom_message');
   $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
   $clr_code = null;
+  $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
   // DEV - test notification
   $page[$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
@@ -332,7 +344,7 @@ function broadcast_dashboard_page_build(&$page) {
     
     if (!empty($clr_code) && !empty($preset_msg)) {
 //      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
-      $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]/*['system_main']*/['#markup'] . '</div>';
+      $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . '(Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
     }
   } else if ($msg_type == 5) { // end no custom msg
     // For custom alerts
@@ -340,7 +352,7 @@ function broadcast_dashboard_page_build(&$page) {
     $clr_code = color_setter($cust_msg_clr);
     
     if (!empty($clr_code) && !empty($cust_msg)) {
-      $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page[$region]['system_main']['#markup'] . '</div>';
+      $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . '(Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
     }
   } // end custom msg
 
