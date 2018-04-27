@@ -270,9 +270,6 @@ function broadcast_dashboard_page_build(&$page) {
 
 //  dpm($page);
 
-  // DEV - test notification
-  $page[$region]['system_main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['system_main']['#markup'] . '</div>';
-
   $active = variable_get('broadcast_dashboard_active');
   $msg_type = variable_get('broadcast_dashboard_message');
   $preset_msg = null;
@@ -305,6 +302,9 @@ function broadcast_dashboard_page_build(&$page) {
 
     }
   }
+
+  // DEV - test notification
+  $page[$region]['system_main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['system_main']['#markup'] . '</div>';
 
   /*1 => t('Success - Green'),
       2 => t('Info - Blue'),
