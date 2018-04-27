@@ -310,7 +310,7 @@ function broadcast_dashboard_page_build(&$page) {
     $clr_code = color_setter($preset_clr);
     
     if (!empty($clr_code) && !empty($preset_msg)) {
-      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+      $page['content'][$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page['content'][$region]['main']['#markup'] . '</div>';
     }
   } else if ($msg_type == 5) { // end no custom msg
     // For custom alerts
@@ -318,7 +318,7 @@ function broadcast_dashboard_page_build(&$page) {
     $clr_code = color_setter($cust_msg_clr);
     
     if (!empty($clr_code) && !empty($cust_msg)) {
-      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page[$region]['main']['#markup'] . '</div>';
+      $page['content'][$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page['content'][$region]['main']['#markup'] . '</div>';
     }
   } // end custom msg
 
@@ -333,6 +333,6 @@ function broadcast_dashboard_page_build(&$page) {
   //$page[$region]['main']['#markup'] = '<div id='. $clr_code .'>' . $page[$region]['main']['#markup'] . '</div>';
 
   // DEV - test notification
-  $page[$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
+  $page['content'][$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page['content'][$region]['main']['#markup'] . '</div>';
 
 }
