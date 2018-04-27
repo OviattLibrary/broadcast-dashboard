@@ -314,7 +314,7 @@ function broadcast_dashboard_page_build(&$page) {
     $clr_code = color_setter($cust_msg_clr);
     
     if (!empty($clr_code) && !empty($cust_msg)) {
-      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page[$region]['main']['#markup'] . '</div>';
+      $page[$region]['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . $page[$region]['#markup'] . '</div>';
     }
   } // end custom msg
 
