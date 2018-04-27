@@ -339,7 +339,7 @@ function broadcast_dashboard_page_build(&$page) {
       4 => t('Danger - Red'),*/
 
   // No custom, push preset message
-  if ($msg_type != 5) {
+  if (($active == 1) && ($msg_type != 5)) {
     $clr_code = color_setter($preset_clr);
     
     if (!empty($clr_code) && !empty($preset_msg)) {
