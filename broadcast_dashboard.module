@@ -306,7 +306,7 @@ function broadcast_dashboard_page_build(&$page) {
     $clr_code = color_setter($preset_clr);
     
     if (!empty($clr_code) && !empty($preset_msg)) {
-      $page[$region]['main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['main']['#markup'] . '</div>';
+      $page[$region]['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . $page[$region]['#markup'] . '</div>';
     }
   } else if ($msg_type == 5) { // end no custom msg
     // For custom alerts
