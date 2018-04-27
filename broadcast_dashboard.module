@@ -147,25 +147,6 @@ function broadcast_dashboard_form() {
     '#value' => t('Save settings'),
   );
 
-  // Fieldset for additional settings
-  $renderable['fieldset'] = array(
-  '#type' => 'fieldset',
-  '#title' => t('Title'),
-  'example content' => array (
-    '#theme' => 'item_list',
-    '#items' => array(
-      t('Example item')
-    )
-  ),
-  '#attributes' => array (
-    'class' => array(
-      'collapsible', 'collapsed'
-    )
-  )
-);
-
-drupal_render($renderable);
-
   return $form;
 }
 
@@ -262,6 +243,10 @@ function broadcast_dashboard_test_display(&$page) {
     print 'Custom message is: '. $cust_msg; print "<br>";
     print 'Custom message color is: '. $cust_msg_clr;
   }
+
+  print '<br>';
+  $msg_date = date(mm "/" dd "/" YY);
+  print $msg_date;
 
 }
 
