@@ -53,7 +53,7 @@ function broadcast_dashboard_permission() {
 /**
  * Implements system_settings_form().
  */
-function broadcast_dashboard_settings_form($form) {
+function broadcast_dashboard_system_settings_form($form) {
   $form['actions']['#type'] = 'actions';
   $form['actions']['submit'] = array(
     '#type' => 'submit',
