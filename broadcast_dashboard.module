@@ -335,4 +335,8 @@ function broadcast_dashboard_page_build(&$page) {
   // DEV - test notification
   $page[$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
 
+  print '<pre>';
+  print_r($page);
+  print '</pre>';
+
 }
