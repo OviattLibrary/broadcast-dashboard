@@ -169,8 +169,6 @@ function broadcast_dashboard_form() {
   return $form;
 }
 
-function runPreview
-
 /**
  * Implements hook_form_submit().
  */
