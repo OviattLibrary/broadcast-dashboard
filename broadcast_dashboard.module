@@ -45,7 +45,7 @@ function broadcast_dashboard_permission() {
   return array(
     'administer broadcast dashboard' => array (
       'title' => t('Administer Broadcast Dashboard'),
-      'description' => t('Change configuration for, and send out, Broadcash Dashboard alerts.'),
+      'description' => t('Change configuration for, and send out, Broadcast Dashboard alerts.'),
     ),
   );
 }
@@ -149,10 +149,15 @@ function broadcast_dashboard_form() {
     '#required' => FALSE,
   );
 
-  // Submit button
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview.js',
+  );
+
+  // Preview button
   $form['preview'] = array(
     '#type' => 'button',
     '#value' => t('Preview'),
+    '#attributes' => array('onclick' => 'runPreview()'),
   );
 
   // Submit button
@@ -163,6 +168,8 @@ function broadcast_dashboard_form() {
 
   return $form;
 }
+
+function runPreview
 
 /**
  * Implements hook_form_submit().
