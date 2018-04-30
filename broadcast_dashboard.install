@@ -22,4 +22,5 @@ function broadcast_dashboard_uninstall() {
   variable_del('broadcast_dashboard_region');
   variable_del('broadcast_dashboard_custom_message');
   variable_del('broadcast_dashboard_custom_message_color');
+  variable_del('broadcast_dashboard_date_message_posted');
 }
