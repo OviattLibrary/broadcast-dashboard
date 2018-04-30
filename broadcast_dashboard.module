@@ -249,7 +249,7 @@ function broadcast_dashboard_test_display() {
 
   print 'Active state is: ' . $active; print "<br>";
   
-  if (variable_get('broadcast_dashboard_active') == 1) {
+  if ($active == 1) {
     $msg_type = variable_get('broadcast_dashboard_message');  
     $region = variable_get('broadcast_dashboard_region');
     $cust_msg = variable_get('broadcast_dashboard_custom_message');
