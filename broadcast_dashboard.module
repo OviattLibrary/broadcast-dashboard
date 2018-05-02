@@ -34,8 +34,7 @@ function broadcast_dashboard_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
-  // tabbed menu test
-  $items['/admin/config/system/broadcast_dashboard/settings'] = array(
+  /*$items['/admin/config/system/broadcast_dashboard/settings'] = array(
     'title' => t('Broadcast Dashboard Settings'),
     'page callback' => 'broadcast_dashboard_settings_form',
     'access callback' => TRUE,
@@ -43,7 +42,7 @@ function broadcast_dashboard_menu() {
     'access arguments' => array('administer broadcast dashboard'),
     'type' => MENU_LOCAL_TASK,
     'weight' => -8,
-  );
+  );*/
 
   return $items;
 
