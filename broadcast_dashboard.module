@@ -402,7 +402,7 @@ function broadcast_dashboard_page_build(&$page) {
  * Implements hook_form().
  */
 
-function broadcast_dashboard_settings_form() {
+/*function broadcast_dashboard_settings_form() {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
@@ -448,7 +448,7 @@ function broadcast_dashboard_settings_form() {
  * Implements hook_form_submit().
  */
 
-function broadcast_dashboard_settings_form_submit($form, &$form_state) {
+/*function broadcast_dashboard_settings_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   $form_has_errors = TRUE;
