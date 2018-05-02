@@ -87,11 +87,7 @@ function broadcast_dashboard_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
-  $settings_html = '<div class=\"alert alert-info\" role=\"alert\">To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.</div>';
-
-  $form['broadcast_dashboard_config_notice'] = array(
-    '#markup' => $settings_html,
-  );
+  drupal_set_message(t('To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.'), 'status', TRUE);
 
   $form['broadcast_dashboard_active'] = array(
     '#type' => "checkbox",
