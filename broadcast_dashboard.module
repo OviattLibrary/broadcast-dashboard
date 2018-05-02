@@ -193,6 +193,14 @@ function broadcast_dashboard_form($form_state) {
     '#value' => t('Preview'),
     '#executes_submit_callback' => FALSE,
     '#attributes' => array('onclick' => "runPreview('".$test_var."'); return (false);"),
+    '#states' => array(
+      "visible" => array(
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
+      "required" => array(
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
+    ),
   );
 
   // Submit button
