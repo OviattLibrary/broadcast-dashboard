@@ -70,24 +70,26 @@ function broadcast_dashboard_permission() {
  * Implements hook_forms().
  */
 
-function broadcast_dashboard_forms() {
-  $forms = array();
+function broadcast_dashboard_forms($form_id, $args) {
+  // Simply reroute the (non-existing) $form_id
+  $forms['broadcast_dashboard_form'] = array(
+    'callback' => 'broadcast_dashboard_form',
+  );
 
-  if (!empty($args) && $form_id == 'broadcast_dashboard_form_' . $args[0]) {
-      $forms[$form_id] = array(
-        'callback' => 'broadcast_dashboard_form',
-        'callback arguments' => array($args[0]),
-      );
-  }
+  // Reroute the $form_id and prepend an additional argument that gets passed to
+  // the 'mymodule_main_form' form builder function.
+  $forms['broadcast_dashboard_settings_form'] = array(
+    'callback' => 'broadcast_dashboard_settings_form',
+  );
 
-    return $forms;
+  return $forms;
 }
 
 /**
  * Implements hook_form().
  */
 
-function broadcast_dashboard_form() {
+function broadcast_dashboard_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
@@ -409,7 +411,7 @@ function broadcast_dashboard_page_build(&$page) {
  * Implements hook_form().
  */
 
-function broadcast_dashboard_settings_form() {
+function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
