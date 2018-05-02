@@ -31,7 +31,7 @@ function broadcast_dashboard_menu() {
     'page arguments' => array(1, 'broadcast_dashboard_page_callback'),
     'access_callback' => TRUE,
     'access arguments' => array('administer broadcast dashboard'),
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
 
   // tabbed menu test
@@ -41,7 +41,7 @@ function broadcast_dashboard_menu() {
     'access callback' => TRUE,
     'page arguments' => array(2, 'broadcast_dashboard_page_callback'),
     'access arguments' => array('administer broadcast dashboard'),
-    'type' => MENU_CALLBACK,
+    'type' => MENU_LOCAL_TASK,
     'weight' => -8,
   );
 
