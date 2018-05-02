@@ -61,12 +61,15 @@ function broadcast_dashboard_permission() {
   );
 }
 
-function broadcast_dashboard_page_callback() {
+function broadcast_dashboard_page_callback($args) {
   $build = array();
 
   // Render the forms here
-  $build['main'] = drupal_get_form('broadcast_dashboard_form');
-  $build['settings'] = drupal_get_form('broadcast_dashboard_settings_form');
+  if ($args == 2) {
+    $build['settings'] = drupal_get_form('broadcast_dashboard_settings_form');
+  } else {
+    $build['main'] = drupal_get_form('broadcast_dashboard_form');
+  }
 
   return $build;
 }
