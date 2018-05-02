@@ -27,11 +27,22 @@ function broadcast_dashboard_menu() {
   $items['admin/config/system/broadcast_dashboard'] = array(
     'title' => 'Broadcast Dashboard',
     'description' => 'Configuration for the Broadcast Dashboard module.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('broadcast_dashboard_form'),
+    'page callback' => 'broadcast_dashboard_page_callback()',
+    //'page arguments' => array('broadcast_dashboard_form'),
     'access_callback' => TRUE,
     'access arguments' => array('administer broadcast dashboard'),
     'type' => MENU_NORMAL_ITEM,
+  );
+
+  // tabbed menu test
+  $items['/admin/config/system/broadcast_dashboard/settings'] = array(
+    'title' => t('Broadcast Dashboard Settings'),
+    'page callback' => 'broadcast_dashboard_page_callback()',
+    'access callback' => TRUE,
+    //'page arguments' => array('broadcast_dashboard_settings_form'),
+    'access arguments' => array('administer broadcast dashboard'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => -8,
   );
 
   return $items;
@@ -48,6 +59,16 @@ function broadcast_dashboard_permission() {
       'description' => t('Change configuration for, and send out, Broadcast Dashboard alerts.'),
     ),
   );
+}
+
+function broadcast_dashboard_page_callback() {
+  $build = array();
+
+  // Render the forms here
+  $build['main'] = drupal_get_form('broadcast_dashboard_form');
+  $build['settings'] = drupal_get_form('broadcast_dashboard_settings');
+
+  return $build;
 }
 
 /**
