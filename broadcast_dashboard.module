@@ -34,15 +34,15 @@ function broadcast_dashboard_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
-  /*$items['/admin/config/system/broadcast_dashboard/settings'] = array(
+  $items['/admin/config/system/broadcast_dashboard/settings'] = array(
     'title' => t('Broadcast Dashboard Settings'),
-    'page callback' => 'broadcast_dashboard_settings_form',
+    'page callback' => 'drupal_get_form',
     'access callback' => TRUE,
     'page arguments' => array('broadcast_dashboard_settings_form'),
     'access arguments' => array('administer broadcast dashboard'),
     'type' => MENU_LOCAL_TASK,
     'weight' => -8,
-  );*/
+  );
 
   return $items;
 
@@ -402,7 +402,7 @@ function broadcast_dashboard_page_build(&$page) {
  * Implements hook_form().
  */
 
-/*function broadcast_dashboard_settings_form() {
+function broadcast_dashboard_settings_form() {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
@@ -448,7 +448,7 @@ function broadcast_dashboard_page_build(&$page) {
  * Implements hook_form_submit().
  */
 
-/*function broadcast_dashboard_settings_form_submit($form, &$form_state) {
+function broadcast_dashboard_settings_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   $form_has_errors = TRUE;
@@ -456,4 +456,4 @@ function broadcast_dashboard_page_build(&$page) {
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
   }
-}*/
+}
