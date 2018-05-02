@@ -34,16 +34,6 @@ function broadcast_dashboard_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
-  $items['/admin/config/system/broadcast_dashboard/settings'] = array(
-    'title' => t('Broadcast Dashboard Settings'),
-    'page callback' => 'drupal_get_form',
-    'access callback' => TRUE,
-    'page arguments' => array('broadcast_dashboard_settings_form'),
-    'access arguments' => array('administer broadcast dashboard'),
-    'type' => MENU_LOCAL_TASK,
-    'weight' => -8,
-  );
-
   return $items;
 
 }
@@ -75,6 +65,23 @@ function broadcast_dashboard_permission() {
 
   return $build;
 }*/
+
+/**
+ * Implements hook_forms().
+ */
+
+function broadcast_dashboard_forms() {
+  $forms = array();
+
+  if (!empty($args) && $form_id == 'broadcast_dashboard_form_' . $args[0]) {
+      $forms[$form_id] = array(
+        'callback' => 'broadcast_dashboard_form',
+        'callback arguments' => array($args[0]),
+      );
+  }
+
+    return $forms;
+}
 
 /**
  * Implements hook_form().
