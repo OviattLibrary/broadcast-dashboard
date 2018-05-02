@@ -424,9 +424,9 @@ function broadcast_dashboard_settings_form() {
     '#required' => FALSE,
     '#states' => array(
     "visible" => array(
-      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+      "input[name='broadcast_dashboard_settings_active']" => array("checked" => TRUE)),
       "required" => array(
-      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+      "input[name='broadcast_dashboard_settings_active']" => array("checked" => TRUE)),
     ),
   );
 
