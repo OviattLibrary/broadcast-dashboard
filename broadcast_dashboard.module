@@ -60,22 +60,6 @@ function broadcast_dashboard_permission() {
   );
 }
 
-/*function broadcast_dashboard_page_callback($args) {
-  $build = array();
-
-  // Render the forms here
-  if ($args == 2) {
-    $build['settings'] = drupal_get_form('broadcast_dashboard_settings_form');
-  } else if ($args == 1){
-    $build['main'] = drupal_get_form('broadcast_dashboard_form');
-  } //DEBUG
-    else {
-      echo $args;
-    }
-
-  return $build;
-}*/
-
 /**
  * Implements hook_forms().
  */
@@ -100,10 +84,15 @@ function broadcast_dashboard_forms($form_id, $args) {
  */
 
 function broadcast_dashboard_form($form_state) {
-  echo $form_id;
-  
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  $settings_html = '<div class="alert alert-info" role="alert">To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.</div>';
+
+$form['mymarkup'] = array(
+  '#type' => 'markup'
+  '#value' => $html,
+);
 
   $form['broadcast_dashboard_active'] = array(
     '#type' => "checkbox",
