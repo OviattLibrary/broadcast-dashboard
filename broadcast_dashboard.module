@@ -456,4 +456,4 @@ function broadcast_dashboard_page_build(&$page) {
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
   }
-}
+}*/
