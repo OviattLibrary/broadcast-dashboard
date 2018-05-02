@@ -27,21 +27,21 @@ function broadcast_dashboard_menu() {
   $items['admin/config/system/broadcast_dashboard'] = array(
     'title' => 'Broadcast Dashboard',
     'description' => 'Configuration for the Broadcast Dashboard module.',
-    'page callback' => 'broadcast_dashboard_page_callback()',
-    'page arguments' => array('broadcast_dashboard_form'),
+    'page callback' => 'broadcast_dashboard_page_callback',
+    'page arguments' => array(1),
     'access_callback' => TRUE,
     'access arguments' => array('administer broadcast dashboard'),
-    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_CALLBACK,
   );
 
   // tabbed menu test
   $items['/admin/config/system/broadcast_dashboard/settings'] = array(
     'title' => t('Broadcast Dashboard Settings'),
-    'page callback' => 'broadcast_dashboard_page_callback()',
+    'page callback' => 'broadcast_dashboard_page_callback',
     'access callback' => TRUE,
-    'page arguments' => array('broadcast_dashboard_settings_form'),
+    'page arguments' => array(2),
     'access arguments' => array('administer broadcast dashboard'),
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_CALLBACK,
     'weight' => -8,
   );
 
@@ -75,7 +75,7 @@ function broadcast_dashboard_page_callback() {
  * Implements hook_form().
  */
 
-function broadcast_dashboard_form() {
+function broadcast_dashboard_form($args = 'all') {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
