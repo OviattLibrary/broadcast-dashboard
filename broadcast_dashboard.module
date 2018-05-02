@@ -27,7 +27,7 @@ function broadcast_dashboard_menu() {
   $items['admin/config/system/broadcast_dashboard'] = array(
     'title' => 'Broadcast Dashboard',
     'description' => 'Configuration for the Broadcast Dashboard module.',
-    'page callback' => 'broadcast_dashboard_form',
+    'page callback' => 'drupal_get_form',
     'page arguments' => array('broadcast_dashboard_form'),
     'access_callback' => TRUE,
     'access arguments' => array('administer broadcast dashboard'),
