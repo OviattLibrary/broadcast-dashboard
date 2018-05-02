@@ -67,9 +67,12 @@ function broadcast_dashboard_page_callback($args) {
   // Render the forms here
   if ($args == 2) {
     $build['settings'] = drupal_get_form('broadcast_dashboard_settings_form');
-  } else {
+  } else if ($args == 1){
     $build['main'] = drupal_get_form('broadcast_dashboard_form');
-  }
+  } //DEBUG
+    else {
+      echo $args;
+    }
 
   return $build;
 }
