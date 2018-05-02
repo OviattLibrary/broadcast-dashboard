@@ -89,10 +89,10 @@ function broadcast_dashboard_form($form_state) {
 
   $settings_html = '<div class=\"alert alert-info\" role=\"alert\">To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.</div>';
 
-$form['mymarkup'] = array(
-  '#type' => 'markup'
-  '#value' => $settings_html,
-);
+  $form['broadcast_dashboard_config_notice'] = array(
+    '#type' => 'markup'
+    '#value' => $settings_html,
+  );
 
   $form['broadcast_dashboard_active'] = array(
     '#type' => "checkbox",
