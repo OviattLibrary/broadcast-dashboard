@@ -61,7 +61,7 @@ function broadcast_dashboard_permission() {
   );
 }
 
-function broadcast_dashboard_page_callback($args) {
+/*function broadcast_dashboard_page_callback($args) {
   $build = array();
 
   // Render the forms here
@@ -75,13 +75,13 @@ function broadcast_dashboard_page_callback($args) {
     }
 
   return $build;
-}
+}*/
 
 /**
  * Implements hook_form().
  */
 
-function broadcast_dashboard_form($args = 'all') {
+function broadcast_dashboard_form() {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
