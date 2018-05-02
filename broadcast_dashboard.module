@@ -100,6 +100,8 @@ function broadcast_dashboard_forms($form_id, $args) {
  */
 
 function broadcast_dashboard_form($form_state) {
+  echo $form_id;
+  
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
