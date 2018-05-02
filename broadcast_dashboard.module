@@ -66,7 +66,7 @@ function broadcast_dashboard_page_callback() {
 
   // Render the forms here
   $build['main'] = drupal_get_form('broadcast_dashboard_form');
-  $build['settings'] = drupal_get_form('broadcast_dashboard_settings');
+  $build['settings'] = drupal_get_form('broadcast_dashboard_settings_form');
 
   return $build;
 }
@@ -391,4 +391,64 @@ function broadcast_dashboard_page_build(&$page) {
     }
   } // end custom msg
 
+}
+
+/**
+ * Implements hook_form().
+ */
+
+function broadcast_dashboard_settings_form() {
+  $theme_default = variable_get('theme_default', NULL);
+  $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  $form['broadcast_dashboard_active'] = array(
+    '#type' => "checkbox",
+    '#title' => t('Activate Broadcast'),
+    '#return_value' => 1,
+    '#default_value' => variable_get('broadcast_dashboard_active', 0),
+    '#description' => t('When activated, the selected message will be broadcast on the website.'),
+  );
+
+  $form['broadcast_dashboard_message'] = array(
+    '#type' => 'select',
+    '#title' => t('Type of Message'),
+    '#default_value' => variable_get('broadcast_dashboard_message', 0),
+    '#options' => array(
+      1 => t('Drill'),
+      2 => t('Earthquake'),
+      3 => t('Fire'),
+      4 => t('Shooter'),
+      5 => t('Custom'),
+    ),
+    '#description' => t('Select the type of message to broadcast.'),
+    '#required' => FALSE,
+    '#states' => array(
+    "visible" => array(
+      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+      "required" => array(
+      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+    ),
+  );
+
+  // Submit button
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save settings'),
+  );
+
+  return $form;
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+
+function broadcast_dashboard_settings_form_submit($form, &$form_state) {
+  $form_has_errors = FALSE;
+
+  $form_has_errors = TRUE;
+
+  if ($form_has_errors == FALSE) {
+    drupal_set_message(t('The settings have successfully been saved.'));
+  }
 }
