@@ -6,7 +6,7 @@
  */
 
 jQuery(function($) {
-	$('#edit-preview').click(function () {
+	$('#edit-preview').click(function() {
 		var msg_type = $("#edit-broadcast-dashboard-message").val();
 		var preset_msg;
 		var preset_clr;
@@ -14,8 +14,8 @@ jQuery(function($) {
 		var date = new Date();
 
 		// Set date on click
-		// 05/11/2018 10:05:05am
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+	    
 	    // Pre-set messages
 	    if (msg_type == 1) {
 	      // Drill
