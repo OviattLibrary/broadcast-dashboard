@@ -7,6 +7,6 @@
 
 jQuery(function($) {
 	$('#edit-preview').click(function () {
-	   alert($("#broadcast_dashboard_custom_message").val());
+	   alert($("#edit-broadcast-dashboard-custom-message").val());
 	});
 });
