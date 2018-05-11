@@ -9,4 +9,4 @@ $(document).ready(function() {
 	$('#edit-preview').click(function () {
 	   alert($("#broadcast_dashboard_custom_message").val());
 	});
-}
+});
