@@ -209,6 +209,12 @@ function broadcast_dashboard_form($form_state) {
     '#value' => t('Save settings'),
   );
 
+  // Preview area
+  $form['preview_area'] = array(
+    '#type' => 'markup',
+    '#markup' => '',
+  );
+
   return $form;
 }
 
