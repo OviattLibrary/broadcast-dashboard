@@ -7,4 +7,6 @@ description = An emergency notification broadcast system for automatic site-wide
 core = 7.x
 package = Broadcast Dashboard
 files[] = broadcast_dashboard.module
+stylesheets[] = broadcast_dashboard_style.css
+scripts[] = broadcast_dashboard_preview.js
 version = 7.x-dev
