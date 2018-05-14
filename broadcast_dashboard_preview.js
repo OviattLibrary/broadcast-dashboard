@@ -21,19 +21,19 @@ jQuery(function($) {
 	      // Drill
 	      preset_msg = "There is currently a drill taking place. Please remain calm.";
 	      preset_clr = 2;
-	    } elseif (msg_type == 2) {
+	    } else if (msg_type == 2) {
 	      // Earthquake
 	      preset_msg = "There is currently an earthquake. Drop, cover, and hold.";
 	      preset_clr = 3;
-	    } elseif (msg_type == 3) {
+	    } else if (msg_type == 3) {
 	      // Fire
 	      preset_msg = "A fire has been reported. Please calmly evacuate the building.";
 	      preset_clr = 4;
-	    } elseif (msg_type == 4) {
+	    } else if (msg_type == 4) {
 	      // Shooter
 	      preset_msg = "An active shooter has been reported. Take cover and, if possible, escape through a window or door.";
 	      preset_clr = 4;
-	    } elseif (msg_type == 5) {
+	    } else if (msg_type == 5) {
 	      // Custom
 	      custom_msg = $("#edit-broadcast-dashboard-message").val();
 	    }
