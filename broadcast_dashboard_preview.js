@@ -11,6 +11,7 @@ jQuery(function($) {
 		var preset_msg;
 		var preset_clr;
 		var custom_clr;
+		var custom_msg;
 		var date = new Date();
 
 		// Set date on click
