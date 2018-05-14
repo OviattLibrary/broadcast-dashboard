@@ -8,7 +8,6 @@
 jQuery(function($) {
 	$('#edit-preview').click(function() {
 		var msg_type = $("#edit-broadcast-dashboard-message").val();
-		console.log("Msg type: " + msg_type);
 		var preset_msg;
 		var preset_clr;
 		var custom_clr;
@@ -39,8 +38,6 @@ jQuery(function($) {
 	      // Custom
 	      custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
 	    }
-
-	    console.log("Preset message: " + preset_msg);
 
 	    if (msg_type != 5) {
 		  clr_code = color_setter(preset_clr);
