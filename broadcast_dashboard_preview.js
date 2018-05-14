@@ -56,7 +56,6 @@ jQuery(function($) {
 		    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
 		} // end custom msg
-		alert($(preset_msg).val());
 	});
 });
 
