@@ -43,7 +43,7 @@ jQuery(function($) {
 		    
 		  if (!empty(clr_code) && !empty(preset_msg)) {
 		    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-		    $('#markuparea').text('<div class="'. clr_code .'" role="alert">"' . preset_msg . ' (Posted on: ' . msg_date . ')</div>');
+		    $('#markuparea').text('<div class="' + clr_code '" role="alert">"' + preset_msg ' (Posted on: ' + msg_date ')</div>');
 		  }
 		} else if (msg_type == 5) { // end no custom msg
 		  // For custom alerts
@@ -52,7 +52,7 @@ jQuery(function($) {
 		    
 		  if (!empty(clr_code) && !empty(cust_msg)) {
 		    //'<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-		    $('#markuparea').text('<div class="'. clr_code .'" role="alert">' . cust_msg . ' (Posted on: ' . $msg_date . ')</div>');
+		    $('#markuparea').text('<div class="' + clr_code '" role="alert">' + cust_msg ' (Posted on: ' + $msg_date ')</div>');
 		  }
 		} // end custom msg
 		alert($("#edit-broadcast-dashboard-custom-message-color").val());
