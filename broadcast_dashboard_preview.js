@@ -71,13 +71,13 @@ function color_setter(input_color) {
   if (input_color == 1) {
       // Success
       return 'alert alert-success';
-    } elseif (input_color == 2) {
+    } else if (input_color == 2) {
       // Info
       return 'alert alert-info';
-    } elseif (input_color == 3) {
+    } else if (input_color == 3) {
       // Warning
       return 'alert alert-warning';
-    } elseif (input_color == 4) {
+    } else if (input_color == 4) {
       // Error
       return 'alert alert-danger';
     } else {
