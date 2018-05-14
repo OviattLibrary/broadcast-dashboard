@@ -48,7 +48,7 @@ jQuery(function($) {
 		} else if (msg_type == 5) { // end no custom msg
 		  // For custom alerts
 		  // Set alert color based on setting
-		  clr_code = color_setter(cust_msg_clr);
+		  clr_code = color_setter(custom_clr);
 		    
 		  if (!empty(clr_code) && !empty(cust_msg)) {
 		    //'<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
