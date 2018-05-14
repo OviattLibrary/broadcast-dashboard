@@ -15,7 +15,7 @@ jQuery(function($) {
 		var date = new Date();
 
 		// Set date on click
-		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 	    
 	    // Pre-set messages
 	    if (msg_type == 1) {
