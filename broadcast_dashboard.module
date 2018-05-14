@@ -210,7 +210,7 @@ function broadcast_dashboard_form($form_state) {
   // Preview area
   $form['preview_area'] = array(
     '#type' => 'markup',
-    '#markup' => t('<div id="markuparea">markuptest</div>'),
+    '#markup' => t('<div id="markuparea"></div>'),
   );
 
   return $form;
