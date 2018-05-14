@@ -197,7 +197,7 @@ function broadcast_dashboard_form($form_state) {
       "visible" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
     ),
   );
 
