@@ -37,7 +37,7 @@ jQuery(function($) {
 	      preset_clr = 4;
 	    } else if (msg_type == 5) {
 	      // Custom
-	      custom_msg = $("#edit-broadcast-dashboard-message").val();
+	      custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
 	    }
 
 	    console.log("Preset message: " + preset_msg);
