@@ -39,6 +39,8 @@ jQuery(function($) {
 	      custom_msg = $("#edit-broadcast-dashboard-message").val();
 	    }
 
+	    console.log("Preset message: " + preset_msg);
+
 	    if (msg_type != 5) {
 		  clr_code = color_setter(preset_clr);
 		    
