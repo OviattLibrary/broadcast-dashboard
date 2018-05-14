@@ -51,9 +51,9 @@ jQuery(function($) {
 		  // Set alert color based on setting
 		  clr_code = color_setter(custom_clr);
 		    
-		  if (clr_code && cust_msg) {
+		  if (clr_code && custom_msg) {
 		    //'<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-		    $('#markuparea').text('<div class="' + clr_code + '" role="alert">' + cust_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').text('<div class="' + clr_code + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
 		} // end custom msg
 		alert($("#edit-broadcast-dashboard-custom-message-color").val());
