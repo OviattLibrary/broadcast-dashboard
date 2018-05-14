@@ -196,10 +196,8 @@ function broadcast_dashboard_form($form_state) {
     '#states' => array(
       "visible" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
-        ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
       "required" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
-        ":input[name='broadcast_dashboard_message']" => array("value" => 5)),
     ),
   );
 
