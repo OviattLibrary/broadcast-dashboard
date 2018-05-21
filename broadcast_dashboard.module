@@ -423,6 +423,10 @@ function broadcast_dashboard_page_build(&$page) {
  * Implements hook_form().
  */
 
+function broadcast_dashboard_get_message_names() {
+  return db_query('SELECT bd_id, bd_msg_title FROM broadcast_dashboard')->fetchAllKeyed();
+}
+
 function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
@@ -438,10 +442,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => variable_get('broadcast_dashboard_setting_custom_message_select', 0),
-    '#options' => array(
-      1 => t(''),
-      2 => t('--Add New--'),
-    ),
+    '#options' => array(broadcast_dashboard_get_message_names()),
     '#description' => t('Select a custom message to add or edit.'),
     '#required' => FALSE,
   );
