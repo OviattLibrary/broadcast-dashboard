@@ -430,9 +430,9 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_settings_messages_title'] = array(
     '#type' => "text_format",
     '#title' => t('Custom Messages'),
-    '#default_value' => $term->description;
-    '#format' => $term->format;
-    '#weight' => 0;
+    '#default_value' => $term->description,
+    '#format' => $term->format,
+    '#weight' => 0,
   );
 
   // Submit button
