@@ -451,7 +451,11 @@ function broadcast_dashboard_settings_form($form_state) {
 function broadcast_dashboard_settings_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
-  $form_has_errors = TRUE;
+  // Test Check
+  $settings_current_test = $form_state['values']['broadcast_dashboard_settings_test'];
+  $settings_previous_test = variable_get('broadcast_dashboard_settings_test');
+  $settings_set_test = $form_state['values']['broadcast_dashboard_settings_test'];
+  variable_set('broadcast_dashboard_settings_test', $settings_set_test);
 
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
