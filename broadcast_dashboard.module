@@ -433,6 +433,18 @@ function broadcast_dashboard_settings_form($form_state) {
     '#markup' => t('<h2>Custom Messages</h2>'),
   );
 
+  // Custom message selector
+  $form['broadcast_dashboard_setting_custom_message_select'] = array(
+    '#type' => 'select',
+    '#title' => t('Messages'),
+    '#default_value' => variable_get('broadcast_dashboard_setting_custom_message_select', 0),
+    '#options' => array(
+      1 => t('--Add New--'),
+    ),
+    '#description' => t('Select a custom message to add or edit.'),
+    '#required' => FALSE,
+  );
+
   // Submit button
   $form['submit'] = array(
     '#type' => 'submit',
