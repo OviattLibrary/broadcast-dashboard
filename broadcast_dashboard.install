@@ -48,6 +48,7 @@ function broadcast_dashboard_schema() {
 			),
 			'bd_clr_class' => array(
 				'description' => 'Class name for a message display color.',
+				'type' => 'string',
 			),
 		),
 		'primary key' => array('bd_id'),
