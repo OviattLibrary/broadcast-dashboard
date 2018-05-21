@@ -52,6 +52,8 @@ function broadcast_dashboard_schema() {
 		),
 		'primary key' => array('bd_id'),
 	);
+
+	return $schema;
 }
 
 /*

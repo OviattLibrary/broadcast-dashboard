@@ -439,7 +439,8 @@ function broadcast_dashboard_settings_form($form_state) {
     '#title' => t('Messages'),
     '#default_value' => variable_get('broadcast_dashboard_setting_custom_message_select', 0),
     '#options' => array(
-      1 => t('--Add New--'),
+      1 => t(''),
+      2 => t('--Add New--'),
     ),
     '#description' => t('Select a custom message to add or edit.'),
     '#required' => FALSE,
