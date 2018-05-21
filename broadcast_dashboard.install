@@ -14,6 +14,47 @@ function broadcast_dashboard_install() {
 }
 
 /*
+ * Implements hook_schema().
+ * Creates an SQL table to store values.
+ */
+function broadcast_dashboard_schema() {
+	$schema['broadcast_dashboard'] = array(
+		'description' => 'The base table for Broadcast Dashboard.',
+		'fields' => array(
+			'bd_id' => array(
+				'description' => 'Primary key for Broadcast Dashboard entries.',
+				'type' => 'int',
+				'not null' => TRUE,
+			),
+			'bd_msg_type' => array(
+				'description' => 'Logic check to see if this entry is a message.',
+				'type' => 'int',
+			),
+			'bd_clr_type' => array(
+				'description' => 'Logic check to see if this color is a message.',
+				'type' => 'int',
+			),
+			'bd_msg_title' => array(
+				'description' => 'Title of a message, to be displayed in short context menus.',
+				'type' => 'string',
+			),
+			'bd_clr_name' => array(
+				'description' => 'Name of a color used, to be displayed in short context menus.',
+				'type' => 'string',
+			),
+			'bd_clr_hex' => array(
+				'description' => 'Hexcode for a message display color.',
+				'type' => 'string',
+			),
+			'bd_clr_class' => array(
+				'description' => 'Class name for a message display color.',
+			),
+		),
+		'primary key' => array('bd_id'),
+	);
+}
+
+/*
  * Implements hook_uninstall().
  * @todo Describe what function does here
  */
@@ -23,4 +64,8 @@ function broadcast_dashboard_uninstall() {
   variable_del('broadcast_dashboard_custom_message');
   variable_del('broadcast_dashboard_custom_message_color');
   variable_del('broadcast_dashboard_date_message_posted');
+
+  // Drop Broadcast Dashboard table
+  $table = 'broadcast_dashboard';
+  db_drop_table($table);
 }
