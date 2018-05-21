@@ -25,6 +25,7 @@ function broadcast_dashboard_schema() {
 				'description' => 'Primary key for Broadcast Dashboard entries.',
 				'type' => 'int',
 				'not null' => TRUE,
+				'unsigned' => TRUE,
 			),
 			'bd_msg_type' => array(
 				'description' => 'Logic check to see if this entry is a message.',
