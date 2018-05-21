@@ -37,19 +37,19 @@ function broadcast_dashboard_schema() {
 			),
 			'bd_msg_title' => array(
 				'description' => 'Title of a message, to be displayed in short context menus.',
-				'type' => 'string',
+				'type' => 'text',
 			),
 			'bd_clr_name' => array(
 				'description' => 'Name of a color used, to be displayed in short context menus.',
-				'type' => 'string',
+				'type' => 'text',
 			),
 			'bd_clr_hex' => array(
 				'description' => 'Hexcode for a message display color.',
-				'type' => 'string',
+				'type' => 'text',
 			),
 			'bd_clr_class' => array(
 				'description' => 'Class name for a message display color.',
-				'type' => 'string',
+				'type' => 'text',
 			),
 		),
 		'primary key' => array('bd_id'),
