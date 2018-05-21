@@ -427,12 +427,10 @@ function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
-  $form['broadcast_dashboard_settings_messages_title'] = array(
-    '#type' => "text_format",
-    '#title' => t('Custom Messages'),
-    '#default_value' => $term->description,
-    '#format' => $term->format,
-    '#weight' => 0,
+  // Header
+  $form['broadcast_dashboard_settings_msg_header'] = array(
+    '#type' => 'markup',
+    '#markup' => t('<h2>Custom Messages</h2>'),
   );
 
   // Submit button
