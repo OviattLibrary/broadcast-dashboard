@@ -39,6 +39,10 @@ function broadcast_dashboard_schema() {
 				'description' => 'Title of a message, to be displayed in short context menus.',
 				'type' => 'text',
 			),
+			'bd_msg_text' => array(
+				'description' => 'Full defauly message, to be displayed on site.',
+				'type' => 'text',
+			),
 			'bd_clr_name' => array(
 				'description' => 'Name of a color used, to be displayed in short context menus.',
 				'type' => 'text',
