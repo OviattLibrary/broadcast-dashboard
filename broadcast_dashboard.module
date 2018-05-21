@@ -416,6 +416,10 @@ function broadcast_dashboard_page_build(&$page) {
 }
 
 /**
+ * Code beyond this point is for the Settings page.
+ */
+
+/**
  * Implements hook_form().
  */
 
@@ -423,33 +427,12 @@ function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
-  $form['broadcast_dashboard_settings_active'] = array(
+  $form['broadcast_dashboard_settings_test'] = array(
     '#type' => "checkbox",
-    '#title' => t('Activate Broadcast'),
+    '#title' => t('Activate Test'),
     '#return_value' => 1,
-    '#default_value' => variable_get('broadcast_dashboard_settings_active', 0),
-    '#description' => t('When activated, the selected message will be broadcast on the website.'),
-  );
-
-  $form['broadcast_dashboard_settings_message'] = array(
-    '#type' => 'select',
-    '#title' => t('Type of Message'),
-    '#default_value' => variable_get('broadcast_dashboard_settings_message', 0),
-    '#options' => array(
-      1 => t('Drill'),
-      2 => t('Earthquake'),
-      3 => t('Fire'),
-      4 => t('Shooter'),
-      5 => t('Custom'),
-    ),
-    '#description' => t('Select the type of message to broadcast.'),
-    '#required' => FALSE,
-    '#states' => array(
-    "visible" => array(
-      "input[name='broadcast_dashboard_settings_active']" => array("checked" => TRUE)),
-      "required" => array(
-      "input[name='broadcast_dashboard_settings_active']" => array("checked" => TRUE)),
-    ),
+    '#default_value' => variable_get('broadcast_dashboard_settings_test', 0),
+    '#description' => t('This actually does nothing. Save test.'),
   );
 
   // Submit button
