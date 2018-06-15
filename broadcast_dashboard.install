@@ -40,7 +40,7 @@ function broadcast_dashboard_schema() {
 				'type' => 'text',
 			),
 			'bd_msg_text' => array(
-				'description' => 'Full defauly message, to be displayed on site.',
+				'description' => 'Full default message, to be displayed on site.',
 				'type' => 'text',
 			),
 			'bd_clr_name' => array(
