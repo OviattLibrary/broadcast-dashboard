@@ -5,14 +5,17 @@
  * This file allows for real-time previewing of messages before they're sent out.
  */
 
+var msg_type;
+var preset_msg;
+var preset_clr;
+var custom_clr;
+var custom_msg;
+var date;
+
 jQuery(function($) {
 	$('#edit-preview').click(function() {
-		var msg_type = $("#edit-broadcast-dashboard-message").val();
-		var preset_msg;
-		var preset_clr;
-		var custom_clr;
-		var custom_msg;
-		var date = new Date();
+		msg_type = $("#edit-broadcast-dashboard-message").val();
+		date = new Date();
 
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
