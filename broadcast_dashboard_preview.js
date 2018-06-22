@@ -64,6 +64,7 @@ jQuery(function($) {
  */
 function color_setter(input_color) {
 	console.log("color_setter was accessed.");
+	console.log("input_color is: " + input_color);
   /* 1 => Success - Green
      2 => Info - Blue
      3 => Warning - Yellow
