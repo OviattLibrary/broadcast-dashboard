@@ -63,6 +63,7 @@ jQuery(function($) {
  * Global function to set alert color classes
  */
 function color_setter(input_color) {
+	console.log("color_setter was accessed.");
   /* 1 => Success - Green
      2 => Info - Blue
      3 => Warning - Yellow
