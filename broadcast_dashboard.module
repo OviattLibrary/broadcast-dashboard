@@ -426,9 +426,9 @@ function broadcast_dashboard_page_build(&$page) {
 function broadcast_dashboard_get_message_names() {
   return db_query('SELECT bd_id, bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1')->fetchAllKeyed();
 }
-function broadcast_dashboard_get_message_text($arg) {
+/*function broadcast_dashboard_get_message_text($arg) {
   return db_query('SELECT bd_id, bd_msg_text FROM broadcast_dashboard WHERE bd_msg_type=1 AND bd_msg_title=$arg')->fetchAllKeyed();
-}
+}*/
 
 function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
@@ -451,14 +451,14 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Custom message editor
-  $form['broadcast_dashboard_setting_custom_message_edit'] = array(
+  /*$form['broadcast_dashboard_setting_custom_message_edit'] = array(
     '#type' => 'textbox',
     '#title' => t('Message Display'),
     '#default_value' => broadcast_dashboard_get_message_text($arg), // ??? @todo how to pass var for call
     '#options' => array(broadcast_dashboard_get_message_names()),
     '#description' => t('Select a custom message to add or edit.'),
     '#required' => FALSE,
-  );
+  );*/
 
   // Submit button
   $form['submit'] = array(
