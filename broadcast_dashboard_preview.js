@@ -40,25 +40,26 @@ jQuery(function($) {
 	    } else if (msg_type == 5) {
 	      // Custom
 	      custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
+	      custom_clr = $("#edit-broadcast-dashboard-custom-message-color").val();
 	    }
 
 	    if (msg_type != 5) {
-		  clr_code = color_setter(preset_clr);
-		    
-		  if (clr_code && preset_msg) {
-		    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-		    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
-		  }
-		} else if (msg_type == 5) { // end no custom msg
-		  // For custom alerts
-		  // Set alert color based on setting
-		  clr_code = color_setter(custom_clr);
-		    
-		  if (clr_code && custom_msg) {
-		    //'<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-		    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
-		  }
-		} // end custom msg
+			  clr_code = color_setter(preset_clr);
+			    
+			  if (clr_code && preset_msg) {
+			    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
+			    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+			  }
+			} else if (msg_type == 5) { // end no custom msg
+			  // For custom alerts
+			  // Set alert color based on setting
+			  clr_code = color_setter(custom_clr);
+			    
+			  if (clr_code && custom_msg) {
+			    //'<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
+			    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
+			  }
+			} // end custom msg
 	});
 });
 
