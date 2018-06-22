@@ -427,7 +427,7 @@ function broadcast_dashboard_get_message_names() {
   return db_query('SELECT bd_id, bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1')->fetchAllKeyed();
 }
 function broadcast_dashboard_get_message_text($arg) {
-  return db_query('SELECT bd_id, bd_msg_text FROM broadcast_dashboard WHERE bd_msg_type=1 AND md_msg_title=$arg')->fetchAllKeyed();
+  return db_query('SELECT bd_id, bd_msg_text FROM broadcast_dashboard WHERE bd_msg_type=1 AND bd_msg_title=$arg')->fetchAllKeyed();
 }
 
 function broadcast_dashboard_settings_form($form_state) {
