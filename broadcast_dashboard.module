@@ -502,5 +502,5 @@ function debug_to_console( $data ) {
     echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
 }
 
-$array_elements = var_dump(array(broadcast_dashboard_get_message_names()));
+//$array_elements = var_dump(array(broadcast_dashboard_get_message_names()));
 //debug_to_console($array_elements);
