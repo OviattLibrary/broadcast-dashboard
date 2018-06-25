@@ -467,7 +467,7 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Custom message selector
-  $form['broadcast_dashboard_setting_custom_message_select']['bd_msg_title'] = array(
+  /*$form['broadcast_dashboard_setting_custom_message_select']['bd_msg_title'] = array(
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => variable_get('broadcast_dashboard_setting_custom_message_select', 0),
@@ -479,7 +479,7 @@ function broadcast_dashboard_settings_form($form_state) {
         ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
       ),
     ),*/
-  );
+  /*);*/
 
   // Custom message editor
   /*$form['broadcast_dashboard_setting_custom_message_edit'] = array(
