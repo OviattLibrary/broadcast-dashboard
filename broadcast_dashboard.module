@@ -425,8 +425,8 @@ function broadcast_dashboard_page_build(&$page) {
 
 function broadcast_dashboard_get_message_names() {
   $get_message_names = db_query('SELECT bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1')->fetchAllKeyed();
-  $get_message_names_raw = db_query('SELECT bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1')->fetchObject();;
-  drupal_set_message (t("Raw: " + $get_message_names_raw->bg_msg_title));
+  $get_message_names_raw = db_query('SELECT bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1')->fetchObject();
+  drupal_set_message (t($get_message_names_raw->bg_msg_title));
   //debug_to_console($get_message_names); //debug
   return $get_message_names;
 }
