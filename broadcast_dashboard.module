@@ -526,4 +526,4 @@ function debug_to_console( $data ) {
 }
 
 //$array_elements = var_dump(array(broadcast_dashboard_get_message_names()));
-//debug_to_console($array_elements);
+debug_to_console($array_elements);
