@@ -444,6 +444,7 @@ function broadcast_dashboard_get_message_names() {
           $result->bd_msg_title,
       );
   }
+  debug_to_console($title_options);
 }
 /*function broadcast_dashboard_get_message_text($arg) {
   $get_message_text = db_query('SELECT bd_id, bd_msg_text FROM broadcast_dashboard WHERE bd_msg_type=1 AND bd_msg_title=$arg');
