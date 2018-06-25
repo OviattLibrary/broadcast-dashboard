@@ -433,8 +433,8 @@ function broadcast_dashboard_get_message_names() {
   
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
-  $query->fields('bd_msg_title', array('id', 'bd_msg_title',));
-  $query->orderBy('id', 'ASC');
+  $query->fields('bd_msg_title', array('bd_id', 'bd_msg_title',));
+  $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
   //define rows
@@ -443,7 +443,7 @@ function broadcast_dashboard_get_message_names() {
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-        $title_options[$result->id] = $result->bd_msg_title;
+        $title_options[$result->bd_id] = $result->bd_msg_title;
     }
   }
   debug_to_console($title_options);
