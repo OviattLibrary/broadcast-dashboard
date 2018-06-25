@@ -447,9 +447,10 @@ function broadcast_dashboard_get_message_names() {
     }
   }
   debug_to_console($title_options);
+
+  $title_options = NULL;
 }
 
-$title_options = NULL;
 /*function broadcast_dashboard_get_message_text($arg) {
   $get_message_text = db_query('SELECT bd_id, bd_msg_text FROM broadcast_dashboard WHERE bd_msg_type=1 AND bd_msg_title=$arg');
   return $get_message_text;
