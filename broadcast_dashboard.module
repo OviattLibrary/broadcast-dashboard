@@ -448,7 +448,7 @@ function broadcast_dashboard_get_message_names() {
   }
   debug_to_console($title_options);
 
-  $title_options = NULL;
+  $title_options = array();
 }
 
 /*function broadcast_dashboard_get_message_text($arg) {
