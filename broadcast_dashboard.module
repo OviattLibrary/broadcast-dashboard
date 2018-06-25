@@ -440,9 +440,7 @@ function broadcast_dashboard_get_message_names() {
   //define rows
   $title_options = array();
   foreach ($results as $result) {
-      $title_options[$result->id] = array(
-          $result->bd_msg_title,
-      );
+      $title_options[$result->id] = $result->bd_msg_title;
   }
   debug_to_console($title_options);
 }
