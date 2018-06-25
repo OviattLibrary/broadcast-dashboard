@@ -427,7 +427,7 @@ function broadcast_dashboard_get_message_names() {
   $get_message_names = db_query('SELECT bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1')->fetchAllKeyed();
   $get_message_names_raw = db_query('SELECT bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1');
   $raw_result = $get_message_names_raw->fetchAllAssoc('bg_msg_title');
-  drupal_set_message (t('' + $raw_result));
+  drupal_set_message (t($raw_result));
   debug_to_console($get_message_names_raw->bg_msg_title); //debug
   return $get_message_names;
 }
