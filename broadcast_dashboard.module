@@ -468,11 +468,12 @@ function broadcast_dashboard_get_message_text($grab_title) {
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
       $text_options[$result->bd_id] = $result->bd_msg_text;
+      var_dump($result->bd_id . " = " . $result->bd_msg_text);
     }
   }
 
   $message_text = $text_options[0];
-  var_dump($text_options);
+  //var_dump($text_options);
   return $message_text;
 }
 
@@ -508,7 +509,7 @@ function broadcast_dashboard_settings_form($form_state) {
   // Custom message editor
   $form['broadcast_dashboard_setting_custom_message_edit'] = array(
     '#type' => 'textarea',
-    '#title' => t('Message Display'),
+    '#title' => t('Message Text'),
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
     '#description' => broadcast_dashboard_get_message_text($form['broadcast_dashboard_setting_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_setting_custom_message_select']]),
     '#required' => FALSE,
