@@ -473,7 +473,7 @@ function broadcast_dashboard_get_message_text($grab_title) {
   }
 
   $message_text = $text_options[0];
-  $message_text = "testing~";
+  $message_text = $grab_title;
   //var_dump($text_options);
   return $message_text;
 }
