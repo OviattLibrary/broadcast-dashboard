@@ -472,7 +472,7 @@ function broadcast_dashboard_get_message_text($grab_title) {
   }
 
   $message_text = $text_options[0];
-
+  var_dump($text_options[0]);
   return $message_text;
 }
 
@@ -503,7 +503,7 @@ function broadcast_dashboard_settings_form($form_state) {
     ),*/
   );
 
-  var_dump(broadcast_dashboard_get_message_text($form['broadcast_dashboard_setting_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_setting_custom_message_select']]));
+  //var_dump(broadcast_dashboard_get_message_text($form['broadcast_dashboard_setting_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_setting_custom_message_select']]));
 
   // Custom message editor
   $form['broadcast_dashboard_setting_custom_message_edit'] = array(
