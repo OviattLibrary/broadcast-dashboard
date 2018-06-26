@@ -458,6 +458,9 @@ function broadcast_dashboard_get_message_text($grab_title) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
+  var_dump($grab_title);
+  var_dump($results);
+
   //define rows
   /*$text_options = array();
 
