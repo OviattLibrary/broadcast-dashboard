@@ -503,7 +503,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'textbox',
     '#title' => t('Message Display'),
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
-    '#options' => broadcast_dashboard_get_message_text();
+    /*'#options' => broadcast_dashboard_get_message_text($node->broadcast_dashboard_setting_custom_message_select[LANGUAGE_NONE][0]['value']);
     '#description' => broadcast_dashboard_get_message_text();
     '#required' => FALSE,
     '#states' => array(
@@ -511,7 +511,7 @@ function broadcast_dashboard_settings_form($form_state) {
         "select[name='broadcast_dashboard_setting_custom_message_select']" => array('!value' => '')),
       "required" => array(
         "select[name='broadcast_dashboard_setting_custom_message_select']" => array('!value' => '')),
-    ),
+    ),*/
   );
 
   // Submit button
