@@ -450,10 +450,26 @@ function broadcast_dashboard_get_message_names() {
   return $title_options;
 }
 
-/*function broadcast_dashboard_get_message_text($arg) {
-  $get_message_text = db_query('SELECT bd_id, bd_msg_text FROM broadcast_dashboard WHERE bd_msg_type=1 AND bd_msg_title=$arg');
-  return $get_message_text;
-}*/
+function broadcast_dashboard_get_message_text($grab_title) {
+  //Query DB for Rows
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
+  $query->condition('bd_msg_title', $grab_title);
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  //define rows
+  $text_options = array();
+
+  //test if the results array has any values
+  if (is_array($results) || is_object($results)) {
+    foreach ($results as $result) {
+      $title_options[$result->bd_id] = $result->bd_msg_text;
+    }
+  }
+
+  return $text_options;
+}
 
 function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
@@ -483,20 +499,20 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Custom message editor
-  /*$form['broadcast_dashboard_setting_custom_message_edit'] = array(
+  $form['broadcast_dashboard_setting_custom_message_edit'] = array(
     '#type' => 'textbox',
     '#title' => t('Message Display'),
-    '#default_value' => broadcast_dashboard_get_message_text($arg), // ??? @todo how to pass var for call
-    '#options' => array(broadcast_dashboard_get_message_names()),
-    '#description' => t('Select a custom message to add or edit.'),
+    //'#default_value' => broadcast_dashboard_get_message_text($arg),
+    '#options' => broadcast_dashboard_get_message_text($node->broadcast_dashboard_setting_custom_message_select[LANGUAGE_NONE][0]['value']);
+    '#description' => broadcast_dashboard_get_message_text();
     '#required' => FALSE,
     '#states' => array(
       "visible" => array(
-        "input[name='broadcast_dashboard_setting_custom_message_select']" => array("checked" => TRUE)),
+        "select[name='broadcast_dashboard_setting_custom_message_select']" => array('!value' => '')),
       "required" => array(
-        "input[name='broadcast_dashboard_setting_custom_message_select']" => array("checked" => TRUE)),
+        "select[name='broadcast_dashboard_setting_custom_message_select']" => array('!value' => '')),
     ),
-  );*/
+  );
 
   // Submit button
   $form['submit'] = array(
