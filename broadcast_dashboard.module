@@ -502,7 +502,7 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_setting_custom_message_edit'] = array(
     '#type' => 'textbox',
     '#title' => t('Message Display'),
-    var_dump($node->broadcast_dashboard_setting_custom_message_select[LANGUAGE_NONE][0]['value']);
+    var_dump($node->broadcast_dashboard_setting_custom_message_select[0]['value']);
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
     /*'#options' => broadcast_dashboard_get_message_text($node->broadcast_dashboard_setting_custom_message_select[LANGUAGE_NONE][0]['value']);
     '#description' => broadcast_dashboard_get_message_text();
