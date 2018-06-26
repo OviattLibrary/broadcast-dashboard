@@ -458,20 +458,20 @@ function broadcast_dashboard_get_message_text($grab_title) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
-  var_dump($grab_title);
-  var_dump($results->bd_msg_text);
+  /*var_dump($grab_title);
+  var_dump($results->bd_msg_text);*/
 
   //define rows
-  /*$text_options = array();
+  $text_options = array();
 
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
       $text_options[$result->bd_id] = $result->bd_msg_text;
     }
-  }*/
+  }
 
-  $message_text = $results->;
+  $message_text = $text_options[0];
 
   return $message_text;
 }
