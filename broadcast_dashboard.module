@@ -446,8 +446,6 @@ function broadcast_dashboard_get_message_names() {
       $title_options[$result->bd_id] = $result->bd_msg_title;
     }
   }
-  debug_to_console(var_dump($title_options));
-  debug_to_console(var_dump($title_options[1]));
 
   return $title_options;
 }
@@ -466,8 +464,6 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'markup',
     '#markup' => t('<h2>Custom Messages</h2>'),
   );
-
-  broadcast_dashboard_get_message_names();
 
   // Custom message selector
   $form['broadcast_dashboard_setting_custom_message_select'] = array(
