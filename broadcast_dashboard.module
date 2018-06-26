@@ -459,16 +459,18 @@ function broadcast_dashboard_get_message_text($grab_title) {
   $results = $query->execute();
 
   //define rows
-  $text_options = array();
+  /*$text_options = array();
 
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
       $text_options[$result->bd_id] = $result->bd_msg_text;
     }
-  }
+  }*/
 
-  return $text_options;
+  $message_text = $results->bd_msg_text;
+
+  return $message_text;
 }
 
 function broadcast_dashboard_settings_form($form_state) {
