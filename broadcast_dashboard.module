@@ -465,7 +465,6 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   broadcast_dashboard_get_message_names();
-  $title_options = array();
 
   // Custom message selector
   $form['broadcast_dashboard_setting_custom_message_select']['bd_msg_title'] = array(
