@@ -512,7 +512,8 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'textarea',
     '#title' => t('Message Text'),
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
-    '#description' => broadcast_dashboard_get_message_text($form['broadcast_dashboard_setting_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_setting_custom_message_select']]),
+    '#default_value' => broadcast_dashboard_get_message_text($form['broadcast_dashboard_setting_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_setting_custom_message_select']]),
+    '#description' => t('The text that will be displayed when the selected message is turned on.');
     '#required' => FALSE,
     '#states' => array(
       "visible" => array(
