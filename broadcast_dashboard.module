@@ -443,10 +443,11 @@ function broadcast_dashboard_get_message_names() {
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-        $title_options[$result->bd_id] = $result->bd_msg_title;
+      $title_options[$result->bd_id] = $result->bd_msg_title;
     }
   }
-  debug_to_console(var_dump($title_options));
+  //debug_to_console(var_dump($title_options));
+  debug_to_console($title_options);
 }
 
 /*function broadcast_dashboard_get_message_text($arg) {
