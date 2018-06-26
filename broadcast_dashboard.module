@@ -459,6 +459,8 @@ function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
+  $default_title = t('Select a message');
+
   // Header
   $form['broadcast_dashboard_settings_msg_header'] = array(
     '#type' => 'markup',
@@ -469,7 +471,7 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_setting_custom_message_select'] = array(
     '#type' => 'select',
     '#title' => t('Messages'),
-    '#default_value' => t('Select a message'),
+    '#default_value' => $default_title,
     '#options' => broadcast_dashboard_get_message_names(),
     '#description' => t('Select a custom message to add or edit.'),
     '#required' => FALSE,
