@@ -459,7 +459,7 @@ function broadcast_dashboard_get_message_text($grab_title) {
   $results = $query->execute();
 
   var_dump($grab_title);
-  var_dump($results);
+  var_dump($results->bd_msg_text);
 
   //define rows
   /*$text_options = array();
@@ -471,7 +471,7 @@ function broadcast_dashboard_get_message_text($grab_title) {
     }
   }*/
 
-  $message_text = $results->bd_msg_text;
+  $message_text = $results->;
 
   return $message_text;
 }
