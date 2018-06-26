@@ -446,7 +446,7 @@ function broadcast_dashboard_get_message_names() {
       $title_options[$result->bd_id] = $result->bd_msg_title;
     }
   }
-  debug_to_console(var_dump("1 " . $title_options));
+  debug_to_console(var_dump($title_options));
   debug_to_console(var_dump("2 " . $title_options[1]));
   debug_to_console("3" . $title_options);
 }
