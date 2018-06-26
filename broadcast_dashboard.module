@@ -464,7 +464,7 @@ function broadcast_dashboard_get_message_text($grab_title) {
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $title_options[$result->bd_id] = $result->bd_msg_text;
+      $text_options[$result->bd_id] = $result->bd_msg_text;
     }
   }
 
