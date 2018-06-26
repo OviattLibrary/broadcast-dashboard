@@ -448,6 +448,8 @@ function broadcast_dashboard_get_message_names() {
   }
   debug_to_console(var_dump($title_options));
   debug_to_console(var_dump($title_options[1]));
+
+  return $title_options;
 }
 
 /*function broadcast_dashboard_get_message_text($arg) {
@@ -471,8 +473,8 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_setting_custom_message_select'] = array(
     '#type' => 'select',
     '#title' => t('Messages'),
-    '#default_value' => $title_options[1], //hardcode...
-    '#options' => $title_options,
+    // '#default_value' => $title_options[1], //hardcode...
+    '#options' => broadcast_dashboard_get_message_names(),
     '#description' => t('Select a custom message to add or edit.'),
     '#required' => FALSE,
     /*'#states' => array(
