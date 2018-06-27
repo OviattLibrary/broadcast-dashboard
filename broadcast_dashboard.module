@@ -451,6 +451,7 @@ function broadcast_dashboard_get_message_names() {
 }
 
 function broadcast_dashboard_get_message_text($grab_title) {
+  $grab_title = "Test";
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
@@ -458,8 +459,8 @@ function broadcast_dashboard_get_message_text($grab_title) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
-  /*var_dump($grab_title);
-  var_dump($results->bd_msg_text);*/
+  var_dump($grab_title);
+  var_dump($results->bd_msg_text);
 
   //define rows
   $text_options = array();
@@ -506,9 +507,9 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Include value grab Javascript file
-  $form['#attached']['js'] = array(
+  /*$form['#attached']['js'] = array(
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
-  );
+  );*/
 
   // Custom message editor
   $form['broadcast_dashboard_setting_custom_message_edit'] = array(
