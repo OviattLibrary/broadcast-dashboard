@@ -510,13 +510,7 @@ function broadcast_dashboard_settings_form($form_state) {
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
     '#default_value' => NULL,
     '#description' => t('The text that will be displayed when the selected message is turned on.'),
-    '#required' => FALSE,
-    '#states' => array(
-      "visible" => array(
-        "select[name='broadcast_dashboard_setting_custom_message_select']" => array('!value' => '')),
-      "required" => array(
-        "select[name='broadcast_dashboard_setting_custom_message_select']" => array('!value' => '')),
-    ),
+    '#required' => TRUE,
   );
 
   // Submit button
