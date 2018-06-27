@@ -23,4 +23,4 @@ $(document).ready(function() {
 	selector.onchange = function(){
 	     input.value = this.value;
 	}
-}
+});
