@@ -13,14 +13,16 @@
 	    return selected_option;
 	});
  });*/
-$(document).ready(function() {
-	var input = document.getElementById('edit-broadcast-dashboard-setting-custom-message-edit');
-	var selector = document.getElementById('edit-broadcast-dashboard-setting-custom-message-select');
+ jQuery(function ($) {
+	$(document).ready(function() {
+		var input = document.getElementById('edit-broadcast-dashboard-setting-custom-message-edit');
+		var selector = document.getElementById('edit-broadcast-dashboard-setting-custom-message-select');
 
-	console.log('input is: ' + input);
-	console.log('selector is: ' + selector);
+		console.log('input is: ' + input);
+		console.log('selector is: ' + selector);
 
-	selector.onchange = function(){
-	     input.value = this.value;
-	}
+		selector.onchange = function(){
+		     input.value = this.value;
+		}
+	});
 });
