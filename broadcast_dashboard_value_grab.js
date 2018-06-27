@@ -14,8 +14,8 @@
 	});
  });*/
 
-var input = document.getElementById('mytext');
-var selector = document.getElementById('dropdown');
+var input = document.getElementById('broadcast_dashboard_setting_custom_message_edit');
+var selector = document.getElementById('edit-broadcast-dashboard-setting-custom-message-select');
 
 selector.onchange = function(){
      input.value = this.value;
