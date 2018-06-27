@@ -423,17 +423,10 @@ function broadcast_dashboard_page_build(&$page) {
  * Implements hook_form().
  */
 
-function broadcast_dashboard_get_message_names() {
-  /*$get_message_names = db_query('SELECT bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1')->fetchAllKeyed();
-  $get_message_names_raw = db_query('SELECT bd_msg_title FROM broadcast_dashboard WHERE bd_msg_type=1');
-  $raw_result = $get_message_names_raw->fetchAllAssoc('bg_msg_title');
-  drupal_set_message (t($raw_result));
-  debug_to_console($get_message_names_raw->bg_msg_title); //debug
-  return $get_message_names;*/
-  
+function broadcast_dashboard_get_messages() {
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title',));
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
@@ -443,15 +436,14 @@ function broadcast_dashboard_get_message_names() {
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $title_options[$result->bd_id] = $result->bd_msg_title;
+      $title_options[$result->bd_msg_text] = $result->bd_msg_title;
     }
   }
 
   return $title_options;
 }
 
-function broadcast_dashboard_get_message_text($grab_title) {
-  $grab_title = "Test";
+/*function broadcast_dashboard_get_message_text($grab_title) {
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
@@ -473,11 +465,11 @@ function broadcast_dashboard_get_message_text($grab_title) {
     }
   }
 
-  $message_text = $text_options[0];
-  $message_text = $grab_title;
+  //$message_text = $text_options[0];
+  //$message_text = $grab_title;
   //var_dump($text_options);
   return $message_text;
-}
+}*/
 
 function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
@@ -496,7 +488,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => $default_title,
-    '#options' => broadcast_dashboard_get_message_names(),
+    '#options' => broadcast_dashboard_get_messages(),
     '#description' => t('Select a custom message to add or edit.'),
     '#required' => FALSE,
     /*'#states' => array(
@@ -507,9 +499,9 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Include value grab Javascript file
-  /*$form['#attached']['js'] = array(
+  $form['#attached']['js'] = array(
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
-  );*/
+  );
 
   // Custom message editor
   $form['broadcast_dashboard_setting_custom_message_edit'] = array(
