@@ -515,7 +515,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'textarea',
     '#title' => t('Message Text'),
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
-    '#default_value' => broadcast_dashboard_get_message_text(getCustomMessageTitle()),
+    '#default_value' => broadcast_dashboard_get_message_text(),
     '#description' => t('The text that will be displayed when the selected message is turned on.'),
     '#required' => FALSE,
     '#states' => array(
