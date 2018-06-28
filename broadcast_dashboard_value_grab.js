@@ -9,6 +9,9 @@
 		var input = document.getElementById('edit-broadcast-dashboard-setting-custom-message-edit');
 		var selector = document.getElementById('edit-broadcast-dashboard-setting-custom-message-select');
 
+		// Added in so textarea is populated on page load
+		input.value = selector.value;
+
 		selector.onchange = function(){
 		     input.value = this.value;
 		}
