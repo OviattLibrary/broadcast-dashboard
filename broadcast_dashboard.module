@@ -537,7 +537,6 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
     echo "<pre>";
     debug_to_console(print_r($form_state));
     echo "</pre>";
-    debug_to_console(var_dump ($name));
     debug_to_console(var_dump ($current_title));
     debug_to_console(var_dump ($current_msg));
     die();
