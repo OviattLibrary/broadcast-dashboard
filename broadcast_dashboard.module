@@ -449,14 +449,22 @@ function broadcast_dashboard_settings_form($form_state) {
 
   $default_title = t('Select a message');
 
+  // START Update Message Block
+  $form['broadcast_dashboard_settings_update_msg'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Update Existing Message');
+    '#description' => t('Update an existing pre-written Broadcast Dashboard message.');
+    '%collapsible' => FALSE,
+  );
+
   // Header
-  $form['broadcast_dashboard_settings_msg_header'] = array(
+  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
     '#type' => 'markup',
     '#markup' => t('<h2>Custom Messages</h2>'),
   );
 
   // Custom message selector
-  $form['broadcast_dashboard_setting_custom_message_select'] = array(
+  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => $default_title,
@@ -476,7 +484,7 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Custom message editor
-  $form['broadcast_dashboard_setting_custom_message_edit'] = array(
+  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'] = array(
     '#type' => 'textarea',
     '#title' => t('Message Text'),
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
@@ -486,7 +494,7 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Submit button
-  $form['update_existing_message_submit'] = array(
+  $form['broadcast_dashboard_settings_update_msg']['update_existing_message_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Update message'),
   );
@@ -502,9 +510,9 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   // Check if message text is blank
-  if (!empty($form_state['values']['broadcast_dashboard_setting_custom_message_edit'])) {
-    $current_title = $form['broadcast_dashboard_setting_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_setting_custom_message_select']];
-    $current_msg = $form_state['values']['broadcast_dashboard_setting_custom_message_edit'];
+  if (!empty($form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'])) {
+    $current_title = $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']];
+    $current_msg = $form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'];
 
     // Update query
     $query = db_update('broadcast_dashboard');
