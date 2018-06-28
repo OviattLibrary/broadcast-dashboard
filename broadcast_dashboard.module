@@ -543,7 +543,7 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
       )
     );
     $results = $query->execute();
-    var_dump($results);
+    debug_to_console(var_dump($results));
   }
 
   if ($form_has_errors == FALSE) {
