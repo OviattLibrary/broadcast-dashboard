@@ -452,9 +452,9 @@ function broadcast_dashboard_settings_form($form_state) {
   // START Update Message Block
   $form['broadcast_dashboard_settings_update_msg'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Update Existing Message');
-    '#description' => t('Update an existing pre-written Broadcast Dashboard message.');
-    '%collapsible' => FALSE,
+    '#title' => t('Update Existing Message'),
+    '#description' => t('Update an existing pre-written Broadcast Dashboard message.'),
+    '#collapsible' => FALSE,
   );
 
   // Header
