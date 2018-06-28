@@ -443,34 +443,6 @@ function broadcast_dashboard_get_messages() {
   return $title_options;
 }
 
-/*function broadcast_dashboard_get_message_text($grab_title) {
-  //Query DB for Rows
-  $query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
-  $query->condition('bd_msg_title', $grab_title);
-  $query->orderBy('bd_id', 'ASC');
-  $results = $query->execute();
-
-  var_dump($grab_title);
-  var_dump($results->bd_msg_text);
-
-  //define rows
-  $text_options = array();
-
-  //test if the results array has any values
-  if (is_array($results) || is_object($results)) {
-    foreach ($results as $result) {
-      $text_options[$result->bd_id] = $result->bd_msg_text;
-      var_dump($result->bd_id . " = " . $result->bd_msg_text);
-    }
-  }
-
-  //$message_text = $text_options[0];
-  //$message_text = $grab_title;
-  //var_dump($text_options);
-  return $message_text;
-}*/
-
 function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
@@ -514,9 +486,9 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Submit button
-  $form['submit'] = array(
+  $form['update_existing_message_submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Save settings'),
+    '#value' => t('Update message'),
   );
 
   return $form;
