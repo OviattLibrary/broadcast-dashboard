@@ -458,10 +458,11 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Header
-  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
+  // Hiding header becasue fieldset has a title. @TODO: accessiblility -- do we need an <h2> for clarity?
+  /*$form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
     '#type' => 'markup',
     '#markup' => t('<h2>Custom Messages</h2>'),
-  );
+  );*/
 
   // Custom message selector
   $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
@@ -498,6 +499,8 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'submit',
     '#value' => t('Update message'),
   );
+
+  // END Update Message Block
 
   return $form;
 }
