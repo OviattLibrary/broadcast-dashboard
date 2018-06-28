@@ -23,7 +23,7 @@ function broadcast_dashboard_schema() {
 		'fields' => array(
 			'bd_id' => array(
 				'description' => 'Primary key for Broadcast Dashboard entries.',
-				'type' => 'int',
+				'type' => 'serial',
 				'not null' => TRUE,
 				'unsigned' => TRUE,
 			),
