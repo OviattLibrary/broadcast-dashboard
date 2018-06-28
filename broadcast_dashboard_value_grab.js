@@ -6,8 +6,8 @@
  */
  jQuery(function ($) {
 	$(document).ready(function() {
-		var input = document.getElementById('edit-broadcast-dashboard-setting-custom-message-edit');
-		var selector = document.getElementById('edit-broadcast-dashboard-setting-custom-message-select');
+		var input = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
+		var selector = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-select');
 
 		// Added in so textarea is populated on page load
 		input.value = selector.value;
