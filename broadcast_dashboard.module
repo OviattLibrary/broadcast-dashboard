@@ -536,7 +536,8 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
 
     // Update query
     $query = db_update('broadcast_dashboard');
-    $query->condition('bd_msg_title',$current_title, '=');
+    $query->condition('bd_msg_type', 1);
+    $query->condition('bd_msg_title',$current_title);
     $query->fields(
       array(
         'bd_msg_text' => $current_msg,
