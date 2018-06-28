@@ -534,7 +534,7 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
     $current_title = $form_state['values']['broadcast_dashboard_setting_custom_message_select'];
     $current_msg = $form_state['values']['broadcast_dashboard_setting_custom_message_edit'];
 
-    debug_to_console(var_dump($form_state));
+    debug_to_console(print_r($form_state));
     debug_to_console(var_dump ($current_title));
     debug_to_console(var_dump ($current_msg));
 
