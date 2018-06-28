@@ -534,12 +534,6 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
     $current_title = $form['broadcast_dashboard_setting_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_setting_custom_message_select']];
     $current_msg = $form_state['values']['broadcast_dashboard_setting_custom_message_edit'];
 
-    /*echo "<pre>";
-    debug_to_console(print_r($form_state));
-    echo "</pre>";*/
-    debug_to_console(var_dump ($current_title));
-    debug_to_console(var_dump ($current_msg));
-
     // Update query
     $query = db_update('broadcast_dashboard');
     $query->condition('bd_msg_type', 1);
@@ -550,8 +544,6 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
       )
     );
     $results = $query->execute();
-    debug_to_console(var_dump($results));
-    die();
   }
 
   if ($form_has_errors == FALSE) {
