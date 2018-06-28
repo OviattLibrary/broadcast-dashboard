@@ -531,12 +531,15 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
 
   // Check if message text is blank
   if (!empty($form_state['values']['broadcast_dashboard_setting_custom_message_edit'])) {
+    $name = $form_state['select']['broadcast_dashboard_setting_custom_message_edit']['#options'][$form_state['values']['select']];
+
     $current_title = $form_state['values']['broadcast_dashboard_setting_custom_message_select'];
     $current_msg = $form_state['values']['broadcast_dashboard_setting_custom_message_edit'];
 
     echo "<pre>";
     debug_to_console(print_r($form_state));
     echo "</pre>";
+    debug_to_console(var_dump ($name));
     debug_to_console(var_dump ($current_title));
     debug_to_console(var_dump ($current_msg));
     die();
