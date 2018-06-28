@@ -529,6 +529,23 @@ function broadcast_dashboard_settings_form($form_state) {
 function broadcast_dashboard_settings_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
+  // Check if message text is blank
+  if (!empty($form_state['values']['broadcast_dashboard_setting_custom_message_edit'])) {
+    $current_title = $form_state['values']['broadcast_dashboard_setting_custom_message_select'];
+    $current_msg = $form_state['values']['broadcast_dashboard_setting_custom_message_edit'];
+
+    // Update query
+    $query = db_update('broadcast_dashboard');
+    $query->condition('bd_msg_title',$current_title);
+    $query->fields(
+      array(
+        'bd_msg_text' => $current_msg,
+      )
+    );
+    $results = $query->execute();
+    var_dump($results);
+  }
+
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
   }
