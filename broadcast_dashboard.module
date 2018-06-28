@@ -544,6 +544,7 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
     );
     $results = $query->execute();
     debug_to_console(var_dump($results));
+    die();
   }
 
   if ($form_has_errors == FALSE) {
