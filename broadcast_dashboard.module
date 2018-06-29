@@ -423,7 +423,11 @@ function broadcast_dashboard_page_build(&$page) {
  * Implements hook_form().
  */
 
-function broadcast_dashboard_get_messages() {
+function broadcast_dashboard_get_messages($element) {
+  if ($element == "" || is_null($element)) {
+    $element = "bd_msg_text";
+  }
+
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
@@ -436,7 +440,7 @@ function broadcast_dashboard_get_messages() {
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $title_options[$result->bd_msg_text] = $result->bd_msg_title;
+      $title_options[$result->$element] = $result->bd_msg_title;
     }
   }
 
@@ -469,7 +473,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => $default_title,
-    '#options' => broadcast_dashboard_get_messages(),
+    '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
     '#description' => t('Select a custom message to edit.'),
     '#required' => FALSE,
     /*'#states' => array(
@@ -523,7 +527,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => $default_title,
-    '#options' => broadcast_dashboard_get_messages(),
+    '#options' => broadcast_dashboard_get_messages("bd_id"),
     '#description' => t('Select a custom message to delete.'),
     '#required' => FALSE,
     /*'#states' => array(
