@@ -429,10 +429,18 @@ function broadcast_dashboard_get_messages($element) {
   }
 
   //Check if $element is a column
-  $check_result = mysql_query("SHOW COLUMNS FROM `broadcast_dashboard` LIKE '$element'");
-  $exists = (mysql_num_rows($check_result))?TRUE:FALSE;
+  $sql = "SHOW COLUMNS FROM 'broadcast_dashboard'";
+  $field_names = array();
+  $result = db_query($sql);
 
-  debug_to_console(print_r($exists));
+  for($i=0;$i<db_num_rows($result);$i++){
+    $row = db_fetch_array($result);
+    $name = $row['Field'];
+    array_push($field_names, $name);
+  }
+
+  debug_to_console(print_r($field_names)));
+die();
 
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
