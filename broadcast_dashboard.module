@@ -429,7 +429,7 @@ function broadcast_dashboard_get_messages($element) {
   }
 
   //Check if $element is a column
-  $sql = "SHOW COLUMNS FROM 'broadcast_dashboard'";
+  $sql = "SHOW COLUMNS FROM broadcast_dashboard";
   $field_names = array();
   $result = db_query($sql);
 
