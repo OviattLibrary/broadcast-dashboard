@@ -434,6 +434,9 @@ function broadcast_dashboard_get_messages($element) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
+  debug_to_console(print_r(echo $query->fields));
+  die();
+
   //define rows
   $title_options = array();
 
