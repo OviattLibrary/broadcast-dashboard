@@ -527,7 +527,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => $default_title,
-    '#options' => broadcast_dashboard_get_messages("bd_i"),
+    '#options' => broadcast_dashboard_get_messages("bd_id"),
     '#description' => t('Select a custom message to delete.'),
     '#required' => FALSE,
     /*'#states' => array(
