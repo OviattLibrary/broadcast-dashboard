@@ -439,8 +439,8 @@ function broadcast_dashboard_get_messages($element) {
     array_push($field_names, $name);
   }
 
-  debug_to_console(print_r($field_names)));
-die();
+  echo "<pre>"; debug_to_console(print_r($field_names)); echo "</pre>";
+  die();
 
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
