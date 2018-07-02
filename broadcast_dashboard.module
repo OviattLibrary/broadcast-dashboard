@@ -502,6 +502,7 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_settings_update_msg']['update_existing_message_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Update message'),
+    '#submit' => array('broadcast_dashboard_settings_edit_form_submit'),
   );
 
   // END Update Message Block
@@ -541,6 +542,7 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_settings_delete_msg']['delete_existing_message_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Delete message'),
+    'submit' => array('broadcast_dashboard_settings_delete_form_submit'),
   );
 
   // @TODO: Confirmation pop-up (hook confirm_form())
@@ -554,7 +556,10 @@ function broadcast_dashboard_settings_form($form_state) {
  * Implements hook_form_submit().
  */
 
-function broadcast_dashboard_settings_form_submit($form, &$form_state) {
+/**
+ * For the edited of a current message form.
+ */
+function broadcast_dashboard_settings_edit_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   // Check if message text is blank
@@ -577,6 +582,13 @@ function broadcast_dashboard_settings_form_submit($form, &$form_state) {
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
   }
+}
+
+/**
+ * For the deletion of a current message form.
+ */
+function broadcast_dashboard_settings_delete_form_submit($form, &$form_state) {
+
 }
 
 /**
