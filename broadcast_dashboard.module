@@ -565,7 +565,7 @@ function broadcast_dashboard_settings_edit_form_submit($form, &$form_state) {
   // Check if message text is blank
   if (!empty($form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'])) {
     $current_title = $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_select']];
-    $current_msg = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'];
+    $current_msg = $form_state['values']['broadcast_dashboard_settings_delete_msg_custom_message_select'];
 
     // Update query
     $query = db_update('broadcast_dashboard');
@@ -590,16 +590,21 @@ function broadcast_dashboard_settings_edit_form_submit($form, &$form_state) {
 function broadcast_dashboard_settings_delete_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
+  $delete_row = $form_state['values']['broadcast_dashboard_settings_delete_msg_custom_message_select'];
+
   // Get the number of rows in the table
   $result = db_select('broadcast_dashboard', 'bd_id')
             ->fields('bd_id')
             ->execute();
-  $num_of_results = $result->rowCount();
+  $num_of_rows = $result->rowCount();
 
-  echo $num_of_results;
+  if ($delete_row <= $num_of_rows) {
+    echo "Delete row: " + $delete_row;
+    echo "Num rows: " + $num_of_rows;
+    echo "Would be deleted.";
+  }
+
   die();
-
-  drupal_set_message(t('This was sent from the deletion form.'));
 }
 
 /**
