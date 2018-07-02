@@ -591,8 +591,8 @@ function broadcast_dashboard_settings_delete_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   // Get the number of rows in the table
-  $result = db_select('table_name', 'table_alias')
-            ->fields('table_alias')
+  $result = db_select('broadcast_dashboard', 'bd_id')
+            ->fields('bd_id')
             ->execute();
   $num_of_results = $result->rowCount();
 
