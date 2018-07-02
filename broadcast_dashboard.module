@@ -507,7 +507,7 @@ function broadcast_dashboard_settings_form($form_state) {
 
   // END Update Message Block
 
-  // START Add Delete Block
+  // START Delete Message Block
 
   $form['broadcast_dashboard_settings_delete_msg'] = array(
     '#type' => 'fieldset',
@@ -547,7 +547,18 @@ function broadcast_dashboard_settings_form($form_state) {
 
   // @TODO: Confirmation pop-up (hook confirm_form())
 
-  // END Add Delete Block
+  // END Delete Message Block
+
+  // START Add Message Block
+
+  $form['broadcast_dashboard_settings_add_msg'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Add Message'),
+    '#description' => t('Add a new pre-written Broadcast Dashboard message.'),
+    '#collapsible' => FALSE,
+  );
+
+  // END Add Message Block
 
   return $form;
 }
