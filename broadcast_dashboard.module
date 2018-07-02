@@ -588,7 +588,9 @@ function broadcast_dashboard_settings_edit_form_submit($form, &$form_state) {
  * For the deletion of a current message form.
  */
 function broadcast_dashboard_settings_delete_form_submit($form, &$form_state) {
+  $form_has_errors = FALSE;
 
+  drupal_set_message(t('This was sent from the deletion form.'));
 }
 
 /**
