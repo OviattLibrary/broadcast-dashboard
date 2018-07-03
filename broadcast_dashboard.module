@@ -625,9 +625,9 @@ function broadcast_dashboard_settings_form($form_state) {
     '#description' => t('Classes that will be added to this message\'s display.'),
     '#states' => array(
       "visible" => array(
-        "input[name='broadcast_dashboard_settings_add_color']" => array("checked" => TRUE)),
+        "input[name='edit-broadcast-dashboard-settings-add-color-class']" => array("checked" => TRUE)),
       "required" => array(
-        "input[name='broadcast_dashboard_settings_add_color']" => array("checked" => TRUE)),
+        "input[name='edit-broadcast-dashboard-settings-add-color-class']" => array("checked" => TRUE)),
     ),
   );
 
