@@ -587,13 +587,13 @@ function broadcast_dashboard_settings_form($form_state) {
   );
 
   // Custom message editor
-  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'] = array(
+  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_msg_custom_message_add'] = array(
     '#type' => 'textarea',
     '#title' => t('Message Text'),
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
     '#default_value' => NULL,
     '#description' => t('The text that will be displayed when the selected message is turned on.'),
-    '#required' => broadcast_dashboard_has_rows(),
+    '#required' => TRUE,
   );
 
   // END Add Message Block
