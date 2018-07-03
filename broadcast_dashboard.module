@@ -468,47 +468,58 @@ function broadcast_dashboard_settings_form($form_state) {
     '#markup' => t('<h2>Custom Messages</h2>'),
   );*/
 
-  // Custom message selector
-  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
-    '#type' => 'select',
-    '#title' => t('Messages'),
-    '#default_value' => $default_title,
-    '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
-    '#description' => t('Select a custom message to edit.'),
-    '#required' => FALSE,
-    /*'#states' => array(
-      'visible' => array(
-        ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
-      ),
-    ),*/
-  );
+  // Get the number of rows in the table
+  $result = db_select('broadcast_dashboard', 'bd_id')
+            ->fields('bd_id')
+            ->execute();
+  $num_of_rows = $result->rowCount();
 
-  // Include value grab Javascript file
-  $form['#attached']['js'] = array(
-    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
-  );
+  if ($num_of_rows == 0) {
+    drupal_set_message(t("There are no current messages in the database."), $type = 'warning');
+  } else {
 
-  // Custom message editor
-  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Message Text'),
-    //'#default_value' => broadcast_dashboard_get_message_text($arg),
-    '#default_value' => NULL,
-    '#description' => t('The text that will be displayed when the selected message is turned on.'),
-    '#required' => TRUE,
-  );
+    // Custom message selector
+    $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
+      '#type' => 'select',
+      '#title' => t('Messages'),
+      '#default_value' => $default_title,
+      '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
+      '#description' => t('Select a custom message to edit.'),
+      '#required' => FALSE,
+      /*'#states' => array(
+        'visible' => array(
+          ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
+        ),
+      ),*/
+    );
 
-  // Submit button
-  $form['broadcast_dashboard_settings_update_msg']['update_existing_message_submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Update message'),
-    '#submit' => array('broadcast_dashboard_settings_edit_form_submit'),
-  );
+    // Include value grab Javascript file
+    $form['#attached']['js'] = array(
+      drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
+    );
+
+    // Custom message editor
+    $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Message Text'),
+      //'#default_value' => broadcast_dashboard_get_message_text($arg),
+      '#default_value' => NULL,
+      '#description' => t('The text that will be displayed when the selected message is turned on.'),
+      '#required' => TRUE,
+    );
+
+    // Submit button
+    $form['broadcast_dashboard_settings_update_msg']['update_existing_message_submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Update message'),
+      '#submit' => array('broadcast_dashboard_settings_edit_form_submit'),
+    );
+
+  }
 
   // END Update Message Block
 
   // START Delete Message Block
-
 
   // Include confirmation popup content
   $form['#attached']['js'][] = drupal_get_path('module', 'broadcast_dashboard') . 'broadcast_dashboard_confirm_delete.js';
