@@ -447,27 +447,13 @@ function broadcast_dashboard_get_messages($element) {
   return $title_options;
 }
 
-function broadcast_dashboard_settings_form($form_state) {
-  $theme_default = variable_get('theme_default', NULL);
-  $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
-
-  $default_title = t('Select a message');
-
-  // START Update Message Block
-  $form['broadcast_dashboard_settings_update_msg'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Update Existing Message'),
-    '#description' => t('Update an existing pre-written Broadcast Dashboard message.'),
-    '#collapsible' => FALSE,
-  );
-
-  // Header
-  // Hiding header becasue fieldset has a title. @TODO: accessiblility -- do we need an <h2> for clarity?
-  /*$form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
-    '#type' => 'markup',
-    '#markup' => t('<h2>Custom Messages</h2>'),
-  );*/
-
+/**
+ * Checks if the table has rows/elements.
+ *
+ * @return TRUE if rows exist
+ * @return FALSE if no rows exist
+ */
+function broadcast_dashboard_has_rows() {
   // Get the number of rows in the table
   $result = db_select('broadcast_dashboard', 'bd_id')
             ->fields('bd_id')
@@ -475,9 +461,34 @@ function broadcast_dashboard_settings_form($form_state) {
   $num_of_rows = $result->rowCount();
 
   if ($num_of_rows == 0) {
-    //drupal_set_message(t("There are no current messages in the database."), $type = 'warning');
-    echo "<div class='messages warning'><h2 class='element-invisible'>Warning message</h2>There are no current messages in the database.</div>";
+    return FALSE;
   } else {
+    return TRUE;
+  }
+}
+
+function broadcast_dashboard_settings_form($form_state) {
+  $theme_default = variable_get('theme_default', NULL);
+  $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  $default_title = t('Select a message');
+
+  if (broadcast_dashboard_has_rows()) {
+
+    // START Update Message Block
+    $form['broadcast_dashboard_settings_update_msg'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Update Existing Message'),
+      '#description' => t('Update an existing pre-written Broadcast Dashboard message.'),
+      '#collapsible' => FALSE,
+    );
+
+    // Header
+    // Hiding header becasue fieldset has a title. @TODO: accessiblility -- do we need an <h2> for clarity?
+    /*$form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
+      '#type' => 'markup',
+      '#markup' => t('<h2>Custom Messages</h2>'),
+    );*/
 
     // Custom message selector
     $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
@@ -516,55 +527,57 @@ function broadcast_dashboard_settings_form($form_state) {
       '#submit' => array('broadcast_dashboard_settings_edit_form_submit'),
     );
 
-  }
+    }
 
-  // END Update Message Block
+    // END Update Message Block
 
-  // START Delete Message Block
+    // START Delete Message Block
 
-  // Include confirmation popup content
-  $form['#attached']['js'][] = drupal_get_path('module', 'broadcast_dashboard') . 'broadcast_dashboard_confirm_delete.js';
-  $form['#attached']['css'][] = drupal_get_path('module', 'broadcast_dashboard') . 'broadcast_dashboard_confirm_delete.css';
+    // Include confirmation popup content
+    $form['#attached']['js'][] = drupal_get_path('module', 'broadcast_dashboard') . 'broadcast_dashboard_confirm_delete.js';
+    $form['#attached']['css'][] = drupal_get_path('module', 'broadcast_dashboard') . 'broadcast_dashboard_confirm_delete.css';
 
-  $form['broadcast_dashboard_settings_delete_msg'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Delete Existing Message'),
-    '#description' => t('Delete an existing pre-written Broadcast Dashboard message.'),
-    '#collapsible' => FALSE,
-  );
+    $form['broadcast_dashboard_settings_delete_msg'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Delete Existing Message'),
+      '#description' => t('Delete an existing pre-written Broadcast Dashboard message.'),
+      '#collapsible' => FALSE,
+    );
 
-  // Header
-  // Hiding header becasue fieldset has a title. @TODO: accessiblility -- do we need an <h2> for clarity?
-  /*$form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
-    '#type' => 'markup',
-    '#markup' => t('<h2>Delete Messages</h2>'),
-  );*/
+    // Header
+    // Hiding header becasue fieldset has a title. @TODO: accessiblility -- do we need an <h2> for clarity?
+    /*$form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
+      '#type' => 'markup',
+      '#markup' => t('<h2>Delete Messages</h2>'),
+    );*/
 
-  // Custom message selector
-  $form['broadcast_dashboard_settings_delete_msg']['broadcast_dashboard_settings_delete_msg_custom_message_select'] = array(
-    '#type' => 'select',
-    '#title' => t('Messages'),
-    '#default_value' => $default_title,
-    '#options' => broadcast_dashboard_get_messages("bd_id"),
-    '#description' => t('Select a custom message to delete.'),
-    '#required' => FALSE,
-    /*'#states' => array(
-      'visible' => array(
-        ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
-      ),
-    ),*/
-  );
+    // Custom message selector
+    $form['broadcast_dashboard_settings_delete_msg']['broadcast_dashboard_settings_delete_msg_custom_message_select'] = array(
+      '#type' => 'select',
+      '#title' => t('Messages'),
+      '#default_value' => $default_title,
+      '#options' => broadcast_dashboard_get_messages("bd_id"),
+      '#description' => t('Select a custom message to delete.'),
+      '#required' => FALSE,
+      /*'#states' => array(
+        'visible' => array(
+          ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
+        ),
+      ),*/
+    );
 
-  // Submit button
-  $form['broadcast_dashboard_settings_delete_msg']['delete_existing_message_submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Delete message'),
-    '#submit' => array('broadcast_dashboard_settings_delete_form_submit'),
-  );
+    // Submit button
+    $form['broadcast_dashboard_settings_delete_msg']['delete_existing_message_submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Delete message'),
+      '#submit' => array('broadcast_dashboard_settings_delete_form_submit'),
+    );
 
-  // @TODO: Confirmation pop-up (hook confirm_form())
+    // @TODO: Confirmation pop-up (hook confirm_form())
 
-  // END Delete Message Block
+    // END Delete Message Block
+
+  } // end has_rows() check
 
   // START Add Message Block
 
