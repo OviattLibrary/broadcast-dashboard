@@ -575,6 +575,8 @@ function broadcast_dashboard_settings_form($form_state) {
 
     // END Delete Message Block
 
+  } else {
+    drupal_set_message(t('Add a pre-written message to unlock editing and deleting.'), 'warning');
   } // end has_rows() check
 
   // START Add Message Block
@@ -612,6 +614,8 @@ function broadcast_dashboard_settings_form($form_state) {
       'class' => t('CSS Class'),
       'hex' => t('Hex Code'),
     ),
+    '#description' => t('Select how to set the message\'s background color.'),
+    '#required' => TRUE,
   );
 
   // END Add Message Block
