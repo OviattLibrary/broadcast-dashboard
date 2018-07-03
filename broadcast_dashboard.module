@@ -631,6 +631,19 @@ function broadcast_dashboard_settings_form($form_state) {
     ),
   );
 
+  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_css_class'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Hex Code'),
+    '#default_value' => NULL,
+    '#description' => t('Color hex code that will be added to this message\'s display.'),
+    '#states' => array(
+      "visible" => array(
+        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
+      "required" => array(
+        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
+    ),
+  );
+
   // END Add Message Block
 
   return $form;
