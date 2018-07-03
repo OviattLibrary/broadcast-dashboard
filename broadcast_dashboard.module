@@ -586,14 +586,32 @@ function broadcast_dashboard_settings_form($form_state) {
     '#collapsible' => FALSE,
   );
 
-  // Custom message editor
-  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_msg_custom_message_add'] = array(
+  // Custom message add
+  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_msg_name_message'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Message Name'),
+    //'#default_value' => broadcast_dashboard_get_message_text($arg),
+    '#default_value' => NULL,
+    '#description' => t('How this message will be identified in the backend.'),
+    '#required' => TRUE,
+  );
+
+  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_msg_custom_message'] = array(
     '#type' => 'textarea',
     '#title' => t('Message Text'),
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
     '#default_value' => NULL,
     '#description' => t('The text that will be displayed when the selected message is turned on.'),
     '#required' => TRUE,
+  );
+
+  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_color'] = array(
+    '#type' => 'radios',
+    '#title' => t('Message Color'),
+    '#options' => array(
+      'class' => t('CSS Class'),
+      'hex' => t('Hex Code'),
+    ),
   );
 
   // END Add Message Block
