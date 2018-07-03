@@ -475,7 +475,8 @@ function broadcast_dashboard_settings_form($form_state) {
   $num_of_rows = $result->rowCount();
 
   if ($num_of_rows == 0) {
-    drupal_set_message(t("There are no current messages in the database."), $type = 'warning');
+    //drupal_set_message(t("There are no current messages in the database."), $type = 'warning');
+    echo "<div class='messages warning'><h2 class='element-invisible'>Warning message</h2>There are no current messages in the database.</div>"
   } else {
 
     // Custom message selector
