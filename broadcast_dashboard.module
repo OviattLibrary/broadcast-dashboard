@@ -509,6 +509,11 @@ function broadcast_dashboard_settings_form($form_state) {
 
   // START Delete Message Block
 
+
+  // Include confirmation popup content
+  $form['#attached']['js'][] = drupal_get_path('module', 'mymodule') . 'broadcast_dashboard_confirm_delete.js';
+  $form['#attached']['css'][] = drupal_get_path('module', 'mymodule') . 'broadcast_dashboard_confirm_delete.css';
+
   $form['broadcast_dashboard_settings_delete_msg'] = array(
     '#type' => 'fieldset',
     '#title' => t('Delete Existing Message'),
@@ -556,6 +561,16 @@ function broadcast_dashboard_settings_form($form_state) {
     '#title' => t('Add Message'),
     '#description' => t('Add a new pre-written Broadcast Dashboard message.'),
     '#collapsible' => FALSE,
+  );
+
+  // Custom message editor
+  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Message Text'),
+    //'#default_value' => broadcast_dashboard_get_message_text($arg),
+    '#default_value' => NULL,
+    '#description' => t('The text that will be displayed when the selected message is turned on.'),
+    '#required' => TRUE,
   );
 
   // END Add Message Block
