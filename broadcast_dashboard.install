@@ -47,13 +47,14 @@ function broadcast_dashboard_schema() {
 				'description' => 'Name of a color used, to be displayed in short context menus.',
 				'type' => 'text',
 			),
-			'bd_clr_hex' => array(
-				'description' => 'Hexcode for a message display color.',
-				'type' => 'text',
-			),
 			'bd_clr_class' => array(
 				'description' => 'Class name for a message display color.',
 				'type' => 'text',
+			),
+			'bd_clr_class' => array(
+				'description' => 'Hex code for a message display color.',
+				'type' => 'text',
+				'size' => 'small',
 			),
 		),
 		'primary key' => array('bd_id'),
