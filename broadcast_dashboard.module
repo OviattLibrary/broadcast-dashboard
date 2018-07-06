@@ -631,7 +631,7 @@ function broadcast_dashboard_settings_form($form_state) {
     ),
   );
 
-  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_hex_class'] = array(
+  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_hex_code'] = array(
     '#type' => 'textfield',
     '#title' => t('Hex Code'),
     '#default_value' => NULL,
@@ -660,6 +660,12 @@ function broadcast_dashboard_settings_form($form_state) {
     );
 
   // END Add Message Block
+
+  // Preview area
+  $form['preview_area'] = array(
+    '#type' => 'markup',
+    '#markup' => t('<div id="markuparea"></div>'),
+  );
 
   return $form;
 }
@@ -731,6 +737,9 @@ function broadcast_dashboard_settings_delete_form_submit($form, &$form_state) {
  */
 function broadcast_dashboard_settings_add_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
+
+  $add_name =
+  $
 }
 
 /**
