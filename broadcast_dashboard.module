@@ -644,6 +644,21 @@ function broadcast_dashboard_settings_form($form_state) {
     ),
   );
 
+  // Preview button
+  $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_preview'] = array(
+    '#type' => 'button',
+    '#value' => t('Preview'),
+    '#executes_submit_callback' => FALSE,
+    '#attributes' => array('onclick' => "return (false);"),//array('onclick' => "runPreview('".$test_var."'); return (false);"),
+  );
+
+  // Submit button
+    $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Update message'),
+      '#submit' => array('broadcast_dashboard_settings_add_form_submit'),
+    );
+
   // END Add Message Block
 
   return $form;
@@ -709,6 +724,13 @@ function broadcast_dashboard_settings_delete_form_submit($form, &$form_state) {
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The selected message was deleted successfully.'));
   }
+}
+
+/**
+ * For the deletion of a current message form.
+ */
+function broadcast_dashboard_settings_add_form_submit($form, &$form_state) {
+  $form_has_errors = FALSE;
 }
 
 /**
