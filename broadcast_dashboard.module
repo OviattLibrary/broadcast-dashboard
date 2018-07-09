@@ -733,12 +733,37 @@ function broadcast_dashboard_settings_delete_form_submit($form, &$form_state) {
 }
 
 /**
- * For the deletion of a current message form.
+ * For the addition of a current message form.
  */
 function broadcast_dashboard_settings_add_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
-  $add_name;
+  $add_name = $form_state['values']['broadcast_dashboard_settings_add_msg_name_message'];
+  $add_msg = $form_state['values']['broadcast_dashboard_settings_add_msg_custom_message'];
+  $add_class = $form_state['values']['broadcast_dashboard_settings_add_css_class'];
+  $add_hex = $form_state['values']['broadcast_dashboard_settings_add_hex_code'];
+
+  if (!isEmpty($add_name) || !isEmpty($add_msg) || (!isEmpty($add_class) && !isEmpty($add_hex)) ) {
+    // Fields are fine
+    $result = db_insert('broadcast_dashboard')
+      ->fields(
+        ->array(
+          //'bd_id' => auto increments
+          'bd_msg_title' => $add_name,
+          'bd_msg_text' => $add_msg,
+          'bd_clr_class' => $add_class,
+          'bd_clr_hex' => $add_hex,
+        )
+      )->execute();
+  } else {
+    // Form has errors
+    $form_has_errors = TRUE;
+  }
+
+  if ($form_has_errors == FALSE) {
+    drupal_set_message(t('The message was added successfully.'));
+  }
+
 }
 
 /**
