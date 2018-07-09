@@ -747,7 +747,7 @@ function broadcast_dashboard_settings_add_form_submit($form, &$form_state) {
     // Fields are fine
     $result = db_insert('broadcast_dashboard')
       ->fields(
-        ->array(
+        array(
           //'bd_id' => auto increments
           'bd_msg_title' => $add_name,
           'bd_msg_text' => $add_msg,
