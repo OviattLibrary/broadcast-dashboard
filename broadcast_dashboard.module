@@ -743,7 +743,7 @@ function broadcast_dashboard_settings_add_form_submit($form, &$form_state) {
   $add_class = $form_state['values']['broadcast_dashboard_settings_add_css_class'];
   $add_hex = $form_state['values']['broadcast_dashboard_settings_add_hex_code'];
 
-  if (!isEmpty($add_name) || !isEmpty($add_msg) || (!isEmpty($add_class) && !isEmpty($add_hex)) ) {
+  if (!empty($add_name) || !empty($add_msg) || (!empty($add_class) && !empty($add_hex)) ) {
     // Fields are fine
     $result = db_insert('broadcast_dashboard')
       ->fields(
