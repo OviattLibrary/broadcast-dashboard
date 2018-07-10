@@ -139,7 +139,7 @@ function broadcast_dashboard_form($form_state) {
     ),*/
   );
 
-  $form['broadcast_dashboard_message'] = array(
+  /*$form['broadcast_dashboard_message'] = array(
     '#type' => 'select',
     '#title' => t('Type of Message'),
     '#default_value' => variable_get('broadcast_dashboard_message', 0),
@@ -158,7 +158,7 @@ function broadcast_dashboard_form($form_state) {
       "required" => array(
       "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
     ),
-  );
+  );*/
 
   $form['broadcast_dashboard_region'] = array(
     '#type' => 'select',
