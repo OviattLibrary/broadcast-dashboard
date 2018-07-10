@@ -118,7 +118,7 @@ function broadcast_dashboard_form($form_state) {
       $title_options[$result->$element] = $result->bd_msg_title;
       $counter =+ 1;
     }
-    $title_options[$counter->"custom_msg"] = "Custom";
+    $title_options[$counter->'custom_msg'] = "Custom";
   }
 
   return $title_options;
@@ -186,10 +186,10 @@ function broadcast_dashboard_form($form_state) {
     '#states' => array(
       "visible" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
-        ":input[name='broadcast_dashboard_message']" => array("value" => "custom_msg")),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
       "required" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
-        ":input[name='broadcast_dashboard_message']" => array("value" => "custom_msg")),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
     ),
   );
 
@@ -208,10 +208,10 @@ function broadcast_dashboard_form($form_state) {
     '#states' => array(
       "visible" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
-        ":input[name='broadcast_dashboard_message']" => array("value" => "custom_msg")),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
       "required" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
-        ":input[name='broadcast_dashboard_message']" => array("value" => "custom_msg")),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
     ),
   );
 
