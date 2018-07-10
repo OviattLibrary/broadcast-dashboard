@@ -118,7 +118,7 @@ function broadcast_dashboard_form($form_state) {
     foreach ($results as $result) {
       $title_options[$result->$element] = $result->bd_msg_title;
       $counter =+ 1;
-      echo $element;
+      echo $result . " -> " . echo $element;
       die();
     }
     $title_options[$counter->$custom_val] = "Custom";
