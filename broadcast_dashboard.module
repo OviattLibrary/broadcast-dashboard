@@ -97,6 +97,48 @@ function broadcast_dashboard_form($form_state) {
     '#description' => t('When activated, the selected message will be broadcast on the website.'),
   );
 
+  function broadcast_dashboard_get_messages_selector($element) {
+  if ($element == "" || is_null($element)) {
+    $element = "bd_msg_text";
+  }
+
+  //Query DB for Rows
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  //define rows
+  $title_options = array();
+
+  //test if the results array has any values
+  $counter = 0;
+  if (is_array($results) || is_object($results)) {
+    foreach ($results as $result) {
+      $title_options[$result->$element] = $result->bd_msg_title;
+      $counter =+ 1;
+    }
+    $title_options[$counter] = "Custom";
+  }
+
+  return $title_options;
+}
+
+ // Custom message selector
+  $form['broadcast_dashboard_message'] = array(
+    '#type' => 'select',
+    '#title' => t('Messages'),
+    '#default_value' => NULL,
+    '#options' => broadcast_dashboard_get_messages_selector("bd_msg_text"),
+    '#description' => t('Select a custom message to edit.'),
+    '#required' => FALSE,
+    /*'#states' => array(
+      'visible' => array(
+        ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
+      ),
+    ),*/
+  );
+
   $form['broadcast_dashboard_message'] = array(
     '#type' => 'select',
     '#title' => t('Type of Message'),
@@ -489,21 +531,6 @@ function broadcast_dashboard_settings_form($form_state) {
       '#type' => 'markup',
       '#markup' => t('<h2>Custom Messages</h2>'),
     );*/
-
-    // Custom message selector
-    $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
-      '#type' => 'select',
-      '#title' => t('Messages'),
-      '#default_value' => $default_title,
-      '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
-      '#description' => t('Select a custom message to edit.'),
-      '#required' => FALSE,
-      /*'#states' => array(
-        'visible' => array(
-          ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
-        ),
-      ),*/
-    );
 
     // Include value grab Javascript file
     $form['#attached']['js'] = array(
