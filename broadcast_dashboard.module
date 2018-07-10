@@ -113,12 +113,13 @@ function broadcast_dashboard_form($form_state) {
 
   //test if the results array has any values
   $counter = 0;
+  $custom_val = "custom_msg";
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
       $title_options[$result->$element] = $result->bd_msg_title;
       $counter =+ 1;
     }
-    $title_options[$counter->'custom_msg'] = "Custom";
+    $title_options[$counter->$custom_val] = "Custom";
   }
 
   return $title_options;
