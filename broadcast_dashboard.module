@@ -831,7 +831,7 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
 
   //die();
 
-  if (!empty($add_name) || !empty($add_msg) || (!empty($add_class) && !empty($add_hex)) ) {
+  if (!empty($add_name) && !empty($add_msg) && (!empty($add_class) && !empty($add_hex)) ) {
     // Fields are fine
     $result = db_insert('broadcast_dashboard')
       ->fields(
