@@ -539,7 +539,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => NULL,
-    '#options' => broadcast_dashboard_get_messages_selector("bd_msg_text"),
+    '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
     '#description' => t('Select a custom message to edit.'),
     '#required' => FALSE,
     /*'#states' => array(
