@@ -566,6 +566,7 @@ function broadcast_dashboard_settings_form($form_state) {
 
     // Submit button
     $form['broadcast_dashboard_settings_update_msg']['update_existing_message_submit'] = array(
+      '#name' => 'submit_update_msg',
       '#type' => 'submit',
       '#value' => t('Update message'),
       '#submit' => array('broadcast_dashboard_settings_edit'),
@@ -610,6 +611,7 @@ function broadcast_dashboard_settings_form($form_state) {
 
     // Submit button
     $form['broadcast_dashboard_settings_delete_msg']['delete_existing_message_submit'] = array(
+      '#name' => 'submit_delete_message',
       '#type' => 'submit',
       '#value' => t('Delete message'),
       '#submit' => array('broadcast_dashboard_settings_delete'),
@@ -731,6 +733,7 @@ function broadcast_dashboard_settings_form($form_state) {
 
   // Submit button
     $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_submit'] = array(
+      '#name' => 'submit_add_message',
       '#type' => 'submit',
       '#value' => t('Update message'),
       '#submit' => array('broadcast_dashboard_settings_add'),
