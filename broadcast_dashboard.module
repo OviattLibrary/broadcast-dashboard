@@ -853,7 +853,7 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
   }
 
   if ($form_has_errors == TRUE) {
-    drupal_set_message(t('The message was not successfully added. Make sure that all required fields are completed and try again.'),'error')
+    drupal_set_message(t('The message was not successfully added. Make sure that all required fields are completed and try again.'),'error');
   }
 
 }
