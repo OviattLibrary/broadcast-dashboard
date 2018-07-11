@@ -682,6 +682,7 @@ function broadcast_dashboard_settings_form($form_state) {
     ),
     '#description' => t('Select how to set the message\'s background color.'),
     '#required' => FALSE,
+    '#default_value' => 'class',
     '#states' => array(
       'required' => array(
         ":input[name='broadcast_dashboard_settings_add_msg_name_message']" => array('filled' => TRUE),
@@ -816,6 +817,13 @@ function broadcast_dashboard_settings_add_form_submit($form, &$form_state) {
   $add_msg = $form_state['values']['broadcast_dashboard_settings_add_msg_custom_message'];
   $add_class = $form_state['values']['broadcast_dashboard_settings_add_css_class'];
   $add_hex = $form_state['values']['broadcast_dashboard_settings_add_hex_code'];
+
+  if (empty($add_name)) echo "add name empty\n";
+  if (empty($add_msg)) echo "add msg empty\n";
+  if (empty($add_class)) echo "add class empty\n";
+  if (empty($add_hex)) echo "add hex empty\n";
+
+  die();
 
   if (!empty($add_name) || !empty($add_msg) || (!empty($add_class) && !empty($add_hex)) ) {
     // Fields are fine
