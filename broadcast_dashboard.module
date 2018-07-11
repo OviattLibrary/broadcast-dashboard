@@ -576,8 +576,8 @@ function broadcast_dashboard_settings_form($form_state) {
     // START Delete Message Block
 
     // Include confirmation popup content
-    $form['#attached']['js'][] = drupal_get_path('module', 'broadcast_dashboard') . 'broadcast_dashboard_confirm_delete.js';
-    $form['#attached']['css'][] = drupal_get_path('module', 'broadcast_dashboard') . 'broadcast_dashboard_confirm_delete.css';
+    $form['#attached']['js'][] = drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_confirm_delete.js';
+    $form['#attached']['css'][] = drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_confirm_delete.css';
 
     $form['broadcast_dashboard_settings_delete_msg'] = array(
       '#type' => 'fieldset',
