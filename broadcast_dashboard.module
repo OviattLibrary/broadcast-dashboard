@@ -639,7 +639,14 @@ function broadcast_dashboard_settings_form($form_state) {
     //'#default_value' => broadcast_dashboard_get_message_text($arg),
     '#default_value' => NULL,
     '#description' => t('How this message will be identified in the backend.'),
-    '#required' => TRUE,
+    '#required' => FALSE,
+    '#states' => array(
+      'required' => array(
+        ":input[name='broadcast_dashboard_settings_add_msg_custom_message']" => array("filled" => TRUE)),
+        ":input[name='broadcast_dashboard_settings_add_css_class']" => array("filled" => TRUE)),
+        ":input[name='broadcast_dashboard_settings_add_hex_code']" => array("filled" => TRUE)),
+      ),
+    ),
   );
 
   $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_msg_custom_message'] = array(
