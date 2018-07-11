@@ -698,6 +698,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#title' => t('CSS Class'),
     '#default_value' => NULL,
     '#description' => t('Classes that will be added to this message\'s display.'),
+    '#required' => FALSE,
     '#states' => array(
       "visible" => array(
         ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'class')),
@@ -711,6 +712,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#title' => t('Hex Code'),
     '#default_value' => "#",
     '#description' => t('Color hex code that will be added to this message\'s display.'),
+    '#required' => FALSE,
     '#states' => array(
       "visible" => array(
         ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
