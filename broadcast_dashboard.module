@@ -645,10 +645,7 @@ function broadcast_dashboard_settings_form($form_state) {
         ":input[name='broadcast_dashboard_settings_add_msg_custom_message']" => array('filled' => TRUE),
       ),
       array(
-        ":input[name='broadcast_dashboard_settings_add_css_class']" => array('filled' => TRUE),
-      ),
-      array(
-        ":input[name='broadcast_dashboard_settings_add_hex_code']" => array('filled' => TRUE),
+        ":input[name='broadcast_dashboard_settings_add_color']" => array('filled' => TRUE),
       ),
     ),
   );
@@ -660,6 +657,14 @@ function broadcast_dashboard_settings_form($form_state) {
     '#default_value' => NULL,
     '#description' => t('The text that will be displayed when the selected message is turned on.'),
     '#required' => FALSE,
+    '#states' => array(
+      'required' => array(
+        ":input[name='broadcast_dashboard_settings_add_msg_name_message']" => array('filled' => TRUE),
+      ),
+      array(
+        ":input[name='broadcast_dashboard_settings_add_color']" => array('filled' => TRUE),
+      ),
+    ),
   );
 
   $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_color'] = array(
