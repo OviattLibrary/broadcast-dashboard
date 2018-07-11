@@ -818,10 +818,10 @@ function broadcast_dashboard_settings_add_form_submit($form, &$form_state) {
   $add_class = $form_state['values']['broadcast_dashboard_settings_add_css_class'];
   $add_hex = $form_state['values']['broadcast_dashboard_settings_add_hex_code'];
 
-  if (empty($add_name)) echo "add name empty\n";
-  if (empty($add_msg)) echo "add msg empty\n";
-  if (empty($add_class)) echo "add class empty\n";
-  if (empty($add_hex)) echo "add hex empty\n";
+  if (empty($add_name)) echo "add name empty<br>";
+  if (empty($add_msg)) echo "add msg empty<br>";
+  if (empty($add_class)) echo "add class empty<br>";
+  if (empty($add_hex)) echo "add hex empty<br>";
 
   die();
 
