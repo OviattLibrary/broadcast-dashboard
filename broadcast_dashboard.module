@@ -765,7 +765,7 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
   // Check if message text is blank
   if (!empty($form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'])) {
     $current_title = $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_select']];
-    $current_msg = $form_state['values']['broadcast_dashboard_settings_delete_msg_custom_message_select'];
+    $current_msg = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'];
 
     echo $current_title;
     echo "<br>";
