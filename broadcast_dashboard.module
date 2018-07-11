@@ -569,7 +569,6 @@ function broadcast_dashboard_settings_form($form_state) {
       '#type' => 'submit',
       '#value' => t('Update message'),
       '#submit' => array('broadcast_dashboard_settings_edit_form_submit'),
-      '#limit_validation_errors' => 'broadcast_dashboard_settings_update_msg',
     );
 
     // END Update Message Block
