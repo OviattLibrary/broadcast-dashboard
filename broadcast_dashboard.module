@@ -781,9 +781,6 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
       )
     );
     $results = $query->execute();
-
-    echo $results;
-    die();
   }
 
   if ($form_has_errors == FALSE) {
