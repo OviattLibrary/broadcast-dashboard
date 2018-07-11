@@ -709,7 +709,7 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_hex_code'] = array(
     '#type' => 'textfield',
     '#title' => t('Hex Code'),
-    '#default_value' => NULL,
+    '#default_value' => "#",
     '#description' => t('Color hex code that will be added to this message\'s display.'),
     '#states' => array(
       "visible" => array(
