@@ -689,9 +689,6 @@ function broadcast_dashboard_settings_form($form_state) {
       array(
         ":input[name='broadcast_dashboard_settings_add_msg_custom_message']" => array('filled' => TRUE),
       ),
-      array(
-        ":input[name='broadcast_dashboard_settings_add_color']" => array('filled' => TRUE),
-      ),
     ),
   );
 
