@@ -642,9 +642,9 @@ function broadcast_dashboard_settings_form($form_state) {
     '#required' => FALSE,
     '#states' => array(
       'required' => array(
-        ":input[name='broadcast_dashboard_settings_add_msg_custom_message']" => array("filled" => TRUE)),
-        ":input[name='broadcast_dashboard_settings_add_css_class']" => array("filled" => TRUE)),
-        ":input[name='broadcast_dashboard_settings_add_hex_code']" => array("filled" => TRUE)),
+        ":input[name='broadcast_dashboard_settings_add_msg_custom_message']" => array("filled" => TRUE),
+        ":input[name='broadcast_dashboard_settings_add_css_class']" => array("filled" => TRUE),
+        ":input[name='broadcast_dashboard_settings_add_hex_code']" => array("filled" => TRUE),
       ),
     ),
   );
