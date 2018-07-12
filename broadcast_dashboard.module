@@ -108,7 +108,7 @@ function broadcast_dashboard_form($form_state) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
-  var_dump($results);
+  echo "<pre>"; var_dump($results); echo "</pre>";
   die();
 
   //define rows
