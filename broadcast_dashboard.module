@@ -370,7 +370,7 @@ function broadcast_dashboard_test_display() {
 function color_setter($message_id) {
 
   //Query DB for Rows
-  $class_val = db_query('SELECT bd_clr_class FROM broadcast_dashboard WHERE bd_id = $message_id')->fetchField();
+  $class_val = db_query('SELECT bd_clr_class FROM broadcast_dashboard WHERE bd_id = '$message_id'')->fetchField();
   //$hex_val = db_query('SELECT bd_clr_hex FROM {some_table} WHERE some_column = :some_value', [':some_value' => 'some value'])->fetchField();
 
   return $class_val;
