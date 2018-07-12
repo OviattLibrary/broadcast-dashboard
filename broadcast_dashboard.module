@@ -117,8 +117,8 @@ function broadcast_dashboard_form($form_state) {
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
       $title_options[$result->$element] = $result->bd_msg_title;
-      $counter =+ 1;
-      echo $counter . " -> " . $title_options[$result->$element];
+      $counter += 1;
+      echo $counter . " -> " . $title_options[$result->$element] . "\n";
       //echo $result . " -> " . echo $element;
       //die();
     }
