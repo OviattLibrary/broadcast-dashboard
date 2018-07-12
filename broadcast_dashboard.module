@@ -374,7 +374,7 @@ function color_setter($message_id) {
   echo $result;
   if ($result) {
     while ($row = $result->fetchAssoc()) {
-      echo "<pre>"; print_r($result->fetchAssoc()); echo "</pre>";
+      echo "<pre>"; print_r((String)$result->fetchAssoc()); echo "</pre>";
       // Do something with:
       // $row['name']
       // $row['quantity']
