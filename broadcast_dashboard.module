@@ -66,7 +66,7 @@ function broadcast_dashboard_permission() {
 
 function broadcast_dashboard_forms($form_id, $args) {
 
-  echo color_setter(3);
+  //echo color_setter(3);
   //die();
 
   // Simply reroute the (non-existing) $form_id
