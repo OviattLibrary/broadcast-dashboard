@@ -108,9 +108,6 @@ function broadcast_dashboard_form($form_state) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
-  echo "<pre>"; var_dump($results); echo "</pre>";
-  die();
-
   //define rows
   $title_options = array();
 
@@ -125,6 +122,9 @@ function broadcast_dashboard_form($form_state) {
       //echo $result . " -> " . echo $element;
       //die();
     }
+    echo "<pre>"; var_dump($title_options); echo "</pre>";
+    die();
+    
     $title_options[$counter->$custom_val] = "Custom";
     echo $title_options[$counter->$custom_val];
     die();
