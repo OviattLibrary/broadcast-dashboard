@@ -369,13 +369,20 @@ function broadcast_dashboard_test_display() {
  */
 function color_setter($message_id) {
 
-  //Query DB for Rows
-  $class_val = db_query('SELECT bd_clr_class FROM broadcast_dashboard WHERE bd_id = ' . $message_id . '')->fetchField();
-  //$hex_val = db_query('SELECT bd_clr_hex FROM {some_table} WHERE some_column = :some_value', [':some_value' => 'some value'])->fetchField();
-  echo $class_val;
-  //die();
+  $sql = "SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = :$message_id";
+  $result = db_query($sql, array(':vid' => $vid));
+  if ($result) {
+    while ($row = $result->fetchAssoc()) {
+      // Do something with:
+      // $row['name']
+      // $row['quantity']
+      $clr_class = $row['bd_clr_class'];
+      $clr_hex = $row['bd_clr_hex'];
+    }
+    echo "Color class of id " . $message_id . " is " . $clr_class;
+  }
 
-  return $class_val;
+  return $clr_class;
 }
 
 
