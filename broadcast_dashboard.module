@@ -388,16 +388,13 @@ function color_setter($message_id) {
   $result = db_query($sql, array(':bd_id' => $message_id));
   if ($result) {
     while ($row = $result->fetchAssoc()) {
-      echo "<pre>"; print_r($result->fetchAssoc()); echo "</pre>";
-      echo "<pre>"; print_r($row); echo "</pre>";
-
       // Do something with:
       // $row['name']
       // $row['quantity']
       $clr_class = $row['bd_clr_class'];
       $clr_hex = $row['bd_clr_hex'];
     }
-    echo "Color class of id " . $message_id . " is " . $clr_class;
+    //echo "Color class of id " . $message_id . " is " . $clr_class;
   }
 
   return $clr_class;
