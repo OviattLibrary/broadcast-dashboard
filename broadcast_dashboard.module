@@ -66,8 +66,8 @@ function broadcast_dashboard_permission() {
 
 function broadcast_dashboard_forms($form_id, $args) {
 
-  echo color_setter(3);
-  die();
+  //echo color_setter(3);
+  //die();
 
   // Simply reroute the (non-existing) $form_id
   $forms['broadcast_dashboard_form'] = array(
@@ -387,8 +387,11 @@ function color_setter($message_id) {
   $sql = "SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = '$message_id'";
   $result = db_query($sql, array(':bd_id' => $message_id));
   if ($result) {
-    while ($row = $result->fetchAssoc()) {
+    // while ($row = $result->fetchAssoc()) {
+    foreach 
       echo "<pre>"; print_r($result->fetchAssoc()); echo "</pre>";
+      echo "<pre>"; print_r($row); echo "</pre>";
+
       // Do something with:
       // $row['name']
       // $row['quantity']
