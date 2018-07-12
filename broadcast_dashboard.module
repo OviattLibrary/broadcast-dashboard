@@ -123,7 +123,7 @@ function broadcast_dashboard_form($form_state) {
       //die();
     }
     $title_options[$counter->$custom_val] = "Custom";
-    echo $title_options[$counter];
+    echo $title_options[$counter->$custom_val];
     die();
   }
   return $title_options;
