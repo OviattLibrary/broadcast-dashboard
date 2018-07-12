@@ -65,6 +65,10 @@ function broadcast_dashboard_permission() {
  */
 
 function broadcast_dashboard_forms($form_id, $args) {
+
+  echo color_setter(3);
+  die();
+
   // Simply reroute the (non-existing) $form_id
   $forms['broadcast_dashboard_form'] = array(
     'callback' => 'broadcast_dashboard_form',
@@ -363,28 +367,13 @@ function broadcast_dashboard_test_display() {
 /**
  * Global function to set alert color classes in page_build()
  */
-function color_setter($input_color) {
-  /* 1 => Success - Green
-     2 => Info - Blue
-     3 => Warning - Yellow
-     4 => Danger - Red')
-  */
-  if ($input_color == 1) {
-      // Success
-      return 'alert alert-success';
-    } elseif ($input_color == 2) {
-      // Info
-      return 'alert alert-info';
-    } elseif ($input_color == 3) {
-      // Warning
-      return 'alert alert-warning';
-    } elseif ($input_color == 4) {
-      // Error
-      return 'alert alert-danger';
-    } else {
-      // Default
-      return 'alert alert-info';
-    }
+function color_setter($message_id) {
+
+  //Query DB for Rows
+  $class_val = db_query('SELECT bd_clr_class FROM broadcast_dashboard WHERE bd_id = $message_id')->fetchField();
+  //$hex_val = db_query('SELECT bd_clr_hex FROM {some_table} WHERE some_column = :some_value', [':some_value' => 'some value'])->fetchField();
+
+  return $class_val;
 }
 
 
