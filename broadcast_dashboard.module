@@ -134,11 +134,12 @@ function broadcast_dashboard_form($form_state) {
     '#options' => broadcast_dashboard_get_messages_selector("bd_msg_text"),
     '#description' => t('Select a custom message to edit.'),
     '#required' => FALSE,
-    /*'#states' => array(
-      'visible' => array(
-        ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
-      ),
-    ),*/
+    '#states' => array(
+    "visible" => array(
+      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+      "required" => array(
+      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+    ),
   );
 
   // Old message selector
