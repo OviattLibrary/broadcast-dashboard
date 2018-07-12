@@ -373,7 +373,7 @@ function color_setter($message_id) {
   $result = db_query($sql/*, array(':vid' => $vid)*/);
   if ($result) {
     while ($row = $result->fetchAssoc()) {
-      echo "<pre>"; print_r($row); echo "</pre>";
+      echo "<pre>"; print_r($result->fetchAssoc()); echo "</pre>";
       // Do something with:
       // $row['name']
       // $row['quantity']
