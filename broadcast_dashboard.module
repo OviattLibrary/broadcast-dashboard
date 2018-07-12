@@ -371,10 +371,9 @@ function color_setter($message_id) {
 
   $sql = "SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = $message_id";
   $result = db_query($sql, array(':bd_id' => $message_id));
-  //echo $result;
   if ($result) {
     while ($row = $result->fetchAssoc()) {
-      //echo "<pre>"; print_r((String)$result->fetchAssoc()); echo "</pre>";
+      echo "<pre>"; print_r((String)$result->fetchAssoc()); echo "</pre>";
       // Do something with:
       // $row['name']
       // $row['quantity']
