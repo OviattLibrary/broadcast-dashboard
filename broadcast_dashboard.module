@@ -22,10 +22,6 @@ function broadcast_dashboard_help($path, $arg) {
  */
 
 function broadcast_dashboard_menu() {
-      store_color_values();
-  print_r(color_setter(3));
-  die();
-  
   $items = array();
 
   $items['admin/config/system/broadcast_dashboard'] = array(
@@ -69,6 +65,11 @@ function broadcast_dashboard_permission() {
  */
 
 function broadcast_dashboard_forms($form_id, $args) {
+
+  store_color_values();
+  print_r(color_setter(3));
+  die();
+
   // Simply reroute the (non-existing) $form_id
   $forms['broadcast_dashboard_form'] = array(
     'callback' => 'broadcast_dashboard_form',
