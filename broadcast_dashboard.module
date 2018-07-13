@@ -65,10 +65,6 @@ function broadcast_dashboard_permission() {
  */
 
 function broadcast_dashboard_forms($form_id, $args) {
-
-  echo color_setter(3);
-  die();
-
   // Simply reroute the (non-existing) $form_id
   $forms['broadcast_dashboard_form'] = array(
     'callback' => 'broadcast_dashboard_form',
@@ -88,6 +84,9 @@ function broadcast_dashboard_forms($form_id, $args) {
  */
 
 function broadcast_dashboard_form($form_state) {
+  echo color_setter(3);
+  die();
+  
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
