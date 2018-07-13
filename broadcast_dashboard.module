@@ -393,7 +393,7 @@ function color_setter($message_id) {
 
   if (is_array($result) || is_object($result)) {
     foreach ($result as $item) {
-      $clr_class[$item->clr_class] = $item->bd_clr_class;
+      $clr_class[$item->0] = $item->bd_clr_class;
     }
   }
 
