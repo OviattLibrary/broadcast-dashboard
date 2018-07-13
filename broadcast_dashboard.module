@@ -389,6 +389,8 @@ function color_setter($message_id) {
   $result = $select_class->execute();
   if ($result->rowCount() == 0) return false;
 
+  print_r($result);
+
   //$clr_class = $result->fetch();
   $i = 0;
   foreach ($result as $item) {
