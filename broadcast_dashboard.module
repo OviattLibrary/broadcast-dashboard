@@ -84,7 +84,7 @@ function broadcast_dashboard_forms($form_id, $args) {
  */
 
 function broadcast_dashboard_form($form_state) {
-  print_r(color_setter(90));
+  print_r(color_setter(3));
   die();
   
   $theme_default = variable_get('theme_default', NULL);
@@ -399,7 +399,7 @@ function color_setter($message_id) {
   print_r($clr_class);
   echo "</pre>";
 
-  $clr_class_output = $clr_class[$message_id];
+  $clr_class_output = $clr_class;
 
   return $clr_class_output;
 
