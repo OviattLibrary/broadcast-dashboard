@@ -384,6 +384,17 @@ function broadcast_dashboard_test_display() {
  */
 function color_setter($message_id) {
 
+  $select = db_select('broadcast_dashboard')
+    ->condition('bd_id', $message_id)
+    ->fields('bd_clr_class', 'bd_clr_hex');
+
+  $result = $select->execute();
+  if ($result->rowCount() == 0) return false;
+
+  $clr_class = $result->fetch();
+
+  return $clr_class;
+
   /*$sql = "SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = '$message_id'";
   $result = db_query($sql, array(':bd_id' => $message_id))->execute();
   print_r($result);
