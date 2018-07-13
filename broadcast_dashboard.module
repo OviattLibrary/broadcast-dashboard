@@ -389,7 +389,10 @@ function color_setter($message_id) {
   $result = $select_class->execute();
   if ($result->rowCount() == 0) return false;
 
-  $clr_class = $result->fetch();
+  //$clr_class = $result->fetch();
+  foreach ($result as $item) {
+    $clr_class = $item->br_clr_class;
+  }
 
   return $clr_class;
 
