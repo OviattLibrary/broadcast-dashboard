@@ -384,11 +384,11 @@ function broadcast_dashboard_test_display() {
  */
 function color_setter($message_id) {
 
-  $select = db_select('broadcast_dashboard')
+  $select_class = db_select('broadcast_dashboard')
     ->condition('bd_id', $message_id)
-    ->fields('bd_clr_class', 'bd_clr_hex');
+    ->fields('bd_clr_class');
 
-  $result = $select->execute();
+  $result = $select_class->execute();
   if ($result->rowCount() == 0) return false;
 
   $clr_class = $result->fetch();
