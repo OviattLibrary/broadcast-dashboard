@@ -84,7 +84,7 @@ function broadcast_dashboard_forms($form_id, $args) {
  */
 
 function broadcast_dashboard_form($form_state) {
-  echo color_setter(3);
+  print_r(color_setter(3));
   die();
   
   $theme_default = variable_get('theme_default', NULL);
