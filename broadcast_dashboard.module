@@ -389,7 +389,7 @@ function color_setter($message_id) {
 
   $select_class = db_select('broadcast_dashboard');
   $select_class->condition('bd_id', $message_id);
-  $select_class->fields('broadcast_dashboard', array('bd_clr_class',);
+  $select_class->fields('broadcast_dashboard', array('bd_clr_class',));
 
   $result = $select_class->execute();
   if ($result->rowCount() == 0) return false;
