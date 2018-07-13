@@ -384,9 +384,12 @@ function broadcast_dashboard_test_display() {
  */
 function color_setter($message_id) {
 
-  $select_class = db_select('broadcast_dashboard')
-    ->condition('bd_id', $message_id)
-    ->fields('bd_clr_class');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
+  $query->orderBy('bd_id', 'ASC');
+
+  $select_class = db_select('broadcast_dashboard');
+  $select_class->condition('bd_id', $message_id)
+  $select_class->fields('broadcast_dashboard', array('bd_clr_class',);
 
   $result = $select_class->execute();
   if ($result->rowCount() == 0) return false;
