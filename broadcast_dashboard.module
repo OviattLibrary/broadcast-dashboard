@@ -390,17 +390,24 @@ function color_setter($message_id) {
   if ($result->rowCount() == 0) return false;
 
   //$clr_class = $result->fetch();
-  $i = 0;
+
+  if (is_array($result) || is_object($result)) {
+    foreach ($result as $item) {
+      $clr_class[$item->$element] = $item->bd_clr_class;
+    }
+  }
+
+  /*$i = 0;
   foreach ($result as $item) {
     $val[$i] = $item->br_clr_class;
     $i++;
-  }
+  }*/
 
   echo "<pre>";
-  print_r($val);
+  print_r($clr_class);
   echo "</pre>";
 
-  $clr_class = $val[0];
+  $clr_class_output = $val[0];
 
   return $clr_class;
 
