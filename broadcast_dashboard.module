@@ -84,7 +84,7 @@ function broadcast_dashboard_forms($form_id, $args) {
  */
 
 function broadcast_dashboard_form($form_state) {
-  print_r(color_setter(3));
+  print_r(color_setter(90));
   die();
   
   $theme_default = variable_get('theme_default', NULL);
@@ -389,19 +389,11 @@ function color_setter($message_id) {
   $result = $select_class->execute();
   if ($result->rowCount() == 0) return false;
 
-  //$clr_class = $result->fetch();
-
   if (is_array($result) || is_object($result)) {
     foreach ($result as $item) {
       $clr_class[$item->$message_id] = $item->bd_clr_class;
     }
   }
-
-  /*$i = 0;
-  foreach ($result as $item) {
-    $val[$i] = $item->br_clr_class;
-    $i++;
-  }*/
 
   echo "<pre>";
   print_r($clr_class);
