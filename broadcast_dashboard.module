@@ -382,43 +382,14 @@ function broadcast_dashboard_test_display() {
  * Global function to set alert color classes in page_build()
  */
 function color_setter($message_id) {
-  $select_class = db_select('broadcast_dashboard');
-  $select_class->condition('bd_id', $message_id);
-  $select_class->fields('broadcast_dashboard', array('bd_clr_class',));
 
-  $result = $select_class->execute();
-  if ($result->rowCount() == 0) return false;
+  $result = db_query('SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = :message_id', array(':message_id' => $message_id))->fetchAssoc(); 
 
-  if (is_array($result) || is_object($result)) {
-    foreach ($result as $item) {
-      $clr_class[$item->$message_id] = $item->bd_clr_class;
-    }
-  }
+  $value = $result[bd_clr_class];
 
-  echo "<pre>";
-  print_r($clr_class);
-  echo "</pre>";
+  drupal_set_message(t('The output for result is: @var', array('@var' => $value)), 'status');
 
-  $clr_class_output = $clr_class;
-
-  return $clr_class_output;
-
-  /*$sql = "SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = '$message_id'";
-  $result = db_query($sql, array(':bd_id' => $message_id))->execute();
-  print_r($result);
-
-  if ($result) {
-    while ($row = $result->fetchAssoc()) {
-      // Do something with:
-      // $row['name']
-      // $row['quantity']
-      $clr_class = $row['bd_clr_class'];
-      $clr_hex = $row['bd_clr_hex'];
-    }
-    //echo "Color class of id " . $message_id . " is " . $clr_class;
-  }
-
-  return $clr_class;*/
+  return array('@var' => $value));
 }
 
 
