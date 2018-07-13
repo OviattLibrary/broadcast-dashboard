@@ -389,7 +389,7 @@ function color_setter($message_id) {
 
   drupal_set_message(t('The output for result is: @var', array('@var' => $value)), 'status');
 
-  return array('@var' => $value));
+  return array('@var' => $value);
 }
 
 
