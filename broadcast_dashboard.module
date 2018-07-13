@@ -83,10 +83,7 @@ function broadcast_dashboard_forms($form_id, $args) {
  * Implements hook_form().
  */
 
-function broadcast_dashboard_form($form_state) {
-  print_r(color_setter(4));
-  die();
-  
+function broadcast_dashboard_form($form_state) {  
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
