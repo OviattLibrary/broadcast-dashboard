@@ -409,7 +409,7 @@ function color_setter($message_id) {
 
   $clr_class_output = $val[0];
 
-  return $clr_class;
+  return $clr_class_output;
 
   /*$sql = "SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = '$message_id'";
   $result = db_query($sql, array(':bd_id' => $message_id))->execute();
