@@ -84,6 +84,10 @@ function broadcast_dashboard_forms($form_id, $args) {
  */
 
 function broadcast_dashboard_form($form_state) {  
+  store_color_values();
+  print_r(color_setter(3));
+  die();
+
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
@@ -372,6 +376,24 @@ function broadcast_dashboard_test_display() {
   print '<br>';
   $msg_date = date("m/d/Y h:i:sa");
   print $msg_date;
+
+}
+
+/**
+ * Function to store all color elements in an array in page load for Javascript to later have access to.
+ */
+function store_color_values() {
+  $colors = array();
+
+  $result = db_query('SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard')->fetchAssoc();
+
+  echo '<pre>';
+  print_r($result);
+  echo '</pre>';
+
+  foreach ($result as $item) {
+
+  }
 
 }
 
