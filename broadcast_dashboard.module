@@ -388,7 +388,7 @@ function color_setter($message_id) {
   $query->orderBy('bd_id', 'ASC');
 
   $select_class = db_select('broadcast_dashboard');
-  $select_class->condition('bd_id', $message_id)
+  $select_class->condition('bd_id', $message_id);
   $select_class->fields('broadcast_dashboard', array('bd_clr_class',);
 
   $result = $select_class->execute();
