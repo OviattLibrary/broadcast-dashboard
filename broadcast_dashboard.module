@@ -407,7 +407,7 @@ function color_setter($message_id) {
   print_r($clr_class);
   echo "</pre>";
 
-  $clr_class_output = $val[0];
+  $clr_class_output = $clr_class[0];
 
   return $clr_class_output;
 
