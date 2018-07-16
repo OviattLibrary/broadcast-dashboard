@@ -545,7 +545,7 @@ function broadcast_dashboard_has_rows() {
 function broadcast_dashboard_settings_form($form_state) {
 
   echo "<pre>";
-  print_r(broadcast_dashboard_get_messages());
+  print_r(broadcast_dashboard_get_messages("bd_msg_title"),);
   echo "</pre>";
 
   die();
