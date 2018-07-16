@@ -384,7 +384,7 @@ function broadcast_dashboard_test_display() {
  * Function to store all color elements in an array in page load for Javascript to later have access to.
  */
 function store_color_values() {
-  $colors = array();
+  /*$colors = array();
 
   $result = db_query('SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard')->fetchAssoc();
 
@@ -394,7 +394,7 @@ function store_color_values() {
 
   foreach ($result as $item) {
 
-  }
+  }*/
 
 }
 
@@ -543,6 +543,13 @@ function broadcast_dashboard_has_rows() {
 }
 
 function broadcast_dashboard_settings_form($form_state) {
+
+  echo "<pre>";
+  echo broadcast_dashboard_get_messages();
+  echo "</pre>";
+
+  die();
+
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
