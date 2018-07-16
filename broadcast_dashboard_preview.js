@@ -13,6 +13,18 @@ var custom_msg;
 var date;
 
 jQuery(function($) {
+	$('$edit-broadcast-dashboard-message').change(function() {
+		var current_val = $("#edit-broadcast-dashboard-message").val();
+
+		// If the value isn't custom_msg, it's preset
+		if (current_val != "custom_msg") {
+			
+		} else {
+			// It's custom
+		}
+	});
+
+
 	$('#edit-preview').click(function() {
 		msg_type = $("#edit-broadcast-dashboard-message").val();
 		date = new Date();

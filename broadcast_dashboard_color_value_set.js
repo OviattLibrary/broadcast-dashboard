@@ -2,5 +2,5 @@
  * @file
  * Broadcast Dashboard additional Javascript file
  * 
- * This file allows for real-time previewing of messages before they're sent out.
+ * Allows for the updating of hidden color values in realtime.
  */
