@@ -869,6 +869,22 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
 
   //die();
 
+  // Hex check for string
+  if (!empty($add_hex)) {
+    $firstCharacter = substr($add_hex, 0, 1);
+
+    echo "Hex input: " . $add_hex . "\n";
+    echo "First char: " . $firstCharacter . "\n";
+
+    if ($firstCharacter != "#") {
+      $add_hex = "#" . $add_hex;
+    }
+
+    echo "New hex: " . $add_hex;
+  }
+
+  die();
+
   if (!empty($add_name) && !empty($add_msg) && (!empty($add_class) || !empty($add_hex)) ) {
     // Fields are fine
     $result = db_insert('broadcast_dashboard')
