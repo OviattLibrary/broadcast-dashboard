@@ -66,6 +66,7 @@ function broadcast_dashboard_permission() {
 
 function broadcast_dashboard_forms($form_id, $args) {
 
+  // if ($form_id == ...)
   /*store_color_values();
   print_r(color_setter(3));
   die();*/
@@ -544,11 +545,11 @@ function broadcast_dashboard_has_rows() {
 
 function broadcast_dashboard_settings_form($form_state) {
 
-  echo "<pre>";
+  /*echo "<pre>";
   print_r(broadcast_dashboard_get_messages("bd_msg_title"));
   echo "</pre>";
 
-  die();
+  die();*/
 
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
