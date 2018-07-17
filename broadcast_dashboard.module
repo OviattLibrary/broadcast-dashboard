@@ -505,7 +505,7 @@ function broadcast_dashboard_get_messages($element) {
 
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text',));
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_msg_text'));
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
