@@ -868,7 +868,7 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
   if (empty($add_hex)) echo "add hex empty<br>";
 
   $truth_val = (!empty($add_name) && !empty($add_msg) && (!empty($add_class) && !empty($add_hex)));
-  echo $truth_val;
+  echo (int) $truth_val;
 
   die();
 
