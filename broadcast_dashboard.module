@@ -245,9 +245,9 @@ function broadcast_dashboard_form($form_state) {
   );
 
   // Include Preview Javascript file
-  $form['#attached']['js'] = array(
+  /*$form['#attached']['js'] = array(
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview.js',
-  );
+  );*/
 
   // Preview button
   $form['preview'] = array(
