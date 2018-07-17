@@ -545,11 +545,11 @@ function broadcast_dashboard_has_rows() {
 
 function broadcast_dashboard_settings_form($form_state) {
 
-  /*echo "<pre>";
-  print_r(broadcast_dashboard_get_messages("bd_msg_title"));
+  echo "<pre>";
+  print_r(broadcast_dashboard_get_messages("bd_msg_text"));
   echo "</pre>";
 
-  die();*/
+  die();
 
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
@@ -577,7 +577,7 @@ function broadcast_dashboard_settings_form($form_state) {
       '#type' => 'select',
       '#title' => t('Messages'),
       '#default_value' => $default_title,
-      '#options' => broadcast_dashboard_get_messages("bd_msg_title"),
+      '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
       '#description' => t('Select a custom message to delete.'),
       '#required' => FALSE,
       /*'#states' => array(
