@@ -231,7 +231,7 @@ function broadcast_dashboard_form($form_state) {
   // Get name, color class, and hex
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id', 'bd_cls_class', 'bd_clr_hex'));
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
