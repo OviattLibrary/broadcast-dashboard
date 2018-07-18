@@ -234,7 +234,7 @@ function broadcast_dashboard_form($form_state) {
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class'));
   $query->orderBy('bd_id', 'ASC');
-  $query->condition('bd_clr_class', '');
+  $query->condition('bd_clr_class', NOT '');
   $results = $query->execute();
 
   //define rows
