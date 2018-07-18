@@ -248,7 +248,7 @@ function broadcast_dashboard_form($form_state) {
   }
 
   echo "<pre>";
-  print_r($clr_options);
+  print_r($clr_class_list);
   echo "</pre>";
 
   /*** HEX COLOR ***/
@@ -271,7 +271,7 @@ function broadcast_dashboard_form($form_state) {
   }
 
   echo "<pre>";
-  print_r($clr_options);
+  print_r($clr_hex_list);
   echo "</pre>";
 
   for ($i = 0; $i < $num_of_rows; $i++) {
