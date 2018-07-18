@@ -274,8 +274,23 @@ function broadcast_dashboard_form($form_state) {
   print_r($clr_hex_list);
   echo "</pre>";
 
-  for ($i = 0; $i < $num_of_rows; $i++) {
-    //
+  /*** GET IDS FOR LOOP ***/
+
+  //Query DB for Rows
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id'));
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  //define rows
+  $id_list = array();
+
+  // Get loopy stuff
+  $result = mysql_query("SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard");
+
+  while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+    printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
+    echo "<br>";
   }
 
   $form['broadcast_dashboard_clr_class'] = array(
