@@ -238,12 +238,12 @@ function broadcast_dashboard_form($form_state) {
   $results = $query->execute();
 
   //define rows
-  $clr_options = array();
+  $clr_class_list = array();
 
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $clr_options[$result->bd_id] = $result->bd_clr_class;
+      $clr_class_list[$result->bd_id] = $result->bd_clr_class;
     }
   }
 
@@ -255,17 +255,18 @@ function broadcast_dashboard_form($form_state) {
 
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_hex'));
   $query->orderBy('bd_id', 'ASC');
+  $query->condition('bd_clr_class', '');
   $results = $query->execute();
 
   //define rows
-  $clr_options = array();
+  $clr_hex_list = array();
 
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $clr_options[$result->bd_id] = $result->bd_clr_class;
+      $clr_hex_list[$result->bd_id] = $result->bd_clr_class;
     }
   }
 
