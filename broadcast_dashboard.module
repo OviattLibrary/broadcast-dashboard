@@ -228,7 +228,31 @@ function broadcast_dashboard_form($form_state) {
             ->execute();
   $num_of_rows = $result->rowCount();
 
-  // Get name, color class, and hex
+  /*** COLOR CLASS ***/
+
+  //Query DB for Rows
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class'));
+  $query->orderBy('bd_id', 'ASC');
+  $query->condition('bd_clr_class', '');
+  $results = $query->execute();
+
+  //define rows
+  $clr_options = array();
+
+  //test if the results array has any values
+  if (is_array($results) || is_object($results)) {
+    foreach ($results as $result) {
+      $clr_options[$result->bd_id] = $result->bd_clr_class;
+    }
+  }
+
+  echo "<pre>";
+  print_r($clr_options);
+  echo "</pre>";
+
+  /*** HEX COLOR ***/
+
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
@@ -241,7 +265,7 @@ function broadcast_dashboard_form($form_state) {
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $clr_options[$result->bd_clr_class] = $result->bd_id;
+      $clr_options[$result->bd_id] = $result->bd_clr_class;
     }
   }
 
