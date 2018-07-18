@@ -241,7 +241,7 @@ function broadcast_dashboard_form($form_state) {
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $clr_options[$result->$element] = $result->bd_id;
+      $clr_options[$result->bd_clr_class] = $result->bd_id;
     }
   }
 
