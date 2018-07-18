@@ -286,7 +286,10 @@ function broadcast_dashboard_form($form_state) {
   $id_list = array();
 
   // Get loopy stuff
-  $result = mysql_query("SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard");
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
+  $query->orderBy('bd_id', 'ASC');
+  $result = $query->execute();
 
   while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
