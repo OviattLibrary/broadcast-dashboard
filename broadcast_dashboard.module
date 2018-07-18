@@ -289,9 +289,15 @@ function broadcast_dashboard_form($form_state) {
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
   $query->orderBy('bd_id', 'ASC');
-  $result = $query->execute();
+  $results = $query->execute();
 
-  while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+  $loop_values = array();
+
+  while ($row = mysql_fetch_array($results)) {
+    $loop_values[] = $row;
+  }
+
+  while ($row = mysql_fetch_array($loop_values, MYSQL_ASSOC)) {
     printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
     echo "<br>";
   }
