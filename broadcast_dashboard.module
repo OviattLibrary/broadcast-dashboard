@@ -220,6 +220,39 @@ function broadcast_dashboard_form($form_state) {
     ),
   );
 
+  // Dynamically pre-insert values of pre-written messages into page
+
+  // Get number of rows
+  $result = db_select('broadcast_dashboard', 'bd_id')
+            ->fields('bd_id')
+            ->execute();
+  $num_of_rows = $result->rowCount();
+
+  // Get name, color class, and hex
+  //Query DB for Rows
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_cls_class', 'bd_clr_hex'));
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  //define rows
+  $clr_options = array();
+
+  //test if the results array has any values
+  if (is_array($results) || is_object($results)) {
+    foreach ($results as $result) {
+      $clr_options[$result->$element] = $result->bd_id;
+    }
+  }
+
+  echo "<pre>";
+  print_r($clr_options);
+  echo "</pre>";
+
+  for ($i = 0; $i < $num_of_rows; $i++) {
+    //
+  }
+
   $form['broadcast_dashboard_clr_class'] = array(
     '#type' => 'hidden',
     '#title' => t('Message Color Class'),
@@ -882,8 +915,6 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
 
     echo "New hex: " . $add_hex;
   }
-
-  die();
 
   if (!empty($add_name) && !empty($add_msg) && (!empty($add_class) || !empty($add_hex)) ) {
     // Fields are fine
