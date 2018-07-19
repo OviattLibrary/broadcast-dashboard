@@ -291,15 +291,18 @@ function broadcast_dashboard_form($form_state) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
-  $loop_values = array();
-
-  /*while ($row = mysqli_fetch_array($results)) {
-    $loop_values[] = $row;
-  }*/
-
   while ($row = $results->fetch(PDO::FETCH_BOTH)) {
-    printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
-    echo "<br>";
+    //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
+
+    if (!empty($row["bd_clr_class"])) {
+      $form['broadcast_dashboard_clr_class_' . $row["bd_id"]] = array(
+        '#type' => 'hidden',
+        '#title' => t('Message Color Class'),
+        '#default_value' => $row["bd_clr_class"],
+        '#description' => t('The color class of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
+    }
   }
 
   $form['broadcast_dashboard_clr_class'] = array(
