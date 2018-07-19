@@ -297,7 +297,7 @@ function broadcast_dashboard_form($form_state) {
     $loop_values[] = $row;
   }*/
 
-  while ($row = $query->fetchAllAssoc()) {
+  while ($row = $results->fetch(PDO::FETCH_BOTH)) {
     printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
     echo "<br>";
   }
