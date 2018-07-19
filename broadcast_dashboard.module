@@ -293,11 +293,11 @@ function broadcast_dashboard_form($form_state) {
 
   $loop_values = array();
 
-  while ($row = mysql_fetch_array($results)) {
+  /*while ($row = mysqli_fetch_array($results)) {
     $loop_values[] = $row;
-  }
+  }*/
 
-  while ($row = mysql_fetch_array($loop_values, MYSQL_ASSOC)) {
+  while ($row = mysqli_fetch_array($loop_values, MYSQL_ASSOC)) {
     printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
     echo "<br>";
   }
