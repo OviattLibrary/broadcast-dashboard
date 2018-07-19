@@ -105,7 +105,7 @@ function broadcast_dashboard_form($form_state) {
 
   function broadcast_dashboard_get_messages_selector($element) {
   if ($element == "" || is_null($element)) {
-    $element = "bd_msg_text";
+    $element = "bd_id";
   }
 
   //Query DB for Rows
@@ -133,7 +133,7 @@ function broadcast_dashboard_form($form_state) {
     '#type' => 'select',
     '#title' => t('Messages'),
     '#default_value' => NULL,
-    '#options' => broadcast_dashboard_get_messages_selector("bd_msg_text"),
+    '#options' => broadcast_dashboard_get_messages_selector("bd_id"),
     '#description' => t('Select a custom message to edit.'),
     '#required' => FALSE,
     '#states' => array(
@@ -220,9 +220,13 @@ function broadcast_dashboard_form($form_state) {
     ),
   );
 
+  /** *********************** **
+   ** SECTION FOR HIDDEN VALS **
+   ** *********************** **/
+
   // Dynamically pre-insert values of pre-written messages into page
 
-  // Get number of rows
+  /*// Get number of rows
   $result = db_select('broadcast_dashboard', 'bd_id')
             ->fields('bd_id')
             ->execute();
@@ -231,7 +235,7 @@ function broadcast_dashboard_form($form_state) {
   /*** COLOR CLASS ***/
 
   //Query DB for Rows
-  $query = db_select('broadcast_dashboard');
+  /*$query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class'));
   $query->orderBy('bd_id', 'ASC');
   $query->condition('bd_clr_hex', '');
@@ -254,7 +258,7 @@ function broadcast_dashboard_form($form_state) {
   /*** HEX COLOR ***/
 
   //Query DB for Rows
-  $query = db_select('broadcast_dashboard');
+  /*$query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_hex'));
   $query->orderBy('bd_id', 'ASC');
   $query->condition('bd_clr_class', '');
@@ -272,25 +276,17 @@ function broadcast_dashboard_form($form_state) {
 
   echo "<pre>";
   print_r($clr_hex_list);
-  echo "</pre>";
+  echo "</pre>";*/
 
-  /*** GET IDS FOR LOOP ***/
+  /** HIDDEN COLOR ELEMENTS **/
 
-  //Query DB for Rows
-  $query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id'));
-  $query->orderBy('bd_id', 'ASC');
-  $results = $query->execute();
-
-  //define rows
-  $id_list = array();
-
-  // Get loopy stuff
+  // Get values for loop
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
+  // For each color element in the table, create a hidden element
   while ($row = $results->fetch(PDO::FETCH_BOTH)) {
     //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
 
@@ -313,6 +309,29 @@ function broadcast_dashboard_form($form_state) {
     }
   }
 
+  /** HIDDEN MESSAGE TEXT **/
+
+  // Get values for loop
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_text'));
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  // For each message element in the table, create a hidden element
+  while ($row = $results->fetch(PDO::FETCH_BOTH)) {
+    //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
+
+    $form['broadcast_dashboard_msg_text_' . $row["bd_id"]] = array(
+        '#type' => 'hidden',
+        '#title' => t('Message Text Values'),
+        '#default_value' => $row["bd_msg_text"],
+        '#description' => t('The message text of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
+  }
+
+  /** DATE FOR PREVIEW JS **/
+
   $form['broadcast_dashboard_date_message_posted'] = array(
     '#type' => 'hidden',
     '#title' => t('Date Message Posted'),
@@ -320,6 +339,10 @@ function broadcast_dashboard_form($form_state) {
     '#description' => t('The date and time the message was posted.'),
     '#required' => FALSE,
   );
+
+  /** ********************** **
+   ** END HIDDEN VAL SECTION **
+   ** ********************** **/
 
   // Include Preview Javascript file
   /*$form['#attached']['js'] = array(
