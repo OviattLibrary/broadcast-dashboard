@@ -313,22 +313,6 @@ function broadcast_dashboard_form($form_state) {
     }
   }
 
-  $form['broadcast_dashboard_clr_class'] = array(
-    '#type' => 'hidden',
-    '#title' => t('Message Color Class'),
-    '#default_value' => null,
-    '#description' => t('The color class of the selected pre-written message.'),
-    '#required' => FALSE,
-  );
-
-  $form['broadcast_dashboard_clr_hex'] = array(
-    '#type' => 'hidden',
-    '#title' => t('Message Color Hex'),
-    '#default_value' => null,
-    '#description' => t('The color hex of the selected pre-written message.'),
-    '#required' => FALSE,
-  );
-
   $form['broadcast_dashboard_date_message_posted'] = array(
     '#type' => 'hidden',
     '#title' => t('Date Message Posted'),
