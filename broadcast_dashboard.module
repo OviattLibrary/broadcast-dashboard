@@ -302,6 +302,14 @@ function broadcast_dashboard_form($form_state) {
         '#description' => t('The color class of the selected pre-written message ID' . $row["bd_id"]),
         '#required' => FALSE,
       );
+    } else if (!empty($row["bd_clr_hex"])) {
+      $form['broadcast_dashboard_clr_hex_' . $row["bd_id"]] = array(
+        '#type' => 'hidden',
+        '#title' => t('Message Color Hex'),
+        '#default_value' => $row["bd_clr_hex"],
+        '#description' => t('The hex color of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
     }
   }
 
