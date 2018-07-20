@@ -14,7 +14,9 @@ var date;
 
 var current_id;
 
-function getCurrentValues() {
+jQuery(function($) {
+	// Declare function to grab values
+	function getCurrentValues() {
 	current_id = $("#edit-broadcast-dashboard-message").val();
 
 		// If the value isn't custom_msg, it's preset
@@ -33,9 +35,8 @@ function getCurrentValues() {
 		}
 
 		console.log("Current ID: " + current_id + "\n" + "Preset message: " + preset_msg);
-}
+	}
 
-jQuery(function($) {
 	// Get initial values on page ready
 	getCurrentValues();
 
