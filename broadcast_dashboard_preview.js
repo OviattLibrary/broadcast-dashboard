@@ -20,7 +20,7 @@ jQuery(function($) {
 		preset_msg = "";
 		preset_clr_class = "";
 		preclr_clr_hex = "";
-		
+
 		current_id = $("#edit-broadcast-dashboard-message").val();
 
 		console.log(current_id + "\n");
@@ -69,9 +69,11 @@ jQuery(function($) {
 	    if (current_id != "custom_msg") {
 			  // clr_code = color_setter(preset_clr);
 			    
-			  if (preset_msg && preset_clr_hex) {
+			  if (preset_msg && preset_clr_class) {
 			    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-			    $('#markuparea').html('<div class="' + preset_clr_hex + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+			    $('#markuparea').html('<div class="' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+			  } else if (preset_msg && preset_clr_hex) {
+			    $('#markuparea').html('<style ' + preset_clr_hex + '<div role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 			  }
 			} else if (current_id == "custom_msg") { // end no custom msg
 			  // For custom alerts
@@ -79,10 +81,10 @@ jQuery(function($) {
 			  
 			  //clr_code = color_setter(custom_clr);
 			    
-			  if (clr_code && custom_msg) {
+			  //if (clr_code && custom_msg) {
 			    //'<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-			    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
-			  }
+			    //$('#markuparea').html('<div class="' + clr_code + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
+			  //}
 			} // end custom msg
 	});
 });
