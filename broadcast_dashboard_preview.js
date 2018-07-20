@@ -21,7 +21,7 @@ jQuery(function($) {
 
 		// If the value isn't custom_msg, it's preset
 		if (current_id != "custom_msg") {
-			preset_msg = $("#broadcast_dashboard_msg_text_" + current_id).val();
+			preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
 
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
 				// Class
