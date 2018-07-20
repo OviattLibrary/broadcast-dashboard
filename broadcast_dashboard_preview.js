@@ -5,20 +5,30 @@
  * This file allows for real-time previewing of messages before they're sent out.
  */
 
-var msg_type;
 var preset_msg;
-var preset_clr;
+var preset_clr_class;
+var preset_clr_hex;
 var custom_clr;
 var custom_msg;
 var date;
 
+var current_id;
+
 jQuery(function($) {
 	$('$edit-broadcast-dashboard-message').change(function() {
-		var current_val = $("#edit-broadcast-dashboard-message").val();
+		current_id = $("#edit-broadcast-dashboard-message").val();
 
 		// If the value isn't custom_msg, it's preset
-		if (current_val != "custom_msg") {
-			
+		if (current_id != "custom_msg") {
+			preset_msg = $("broadcast_dashboard_msg_text_" + current_id).val();
+
+			if ( $("broadcast_dashboard_clr_class_" + current_id).length ) {
+				// Class
+				preset_clr_class = $("broadcast_dashboard_clr_class_" + current_id).val();
+			} else if ( $("broadcast_dashboard_clr_hex_" + current_id).length ) {
+				// Hex
+				preset_clr_hex = $("broadcast_dashboard_clr_hex_" + current_id).val();
+			}
 		} else {
 			// It's custom
 		}
@@ -26,46 +36,31 @@ jQuery(function($) {
 
 
 	$('#edit-preview').click(function() {
-		msg_type = $("#edit-broadcast-dashboard-message").val();
+		current_id = $("#edit-broadcast-dashboard-message").val();
 		date = new Date();
 
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 	    
-	    // Pre-set messages
-	    if (msg_type == 1) {
-	      // Drill
-	      preset_msg = "There is currently a drill taking place. Please remain calm.";
-	      preset_clr = 2;
-	    } else if (msg_type == 2) {
-	      // Earthquake
-	      preset_msg = "There is currently an earthquake. Drop, cover, and hold.";
-	      preset_clr = 3;
-	    } else if (msg_type == 3) {
-	      // Fire
-	      preset_msg = "A fire has been reported. Please calmly evacuate the building.";
-	      preset_clr = 4;
-	    } else if (msg_type == 4) {
-	      // Shooter
-	      preset_msg = "An active shooter has been reported. Take cover and, if possible, escape through a window or door.";
-	      preset_clr = 4;
-	    } else if (msg_type == 5) {
+	    // Set values for custom messages
+	    if (current_id == "custom_msg") {
 	      // Custom
 	      custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
 	      custom_clr = $("#edit-broadcast-dashboard-custom-message-color").val();
 	    }
 
-	    if (msg_type != 5) {
-			  clr_code = color_setter(preset_clr);
+	    if (current_id != "custom_msg") {
+			  // clr_code = color_setter(preset_clr);
 			    
 			  if (clr_code && preset_msg) {
 			    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
 			    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 			  }
-			} else if (msg_type == 5) { // end no custom msg
+			} else if (current_id == "custom_msg") { // end no custom msg
 			  // For custom alerts
 			  // Set alert color based on setting
-			  clr_code = color_setter(custom_clr);
+			  
+			  //clr_code = color_setter(custom_clr);
 			    
 			  if (clr_code && custom_msg) {
 			    //'<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
@@ -74,32 +69,3 @@ jQuery(function($) {
 			} // end custom msg
 	});
 });
-
-/**
- * Global function to set alert color classes
- */
-function color_setter(input_color) {
-	console.log("color_setter was accessed.");
-	console.log("input_color is: " + input_color);
-  /* 1 => Success - Green
-     2 => Info - Blue
-     3 => Warning - Yellow
-     4 => Danger - Red')
-  */
-  if (input_color == 1) {
-      // Success
-      return 'alert alert-success';
-    } else if (input_color == 2) {
-      // Info
-      return 'alert alert-info';
-    } else if (input_color == 3) {
-      // Warning
-      return 'alert alert-warning';
-    } else if (input_color == 4) {
-      // Error
-      return 'alert alert-danger';
-    } else {
-      // Default
-      return 'alert alert-info';
-    }
-}
