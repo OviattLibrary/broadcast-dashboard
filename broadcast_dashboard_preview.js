@@ -27,7 +27,7 @@ jQuery(function($) {
 			//preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
 			var text_id = 'broadcast_dashboard_msg_text_' + current_id;
 			//preset_msg = $("input[name='" . text_id . "'").attr('value');
-			preset_msg = $("input[type='hidden'][name=" . text_id . "]").attr('value');
+			preset_msg = $("input[type='hidden'][name=" + text_id + "]").attr('value');
 			console.log("Clear call test: " + $("input[type='hidden'][name='broadcast_dashboard_msg_text_3").attr('value'));
 
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
