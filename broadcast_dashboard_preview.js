@@ -17,18 +17,20 @@ var current_id;
 jQuery(function($) {
 	// Declare function to grab values
 	$.getCurrentValues = function() {
+		preset_msg = "";
+		preset_clr_class = "";
+		preclr_clr_hex = "";
+		
 		current_id = $("#edit-broadcast-dashboard-message").val();
 
 		console.log(current_id + "\n");
 
 		// If the value isn't custom_msg, it's preset
 		if (current_id != "custom_msg") {
-			console.log("Fires into non-custom" + "\n");
 			//preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
 			var text_id = 'broadcast_dashboard_msg_text_' + current_id;
-			//preset_msg = $("input[name='" . text_id . "'").attr('value');
 			preset_msg = $("input[type='hidden'][name=" + text_id + "]").attr('value');
-			console.log("Clear call test: " + $("input[type='hidden'][name='broadcast_dashboard_msg_text_3").attr('value'));
+			//console.log("Clear call test: " + $("input[type='hidden'][name='broadcast_dashboard_msg_text_3").attr('value'));
 
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
 				// Class
@@ -40,8 +42,6 @@ jQuery(function($) {
 		} else {
 			// It's custom
 		}
-
-		console.log("Current ID: " + current_id + "\n" + "Preset message: " + preset_msg);
 	}
 
 	// Get initial values on page ready
@@ -69,9 +69,9 @@ jQuery(function($) {
 	    if (current_id != "custom_msg") {
 			  // clr_code = color_setter(preset_clr);
 			    
-			  if (clr_code && preset_msg) {
+			  if (preset_msg && preset_clr_hex) {
 			    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
-			    $('#markuparea').html('<div class="' + clr_code + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+			    $('#markuparea').html('<div class="' + preset_clr_hex + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 			  }
 			} else if (current_id == "custom_msg") { // end no custom msg
 			  // For custom alerts
