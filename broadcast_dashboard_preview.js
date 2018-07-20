@@ -15,11 +15,33 @@ var date;
 var current_id;
 
 jQuery(function($) {
+	// Declare function to grab values
+	$.fn.getCurrentValues = function() {
+	current_id = $("#edit-broadcast-dashboard-message").val();
+
+		// If the value isn't custom_msg, it's preset
+		if (current_id != "custom_msg") {
+			preset_msg = $("#broadcast_dashboard_msg_text_" + current_id).val();
+
+			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
+				// Class
+				preset_clr_class = $("#broadcast_dashboard_clr_class_" + current_id).val();
+			} else if ( $("#broadcast_dashboard_clr_hex_" + current_id).length ) {
+				// Hex
+				preset_clr_hex = $("#broadcast_dashboard_clr_hex_" + current_id).val();
+			}
+		} else {
+			// It's custom
+		}
+
+		console.log("Current ID: " + current_id + "\n" + "Preset message: " + preset_msg);
+	}
+
 	// Get initial values on page ready
-	getCurrentValues();
+	$fn.getCurrentValues();
 
 	$('#edit-broadcast-dashboard-message').change(function() {
-		getCurrentValues();
+		$fn.getCurrentValues();
 	});
 
 
@@ -57,25 +79,3 @@ jQuery(function($) {
 			} // end custom msg
 	});
 });
-
-// Declare function to grab values
-	function getCurrentValues() {
-	current_id = $("#edit-broadcast-dashboard-message").val();
-
-		// If the value isn't custom_msg, it's preset
-		if (current_id != "custom_msg") {
-			preset_msg = $("#broadcast_dashboard_msg_text_" + current_id).val();
-
-			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
-				// Class
-				preset_clr_class = $("#broadcast_dashboard_clr_class_" + current_id).val();
-			} else if ( $("#broadcast_dashboard_clr_hex_" + current_id).length ) {
-				// Hex
-				preset_clr_hex = $("#broadcast_dashboard_clr_hex_" + current_id).val();
-			}
-		} else {
-			// It's custom
-		}
-
-		console.log("Current ID: " + current_id + "\n" + "Preset message: " + preset_msg);
-	}
