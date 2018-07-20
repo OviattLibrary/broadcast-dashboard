@@ -35,9 +35,11 @@ jQuery(function($) {
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
 				// Class
 				preset_clr_class = $("#broadcast_dashboard_clr_class_" + current_id).val();
+				console.log("Preset class: " + preset_clr_class);
 			} else if ( $("#broadcast_dashboard_clr_hex_" + current_id).length ) {
 				// Hex
 				preset_clr_hex = $("#broadcast_dashboard_clr_hex_" + current_id).val();
+				console.log("Preset hx: " + preset_clr_hex);
 			}
 		} else {
 			// It's custom
@@ -61,7 +63,7 @@ jQuery(function($) {
 	  
 	  console.log(current_id);
 	  console.log(msg_date);
-	  
+
     // Set values for custom messages
     if (current_id == "custom_msg") {
       // Custom
