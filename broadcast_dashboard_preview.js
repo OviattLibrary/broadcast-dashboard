@@ -26,6 +26,7 @@ jQuery(function($) {
 			console.log("Fires into non-custom" + "\n");
 			//preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
 			var text_id = '#broadcast_dashboard_msg_text_' + current_id;
+			console.log("Text ID: " + text_id + "\n");
 			preset_msg = $(text_id).val;
 
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
