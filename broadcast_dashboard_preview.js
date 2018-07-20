@@ -32,6 +32,8 @@ jQuery(function($) {
 		} else {
 			// It's custom
 		}
+
+		console.log("Current ID: " + current_id + "\n" + "Preset message: " + preset_msg);
 	});
 
 
