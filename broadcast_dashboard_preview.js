@@ -24,9 +24,10 @@ jQuery(function($) {
 		// If the value isn't custom_msg, it's preset
 		if (current_id != "custom_msg") {
 			console.log("Fires into non-custom" + "\n");
-			preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
-			console.log(preset_msg);
-			
+			//preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
+			var text_id = '#broadcast_dashboard_msg_text_' + current_id;
+			preset_msg = $(text_id).val;
+
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
 				// Class
 				preset_clr_class = $("#broadcast_dashboard_clr_class_" + current_id).val();
