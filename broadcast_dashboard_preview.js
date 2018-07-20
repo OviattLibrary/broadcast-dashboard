@@ -17,7 +17,7 @@ var current_id;
 jQuery(function($) {
 	// Declare function to grab values
 	$.getCurrentValues = function() {
-		current_id = $("#edit-broadcast-dashboard-message").val();
+		current_id = (int) $("#edit-broadcast-dashboard-message").val();
 
 		console.log(current_id + "\n");
 
