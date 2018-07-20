@@ -26,7 +26,8 @@ jQuery(function($) {
 			console.log("Fires into non-custom" + "\n");
 			//preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
 			var text_id = 'broadcast_dashboard_msg_text_' + current_id;
-			preset_msg = $("input[name='" . text_id . "'").attr('value');
+			//preset_msg = $("input[name='" . text_id . "'").attr('value');
+			preset_msg = $ ( "input[name = ' text_id ' ]" ).attr( ' value ' );
 
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
 				// Class
