@@ -19,6 +19,8 @@ jQuery(function($) {
 	$.getCurrentValues = function() {
 	current_id = $("#edit-broadcast-dashboard-message").val();
 
+	console.log(current_id + "\n");
+
 		// If the value isn't custom_msg, it's preset
 		if (current_id != "custom_msg") {
 			preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
