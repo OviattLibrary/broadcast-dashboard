@@ -17,12 +17,14 @@ var current_id;
 jQuery(function($) {
 	// Declare function to grab values
 	$.getCurrentValues = function() {
-	current_id = $("#edit-broadcast-dashboard-message").val();
+		current_id = $("#edit-broadcast-dashboard-message").val();
 
-	console.log(current_id + "\n");
+		console.log(current_id + "\n");
+		console.log(current_id != "custom_msg");
 
 		// If the value isn't custom_msg, it's preset
 		if (current_id != "custom_msg") {
+			console.log("Fires into non-custom" + "\n");
 			preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
 
 			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
