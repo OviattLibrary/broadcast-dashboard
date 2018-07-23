@@ -57,7 +57,7 @@ jQuery(function($) {
 
 	// Clear text if another value is selected
 	$(document).on("change","input[type=radio]",function(){
-		if ($('[name="broadcast_dashboard_custom_color_css"]:checked')) {
+		if ($('[name="broadcast_dashboard_custom_color"]:checked')) {
 			// Clear hex
 			$('input[name=broadcast_dashboard_custom_color_hex]').val('');
 			console.log("Cleared hex value.");
@@ -68,7 +68,7 @@ jQuery(function($) {
 			$('input[name=broadcast_dashboard_custom_color_css]').val('');
 			console.log("Cleared class value.");
 			$.getCurrentValues();
-			console.log("Class: " + custom_clr + "\n" + "Hex: " + custom_hex);
+			console.log("Cng Class: " + custom_clr + "\n" + "Cng Hex: " + custom_hex);
 		}
 	});
 
