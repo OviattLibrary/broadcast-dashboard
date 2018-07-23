@@ -51,6 +51,23 @@ jQuery(function($) {
 		$.getCurrentValues();
 	});
 
+	// Clear text if another value is selected
+	$(document).on("change","input[type=radio]",function(){
+		if ($('[name="broadcast_dashboard_custom_color_css"]:checked')) {
+			// Clear hex
+			$('input[name=broadcast_dashboard_custom_color_hex]').val('');
+			console.log("Cleared hex value.");
+			$.getCurrentValues();
+			console.log("Class: " + preset_clr_class + "\n" + "Hex: " + preset_clr_hex);
+		} else if ($('[name="broadcast_dashboard_custom_color_hex"]:checked')) {
+			// Clear class
+			$('input[name=broadcast_dashboard_custom_color_css]').val('');
+			console.log("Cleared class value.");
+			$.getCurrentValues();
+			console.log("Class: " + preset_clr_class + "\n" + "Hex: " + preset_clr_hex);
+		}
+	});
+
 
 	$('#edit-preview').click(function() {
 		current_id = $("#edit-broadcast-dashboard-message").val();
