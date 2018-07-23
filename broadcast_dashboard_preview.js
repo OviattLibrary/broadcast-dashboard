@@ -56,17 +56,17 @@ jQuery(function($) {
 		$.getCurrentValues();
 	});
 
-	// Clear text if another value is selected
+	// Clear custom color text if another value is selected
 	$(document).on("change","input[type=radio]",function(){
-		if ($('[name="broadcast_dashboard_custom_color"]:checked')) {
+		if ($('[name="broadcast_dashboard_custom_color"]').val() == "class") {
 			// Clear hex
-			$('input[name=broadcast_dashboard_custom_color_hex]').val('');
+			$('input[name=broadcast_dashboard_custom_color_hex]').text('');
 			console.log("Cleared hex value.");
 			$.getCurrentValues();
 			console.log("Class: " + custom_clr + "\n" + "Hex: " + custom_hex);
-		} else if ($('[name="broadcast_dashboard_custom_color_hex"]:checked')) {
+		} else if ($('[name="broadcast_dashboard_custom_color_hex"]').val() == "hex") {
 			// Clear class
-			$('input[name=broadcast_dashboard_custom_color_css]').val('');
+			$('input[name=broadcast_dashboard_custom_color_css]').text('');
 			console.log("Cleared class value.");
 			$.getCurrentValues();
 			console.log("Cng Class: " + custom_clr + "\n" + "Cng Hex: " + custom_hex);
