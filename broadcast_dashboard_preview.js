@@ -73,7 +73,7 @@ jQuery(function($) {
 		    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
 		    $('#markuparea').html('<div class="' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (preset_clr_hex != "") {
-		    $('#markuparea').html('<style>background-color: ' + preset_clr_hex + ';</style><div role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').html('<div role="alert" style="background-color: ' + preset_clr_hex + ';">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
 		} else if (current_id == "custom_msg") { // end no custom msg
 		  // For custom alerts
