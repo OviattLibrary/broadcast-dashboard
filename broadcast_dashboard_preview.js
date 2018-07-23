@@ -56,8 +56,21 @@ jQuery(function($) {
 		$.getCurrentValues();
 	});
 
+	$('input[type=radio][name=broadcast_dashboard_custom_color]').on('change', function(){
+    switch($(this).val()){
+        case 'class' :
+        	console.log("Selected class, clearing hex");
+          $('input[name="broadcast_dashboard_custom_color_hex"]').text('');
+          break;
+        case 'hex' :
+        	console.log("Selected hex, clearing class");
+          $('input[name="broadcast_dashboard_custom_color_css"]').text('');
+          break;
+    }            
+});
+
 	// Clear custom color text if another value is selected
-	$('input[name="broadcast_dashboard_custom_color"]').change(function(){
+	/*$('input[name="broadcast_dashboard_custom_color"]').change(function(){
 		console.log("Selected val: " + $('[name="broadcast_dashboard_custom_color"]').val());
 		if ($('[name="broadcast_dashboard_custom_color"]').val() == "class") {
 			console.log("CSS Class was selected.");
@@ -74,7 +87,7 @@ jQuery(function($) {
 			$.getCurrentValues();
 			console.log("Cng Class: " + custom_clr + "\n" + "Cng Hex: " + custom_hex);
 		}
-	});
+	});*/
 
 
 	$('#edit-preview').click(function() {
