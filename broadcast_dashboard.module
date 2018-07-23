@@ -433,7 +433,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     } else if ($form_state['values']['broadcast_dashboard_clr_hex_' + $set_msg_id] != ""){
       $set_prew_hex = $form_state['values']['broadcast_dashboard_clr_hex_' + $set_msg_id];
       variable_set('broadcast_dashboard_message_prew_hex', $set_prew_hex);
-      variable_set('broadcast_dashboard_message_prew_class', null; //unset unused
+      variable_set('broadcast_dashboard_message_prew_class', null); //unset unused
     }
 
   } else if ($set_msg_id == "custom_msg") {
