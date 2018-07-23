@@ -56,18 +56,19 @@ jQuery(function($) {
 		$.getCurrentValues();
 	});
 
+	// Clear custom color text if another value is selected
 	$('input[type=radio][name=broadcast_dashboard_custom_color]').on('change', function(){
     switch($(this).val()){
         case 'class' :
         	console.log("Selected class, clearing hex");
-          $('input[name="broadcast_dashboard_custom_color_hex"]').text('');
+          $('input[type=radio][name="broadcast_dashboard_custom_color_hex"]').text('');
           break;
         case 'hex' :
         	console.log("Selected hex, clearing class");
-          $('input[name="broadcast_dashboard_custom_color_css"]').text('');
+          $('input[type=radio][name="broadcast_dashboard_custom_color_css"]').text('');
           break;
     }            
-});
+	});
 
 	// Clear custom color text if another value is selected
 	/*$('input[name="broadcast_dashboard_custom_color"]').change(function(){
