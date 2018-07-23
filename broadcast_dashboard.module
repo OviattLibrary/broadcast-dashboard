@@ -422,16 +422,16 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     // Get pre-written message
     /*$current_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
     $previous_prew_msg = variable_get('broadcast_dashboard_message_prew');*/
-    $set_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
+    $set_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' . $set_msg_id];
     variable_set('broadcast_dashboard_message_prew', $set_prew_msg);
 
     // Get color
-    if ($form_state['values']['broadcast_dashboard_clr_class_' + $set_msg_id] != ""){
-      $set_prew_class = $form_state['values']['broadcast_dashboard_clr_class_' + $set_msg_id];
+    if ($form_state['values']['broadcast_dashboard_clr_class_' . $set_msg_id] != ""){
+      $set_prew_class = $form_state['values']['broadcast_dashboard_clr_class_' . $set_msg_id];
       variable_set('broadcast_dashboard_message_prew_class', $set_prew_class);
       variable_set('broadcast_dashboard_message_prew_hex', null); //unset unused
-    } else if ($form_state['values']['broadcast_dashboard_clr_hex_' + $set_msg_id] != ""){
-      $set_prew_hex = $form_state['values']['broadcast_dashboard_clr_hex_' + $set_msg_id];
+    } else if ($form_state['values']['broadcast_dashboard_clr_hex_' . $set_msg_id] != ""){
+      $set_prew_hex = $form_state['values']['broadcast_dashboard_clr_hex_' . $set_msg_id];
       variable_set('broadcast_dashboard_message_prew_hex', $set_prew_hex);
       variable_set('broadcast_dashboard_message_prew_class', null); //unset unused
     }
