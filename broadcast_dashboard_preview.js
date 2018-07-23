@@ -92,11 +92,12 @@ jQuery(function($) {
 		  }
 		  // end no custom msg
 		} else if (current_id == "custom_msg") {
+			console.log("In custom msg markup");
 		  // For custom alerts
-		  if (custom_clr_hex == null) {
+		  if (custom_clr_hex == "") {
 		  	// It's a class
 		    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
-		  } else if (custom_clr_class == null) {
+		  } else if (custom_clr_class == "") {
 		  	// It's a hex
 		    $('#markuparea').html('<div role="alert" style="background-color: ' + custom_clr_hex + ';">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
