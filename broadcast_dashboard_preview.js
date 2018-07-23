@@ -51,6 +51,7 @@ jQuery(function($) {
 	// Get initial values on page ready
 	$.getCurrentValues();
 
+	// Grab new values every time the message type is changed
 	$('#edit-broadcast-dashboard-message').change(function() {
 		$.getCurrentValues();
 	});
