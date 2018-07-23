@@ -398,32 +398,47 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   // Active Check
-  $current_active = $form_state['values']['broadcast_dashboard_active'];
-  $previous_active = variable_get('broadcast_dashboard_active');
+  /*$current_active = $form_state['values']['broadcast_dashboard_active'];
+  $previous_active = variable_get('broadcast_dashboard_active');*/
   $set_active = $form_state['values']['broadcast_dashboard_active'];
   variable_set('broadcast_dashboard_active', $set_active);
 
   // Message ID Set
-  $current_msg_id = $form_state['values']['broadcast_dashboard_message'];
-  $previous_msg_id = variable_get('broadcast_dashboard_message');
+  /*$current_msg_id = $form_state['values']['broadcast_dashboard_message'];
+  $previous_msg_id = variable_get('broadcast_dashboard_message');*/
   $set_msg_id = $form_state['values']['broadcast_dashboard_message'];
   variable_set('broadcast_dashboard_message', $set_msg_id);
 
   // Region Set
-  $current_region = $form_state['values']['broadcast_dashboard_region'];
-  $previous_region = variable_get('broadcast_dashboard_region');
+  /*$current_region = $form_state['values']['broadcast_dashboard_region'];
+  $previous_region = variable_get('broadcast_dashboard_region');*/
   $set_region = $form_state['values']['broadcast_dashboard_region'];
   variable_set('broadcast_dashboard_region', $set_region);
   
   // Custom Message Check
   if ($set_msg_id != "custom_msg") {
     // Is not a custom message
-    $current_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
-    $previous_prew_msg = variable_get('broadcast_dashboard_message_prew');
+
+    // Get pre-written message
+    /*$current_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
+    $previous_prew_msg = variable_get('broadcast_dashboard_message_prew');*/
     $set_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
     variable_set('broadcast_dashboard_message_prew', $set_prew_msg);
+
+    // Get color
+    if ($form_state['values']['broadcast_dashboard_clr_class_' + $set_msg_id] != ""){
+      $set_prew_class = $form_state['values']['broadcast_dashboard_clr_class_' + $set_msg_id];
+      variable_set('broadcast_dashboard_message_prew_class', $set_prew_class);
+      variable_set('broadcast_dashboard_message_prew_hex', null); //unset unused
+    } else if ($form_state['values']['broadcast_dashboard_clr_hex_' + $set_msg_id] != ""){
+      $set_prew_hex = $form_state['values']['broadcast_dashboard_clr_hex_' + $set_msg_id];
+      variable_set('broadcast_dashboard_message_prew_hex', $set_prew_hex);
+      variable_set('broadcast_dashboard_message_prew_class', null; //unset unused
+    }
+
   } else if ($set_msg_id == "custom_msg") {
     // Is a custom msg
+
   }
 
   if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
@@ -558,54 +573,28 @@ function broadcast_dashboard_page_build(&$page) {
 //  dpm($page);
 
   $active = variable_get('broadcast_dashboard_active');
-  $msg_type = variable_get('broadcast_dashboard_message');
-  $preset_msg = null;
-  $preset_clr = null;
+  $msg_id = variable_get('broadcast_dashboard_message');
+  $preset_msg = variable_get('broadcast_dashboard_message_prew');
+  $preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
+  $preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
   $region = variable_get('broadcast_dashboard_region');
   $cust_msg = variable_get('broadcast_dashboard_custom_message');
   $cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
-  $clr_code = null;
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
   // DEV - test notification
   $page[$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['main']['#markup'] . '</div>';
 
-  if (!empty($msg_type)) {
-    // Pre-set messages
-    if ($msg_type == 1) {
-      // Drill
-      $preset_msg = "There is currently a drill taking place. Please remain calm.";
-      $preset_clr = 2;
-    } elseif ($msg_type == 2) {
-      // Earthquake
-      $preset_msg = "There is currently an earthquake. Drop, cover, and hold.";
-      $preset_clr = 3;
-    } elseif ($msg_type == 3) {
-      // Fire
-      $preset_msg = "A fire has been reported. Please calmly evacuate the building.";
-      $preset_clr = 4;
-    } elseif ($msg_type == 4) {
-      // Shooter
-      $preset_msg = "An active shooter has been reported. Take cover and, if possible, escape through a window or door.";
-      $preset_clr = 4;
-    } elseif ($msg_type == 5) {
-      // Custom
-
-    }
-  }
-
   // No custom, push preset message
-  if (($active == 1) && ($msg_type != 5)) {
-    $clr_code = color_setter($preset_clr);
-    
-    if (!empty($clr_code) && !empty($preset_msg)) {
-      $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
+  if (($active == 1) && ($msg_id != "custom_msg")) {  
+    if (isset($preset_clr_class)) {
+      $page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '" role="alert">' . $preset_msg . " (Posted on: " . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
+    } else if (isset($preset_clr_hex)) {
+      $page[$region]['system_main']['#markup'] = '<div role="alert" style="background-color: ' . $preset_clr_hex . ';">' + $preset_msg . " (Posted on: " . $msg_date . ')</div>' . $page[$region]['system_main']['#markup'] . '</div>';
     }
-  } else if ($msg_type == 5) { // end no custom msg
+  } else if ($msg_type == "custom_msg") { // end no custom msg
     // For custom alerts
     // Set alert color based on setting
-    $clr_code = color_setter($cust_msg_clr);
-    
     if (!empty($clr_code) && !empty($cust_msg)) {
       $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
     }
