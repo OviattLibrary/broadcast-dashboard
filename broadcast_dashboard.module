@@ -403,19 +403,29 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   $set_active = $form_state['values']['broadcast_dashboard_active'];
   variable_set('broadcast_dashboard_active', $set_active);
 
-  // Type of Message Check
-  $current_msg_type = $form_state['values']['broadcast_dashboard_message'];
-  $previous_msg_type = variable_get('broadcast_dashboard_message');
-  $set_msg_type = $form_state['values']['broadcast_dashboard_message'];
-  variable_set('broadcast_dashboard_message', $set_msg_type);
+  // Message ID Set
+  $current_msg_id = $form_state['values']['broadcast_dashboard_message'];
+  $previous_msg_id = variable_get('broadcast_dashboard_message');
+  $set_msg_id = $form_state['values']['broadcast_dashboard_message'];
+  variable_set('broadcast_dashboard_message', $set_msg_id);
 
-  // Region Check
+  // Region Set
   $current_region = $form_state['values']['broadcast_dashboard_region'];
   $previous_region = variable_get('broadcast_dashboard_region');
   $set_region = $form_state['values']['broadcast_dashboard_region'];
   variable_set('broadcast_dashboard_region', $set_region);
   
   // Custom Message Check
+  if ($set_msg_id != "custom_msg") {
+    // Is not a custom message
+    $current_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
+    $previous_prew_msg = variable_get('broadcast_dashboard_message_prew');
+    $set_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
+    variable_set('broadcast_dashboard_message_prew', $set_prew_msg);
+  } else if ($set_msg_id == "custom_msg") {
+    // Is a custom msg
+  }
+
   if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
     $current_title = $form_state['values']['broadcast_dashboard_custom_message'];
     $previous_title = variable_get('broadcast_dashboard_custom_message');
