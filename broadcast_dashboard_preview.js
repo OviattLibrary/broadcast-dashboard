@@ -20,9 +20,10 @@ jQuery(function($) {
 	$.getCurrentValues = function() {
 		preset_msg = "";
 		preset_clr_class = "";
-		preclr_clr_hex = "";
-		custom_clr_class = "";
-		custom_clr_hex = "";
+		preset_clr_hex = "";
+		custom_msg = "";
+		custom_clr_class = null;
+		custom_clr_hex = null;
 
 		current_id = $("#edit-broadcast-dashboard-message").val();
 
@@ -83,13 +84,14 @@ jQuery(function($) {
     console.log("custom_clr_hex: " + custom_clr_hex);
 
     if (current_id != "custom_msg") {
-		    
+    	// Not a custom message
 		  if (preset_clr_class != "") {
 		    $('#markuparea').html('<div class="' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (preset_clr_hex != "") {
 		    $('#markuparea').html('<div role="alert" style="background-color: ' + preset_clr_hex + ';">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
-		} else if (current_id == "custom_msg") { // end no custom msg
+		  // end no custom msg
+		} else if (current_id == "custom_msg") {
 		  // For custom alerts
 		  if (custom_clr_hex == null) {
 		  	// It's a class
