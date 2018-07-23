@@ -77,12 +77,14 @@ jQuery(function($) {
 		  // clr_code = color_setter(preset_clr);
 
 		  console.log("Fired into not custom msg");
+		  console.log(preset_clr_class);
+		  console.log(preset_clr_hex);
 		    
-		  if (preset_msg && preset_clr_class) {
+		  if (preset_clr_class != "") {
 		  	console.log("Fired into color class write");
 		    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
 		    $('#markuparea').html('<div class="' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
-		  } else if (preset_msg && preset_clr_hex) {
+		  } else if (preset_clr_hex != "") {
 		    $('#markuparea').html('<style ' + preset_clr_hex + '<div role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
 		} else if (current_id == "custom_msg") { // end no custom msg
