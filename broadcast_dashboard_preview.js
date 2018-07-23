@@ -61,11 +61,11 @@ jQuery(function($) {
     switch($(this).val()){
         case 'class' :
         	console.log("Selected class, clearing hex");
-          $('input[name="broadcast_dashboard_custom_color_hex"]').text('');
+          $('input[name="broadcast_dashboard_custom_color_hex"]').val('');
           break;
         case 'hex' :
         	console.log("Selected hex, clearing class");
-          $('input[name="broadcast_dashboard_custom_color_css"]').text('');
+          $('input[name="broadcast_dashboard_custom_color_css"]').val('');
           break;
     }            
 	});
