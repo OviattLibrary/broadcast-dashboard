@@ -198,7 +198,7 @@ function broadcast_dashboard_form($form_state) {
     ),
   );
 
-  $form['broadcast_dashboard_custom_message_color'] = array(
+  /*$form['broadcast_dashboard_custom_message_color'] = array(
     '#type' => 'select',
     '#title' => t('Color of Message'),
     '#default_value' => variable_get('broadcast_dashboard_custom_message_color', 0),
@@ -217,6 +217,54 @@ function broadcast_dashboard_form($form_state) {
       "required" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
+    ),
+  );*/
+
+  $form['broadcast_dashboard_custom_color'] = array(
+    '#type' => 'radios',
+    '#title' => t('Message Color'),
+    '#options' => array(
+      'class' => t('CSS Class'),
+      'hex' => t('Hex Code'),
+    ),
+    '#description' => t('Select how to set the message\'s background color.'),
+    '#required' => FALSE,
+    '#default_value' => 'class',
+    '#states' => array(
+      "visible" => array(
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
+      "required" => array(
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
+    ),
+  );
+
+  $form['broadcast_dashboard_custom_color_css'] = array(
+    '#type' => 'textfield',
+    '#title' => t('CSS Class'),
+    '#default_value' => NULL,
+    '#description' => t('Classes that will be added to this message\'s display.'),
+    '#required' => FALSE,
+    '#states' => array(
+      "visible" => array(
+        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'class')),
+      "required" => array(
+        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'class')),
+    ),
+  );
+
+  $form['broadcast_dashboard_custom_color_hex'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Hex Code'),
+    '#default_value' => NULL,
+    '#description' => t('Color hex code that will be added to this message\'s display. Example: #ffffff'),
+    '#required' => FALSE,
+    '#states' => array(
+      "visible" => array(
+        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
+      "required" => array(
+        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
     ),
   );
 
