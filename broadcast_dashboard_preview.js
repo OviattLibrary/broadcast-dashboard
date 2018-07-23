@@ -57,7 +57,7 @@ jQuery(function($) {
 	});
 
 	// Clear custom color text if another value is selected
-	$('input[name=broadcast_dashboard_custom_color]').change(function(){
+	$('input[name="broadcast_dashboard_custom_color"]').change(function(){
 		console.log("Selected val: " + $('[name="broadcast_dashboard_custom_color"]').val());
 		if ($('[name="broadcast_dashboard_custom_color"]').val() == "class") {
 			console.log("CSS Class was selected.");
