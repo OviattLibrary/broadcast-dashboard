@@ -27,21 +27,15 @@ jQuery(function($) {
 
 		// If the value isn't custom_msg, it's preset
 		if (current_id != "custom_msg") {
-			//preset_msg = $('#broadcast_dashboard_msg_text_' + current_id).val();
 			var text_id = 'broadcast_dashboard_msg_text_' + current_id;
 			preset_msg = $("input[type='hidden'][name=" + text_id + "]").attr('value');
-			//console.log("Clear call test: " + $("input[type='hidden'][name='broadcast_dashboard_msg_text_3").attr('value'));
 
 			if ( $("input[type='hidden'][name='broadcast_dashboard_clr_class_" + current_id + "']").length ) {
 				// Class
-				//preset_clr_class = $("#broadcast_dashboard_clr_class_" + current_id).val();
 				preset_clr_class = $("input[type='hidden'][name='broadcast_dashboard_clr_class_" + current_id + "']").attr('value');
-				console.log("Preset class: " + preset_clr_class);
 			} else if ( $("input[type='hidden'][name='broadcast_dashboard_clr_hex_'" + current_id + "']").length ) {
 				// Hex
-				//preset_clr_hex = $("#broadcast_dashboard_clr_hex_" + current_id).val();
 				$("input[type='hidden'][name='broadcast_dashboard_clr_hex_'" + current_id + "']").attr('value');
-				console.log("Preset hex: " + preset_clr_hex);
 			}
 		} else {
 			// It's custom
@@ -74,18 +68,12 @@ jQuery(function($) {
     }
 
     if (current_id != "custom_msg") {
-		  // clr_code = color_setter(preset_clr);
-
-		  console.log("Fired into not custom msg");
-		  console.log(preset_clr_class);
-		  console.log(preset_clr_hex);
 		    
 		  if (preset_clr_class != "") {
-		  	console.log("Fired into color class write");
 		    //<div class="'. $clr_code .'" role="alert">' . $preset_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
 		    $('#markuparea').html('<div class="' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (preset_clr_hex != "") {
-		    $('#markuparea').html('<style ' + preset_clr_hex + '<div role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').html('<style>background-color: ' + preset_clr_hex + ';</style><div role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
 		} else if (current_id == "custom_msg") { // end no custom msg
 		  // For custom alerts
