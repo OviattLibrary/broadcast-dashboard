@@ -32,14 +32,12 @@ jQuery(function($) {
 			preset_msg = $("input[type='hidden'][name=" + text_id + "]").attr('value');
 			//console.log("Clear call test: " + $("input[type='hidden'][name='broadcast_dashboard_msg_text_3").attr('value'));
 
-			console.log("Clr class len: " + $("#broadcast_dashboard_clr_class_" + current_id).length);
-
-			if ( $("#broadcast_dashboard_clr_class_" + current_id).length ) {
+			if ( $("input[type='hidden'][name='broadcast_dashboard_clr_class_'" + current_id + "]").length ) {
 				// Class
 				//preset_clr_class = $("#broadcast_dashboard_clr_class_" + current_id).val();
 				preset_clr_class = $("input[type='hidden'][name='broadcast_dashboard_clr_class_'" + current_id + "]").attr('value');
 				console.log("Preset class: " + preset_clr_class);
-			} else if ( $("#broadcast_dashboard_clr_hex_" + current_id).length ) {
+			} else if ( $("input[type='hidden'][name='broadcast_dashboard_clr_hex_'" + current_id + "]").length ) {
 				// Hex
 				//preset_clr_hex = $("#broadcast_dashboard_clr_hex_" + current_id).val();
 				$("input[type='hidden'][name='broadcast_dashboard_clr_hex_'" + current_id + "]").attr('value');
