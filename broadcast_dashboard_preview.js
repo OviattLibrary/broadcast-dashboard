@@ -46,7 +46,7 @@ jQuery(function($) {
 			// It's custom
 			custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
       custom_clr_class = $("#edit-broadcast-dashboard-custom-color-css").val();
-      custom_clr_hex = $("edit-broadcast-dashboard-custom-color-hex--2").val();
+      custom_clr_hex = $("#edit-broadcast-dashboard-custom-color-hex--2").val();
 		}
 	}
 
