@@ -74,9 +74,6 @@ jQuery(function($) {
 
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-	  
-	  console.log(current_id);
-	  console.log(msg_date);
 
     // Set values for custom messages
     if (current_id == "custom_msg") {
