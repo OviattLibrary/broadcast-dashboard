@@ -35,7 +35,7 @@ jQuery(function($) {
 				preset_clr_class = $("input[type='hidden'][name='broadcast_dashboard_clr_class_" + current_id + "']").attr('value');
 			} else if ( $("input[type='hidden'][name='broadcast_dashboard_clr_hex_'" + current_id + "']").length ) {
 				// Hex
-				$("input[type='hidden'][name='broadcast_dashboard_clr_hex_'" + current_id + "']").attr('value');
+				preset_clr_hex = $("input[type='hidden'][name='broadcast_dashboard_clr_hex_'" + current_id + "']").attr('value');
 			}
 		} else {
 			// It's custom
