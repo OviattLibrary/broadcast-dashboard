@@ -44,8 +44,9 @@ jQuery(function($) {
 			}
 		} else {
 			// It's custom
-			custom_clr = $("#edit-broadcast-dashboard-custom-color-css").val();
-			custom_hex = $("#edit-broadcast-dashboard-custom-color-hex--2").val();
+			custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
+      custom_clr_class = $("#edit-broadcast-dashboard-custom-color-css").val();
+      custom_clr_hex = $("edit-broadcast-dashboard-custom-color-hex--2").val();
 		}
 	}
 
@@ -70,19 +71,12 @@ jQuery(function($) {
 	});
 
 	$('#edit-preview').click(function() {
+		$.getCurrentValues();
 		current_id = $("#edit-broadcast-dashboard-message").val();
 		date = new Date();
 
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-
-    // Set values for custom messages
-    if (current_id == "custom_msg") {
-      // Custom
-      custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
-      custom_clr_class = $("#edit-broadcast-dashboard-custom-color-css").val();
-      custom_clr_hex = $("edit-broadcast-dashboard-custom-color-hex--2").val();
-    }
 
     console.log("custom_msg: " + custom_msg);
     console.log("custom_clr_class: " + custom_clr_class);
