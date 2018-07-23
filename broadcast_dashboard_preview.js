@@ -8,7 +8,8 @@
 var preset_msg;
 var preset_clr_class;
 var preset_clr_hex;
-var custom_clr;
+var custom_clr_class;
+var custom_clr_hex;
 var custom_msg;
 var date;
 
@@ -20,8 +21,8 @@ jQuery(function($) {
 		preset_msg = "";
 		preset_clr_class = "";
 		preclr_clr_hex = "";
-		custom_clr = "";
-		custom_hex = "";
+		custom_clr_class = "";
+		custom_clr_hex = "";
 
 		current_id = $("#edit-broadcast-dashboard-message").val();
 
@@ -79,11 +80,13 @@ jQuery(function($) {
     if (current_id == "custom_msg") {
       // Custom
       custom_msg = $("#edit-broadcast-dashboard-custom-message").val();
-      custom_clr = $("#edit-broadcast-dashboard-custom-message-color").val();
+      custom_clr_class = $("#edit-broadcast-dashboard-custom-color-css").val();
+      custom_clr_hex = $("edit-broadcast-dashboard-custom-color-hex--2").val();
     }
 
     console.log("custom_msg: " + custom_msg);
-    console.log("custom_clr: " + custom_clr);
+    console.log("custom_clr_class: " + custom_clr_class);
+    console.log("custom_clr_hex: " + custom_clr_hex);
 
     if (current_id != "custom_msg") {
 		    
