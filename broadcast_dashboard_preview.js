@@ -99,7 +99,7 @@ jQuery(function($) {
 		    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (custom_clr_class == "") {
 		  	// It's a hex
-		    $('#markuparea').html('<div role="alert" style="background-color: ' + custom_clr_hex + ';">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').html('<div role="alert" style="background-color: ' + custom_clr_hex + ';">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
 		} // end custom msg
 	});
