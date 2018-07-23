@@ -59,17 +59,17 @@ jQuery(function($) {
 	// Clear custom color text if another value is selected
 	$('input[name=broadcast_dashboard_custom_color]').change(function(){
 		console.log("Selected val: " + $('[name="broadcast_dashboard_custom_color"]').val());
-		if ($('[name=broadcast_dashboard_custom_color]').val() == "class") {
+		if ($('[name="broadcast_dashboard_custom_color"]').val() == "class") {
 			console.log("CSS Class was selected.");
 			// Clear hex
-			$('input[name=broadcast_dashboard_custom_color_hex]').text('');
+			$('input[name="broadcast_dashboard_custom_color_hex"]').text('');
 			console.log("Cleared hex value.");
 			$.getCurrentValues();
 			console.log("Class: " + custom_clr + "\n" + "Hex: " + custom_hex);
-		} else if ($('[name=broadcast_dashboard_custom_color]').val() == "hex") {
+		} else if ($('[name="broadcast_dashboard_custom_color"]').val() == "hex") {
 			console.log("Hex was selected.");
 			// Clear class
-			$('input[name=broadcast_dashboard_custom_color_css]').text('');
+			$('input[name="broadcast_dashboard_custom_color_css"]').text('');
 			console.log("Cleared class value.");
 			$.getCurrentValues();
 			console.log("Cng Class: " + custom_clr + "\n" + "Cng Hex: " + custom_hex);
