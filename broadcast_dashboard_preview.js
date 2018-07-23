@@ -66,7 +66,7 @@ jQuery(function($) {
 			console.log("Cleared hex value.");
 			$.getCurrentValues();
 			console.log("Class: " + custom_clr + "\n" + "Hex: " + custom_hex);
-		} else if ($('[name=broadcast_dashboard_custom_color_hex]').val() == "hex") {
+		} else if ($('[name=broadcast_dashboard_custom_color]').val() == "hex") {
 			console.log("Hex was selected.");
 			// Clear class
 			$('input[name=broadcast_dashboard_custom_color_css]').text('');
