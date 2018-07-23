@@ -248,9 +248,13 @@ function broadcast_dashboard_form($form_state) {
     '#required' => FALSE,
     '#states' => array(
       "visible" => array(
-        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'class')),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
+        ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'class')),
       "required" => array(
-        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'class')),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
+        ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'class')),
     ),
   );
 
@@ -262,9 +266,13 @@ function broadcast_dashboard_form($form_state) {
     '#required' => FALSE,
     '#states' => array(
       "visible" => array(
-        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
+        ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
       "required" => array(
-        ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
+        ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
     ),
   );
 
