@@ -20,6 +20,8 @@ jQuery(function($) {
 		preset_msg = "";
 		preset_clr_class = "";
 		preclr_clr_hex = "";
+		custom_clr = "";
+		custom_hex = "";
 
 		current_id = $("#edit-broadcast-dashboard-message").val();
 
@@ -41,6 +43,8 @@ jQuery(function($) {
 			}
 		} else {
 			// It's custom
+			custom_clr = $("#edit-broadcast-dashboard-custom-color-css").val();
+			custom_hex = $("#edit-broadcast-dashboard-custom-color-hex--2").val();
 		}
 	}
 
@@ -58,13 +62,13 @@ jQuery(function($) {
 			$('input[name=broadcast_dashboard_custom_color_hex]').val('');
 			console.log("Cleared hex value.");
 			$.getCurrentValues();
-			console.log("Class: " + preset_clr_class + "\n" + "Hex: " + preset_clr_hex);
+			console.log("Class: " + custom_clr + "\n" + "Hex: " + custom_hex);
 		} else if ($('[name="broadcast_dashboard_custom_color_hex"]:checked')) {
 			// Clear class
 			$('input[name=broadcast_dashboard_custom_color_css]').val('');
 			console.log("Cleared class value.");
 			$.getCurrentValues();
-			console.log("Class: " + preset_clr_class + "\n" + "Hex: " + preset_clr_hex);
+			console.log("Class: " + custom_clr + "\n" + "Hex: " + custom_hex);
 		}
 	});
 
