@@ -199,7 +199,7 @@ function broadcast_dashboard_form($form_state) {
   $form['broadcast_dashboard_custom_color_css'] = array(
     '#type' => 'textfield',
     '#title' => t('CSS Class'),
-    '#default_value' => NULL,
+    '#default_value' => variable_get('broadcast_dashboard_custom_color_css'),
     '#description' => t('Classes that will be added to this message\'s display.'),
     '#required' => FALSE,
     '#states' => array(
@@ -217,7 +217,7 @@ function broadcast_dashboard_form($form_state) {
   $form['broadcast_dashboard_custom_color_hex'] = array(
     '#type' => 'textfield',
     '#title' => t('Hex Code'),
-    '#default_value' => NULL,
+    '#default_value' => variable_get('broadcast_dashboard_custom_color_hex'),
     '#description' => t('Color hex code that will be added to this message\'s display. Example: #ffffff'),
     '#required' => FALSE,
     '#states' => array(
@@ -418,6 +418,9 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   // Custom Message Set
   if ($set_msg_id != "custom_msg") {
     // Is not a custom message
+    variable_set('broadcast_dashboard_custom_message', null);
+    variable_set('broadcast_dashboard_message_prew_class', null);
+    variable_set('broadcast_dashboard_message_cust_hex', null);
 
     // Get pre-written message
     /*$current_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
