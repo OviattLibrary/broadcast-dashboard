@@ -537,7 +537,7 @@ function broadcast_dashboard_test_display() {
     print 'Pre-written msg is: '. $TD_prew_msg; print "<br>";
     print 'Pre-written clr class is: '. $TD_preset_clr_class; print "<br>";
     print 'Pre-written clr hex is: '. $TD_preset_clr_hex; print "<br>";
-    print 'Custom message is: '. $cust_msg; print "<br>";
+    print 'Custom message is: '. $TD_cust_msg; print "<br>";
     print 'Custom message class is: '. $TD_cust_msg_class; print "<br>";
     print 'Custom message hex is: '. $TD_cust_msg_hex; print "<br>";
   }
