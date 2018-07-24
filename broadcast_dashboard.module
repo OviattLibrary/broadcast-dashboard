@@ -454,8 +454,8 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
 
     if ($set_cust_class != ""){
       // Class
-      variable_set('broadcast_dashboard_message_prew_class', $set_cust_class);
-      variable_set('broadcast_dashboard_message_prew_hex', null); //unset unused
+      variable_set('broadcast_dashboard_message_cust_class', $set_cust_class);
+      variable_set('broadcast_dashboard_message_cust_hex', null); //unset unused
     } else if ( $set_cust_hex != ""){
       // Hex
       variable_set('broadcast_dashboard_message_cust_hex', $set_cust_hex);
