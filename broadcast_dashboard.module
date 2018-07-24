@@ -161,7 +161,7 @@ function broadcast_dashboard_form($form_state) {
 
   $form['broadcast_dashboard_custom_message'] = array (
     '#type' => 'textarea',
-    '#default_value' => variable_get('broadcast_dashboard_custom_message', 'Broadcast Dashboard Custom Message'),
+    '#default_value' => variable_get('broadcast_dashboard_custom_message_entered', 'Broadcast Dashboard Custom Message'),
     '#title' => t('Broadcast Dashboard Custom Message'),
     '#description' => t('Custom message to appear in place of pre-written notification text.'),
     '#size' => 60,
@@ -418,7 +418,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   // Custom Message Set
   if ($set_msg_id != "custom_msg") {
     // Is not a custom message
-    variable_set('broadcast_dashboard_custom_message', null);
+    variable_set('broadcast_dashboard_custom_message_entered', null);
     variable_set('broadcast_dashboard_message_prew_class', null);
     variable_set('broadcast_dashboard_message_cust_hex', null);
 
@@ -447,7 +447,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     
     // Set custom message
     $set_cust_msg = $form_state['values']['broadcast_dashboard_custom_message'];
-    variable_set('broadcast_dashboard_custom_message', $set_cust_msg);
+    variable_set('broadcast_dashboard_custom_message_entered', $set_cust_msg);
 
     // Set color
     $set_cust_class = $form_state['values']['broadcast_dashboard_custom_color_css'];
@@ -522,7 +522,7 @@ function broadcast_dashboard_test_display() {
   if ($active == 1) {
     $TD_msg_id = variable_get('broadcast_dashboard_message');  
     $TD_region = variable_get('broadcast_dashboard_region');
-    $TD_cust_msg = variable_get('broadcast_dashboard_custom_message');
+    $TD_cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
 
     $TD_cust_msg_class = variable_get('broadcast_dashboard_message_cust_class');
     $TD_cust_msg_hex = variable_get('broadcast_dashboard_message_cust_hex');
@@ -590,7 +590,7 @@ function broadcast_dashboard_page_build(&$page) {
   $preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
   $preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
   $region = variable_get('broadcast_dashboard_region');
-  $cust_msg = variable_get('broadcast_dashboard_custom_message');
+  $cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
   $cust_msg_clr_class = variable_get('broadcast_dashboard_message_cust_class');
   $cust_msg_clr_hex = variable_get('broadcast_dashboard_message_cust_hex');
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
