@@ -132,7 +132,7 @@ function broadcast_dashboard_form($form_state) {
   $form['broadcast_dashboard_message'] = array(
     '#type' => 'select',
     '#title' => t('Messages'),
-    '#default_value' => NULL,
+    '#default_value' => variable_get('broadcast_dashboard_message'),
     '#options' => broadcast_dashboard_get_messages_selector("bd_id"),
     '#description' => t('Select a pre-written message to broadcast, or input a custom one.'),
     '#required' => FALSE,
