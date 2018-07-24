@@ -527,24 +527,6 @@ function broadcast_dashboard_test_display() {
 }
 
 /**
- * Function to store all color elements in an array in page load for Javascript to later have access to.
- */
-function store_color_values() {
-  /*$colors = array();
-
-  $result = db_query('SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard')->fetchAssoc();
-
-  echo '<pre>';
-  print_r($result);
-  echo '</pre>';
-
-  foreach ($result as $item) {
-
-  }*/
-
-}
-
-/**
  * Global function to set alert color classes in page_build()
  */
 function color_setter($message_id) {
