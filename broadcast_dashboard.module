@@ -415,7 +415,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   $set_region = $form_state['values']['broadcast_dashboard_region'];
   variable_set('broadcast_dashboard_region', $set_region);
   
-  // Custom Message Check
+  // Custom Message Set
   if ($set_msg_id != "custom_msg") {
     // Is not a custom message
 
@@ -438,10 +438,31 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
 
   } else if ($set_msg_id == "custom_msg") {
     // Is a custom msg
+    
+    // Set custom message
+    $set_cust_msg = $form_state['values']['broadcast_dashboard_custom_message'];
+    variable_set('broadcast_dashboard_custom_message', $set_cust_msg);
 
-  }
+    // Set color
+    $set_cust_class = $form_state['values']['broadcast_dashboard_custom_color_css'];
+    $set_cust_hex = $form_state['values']['broadcast_dashboard_custom_color_hex'];
 
-  if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
+    if ($set_cust_class != ""){
+      // Class
+      $set_prew_class = $form_state['values']['broadcast_dashboard_clr_class_' . $set_msg_id];
+      variable_set('broadcast_dashboard_message_prew_class', $set_prew_class);
+      variable_set('broadcast_dashboard_message_prew_hex', null); //unset unused
+    } else if ( $set_cust_hex != ""){
+      // Hex
+      $set_prew_hex = $form_state['values']['broadcast_dashboard_clr_hex_' . $set_msg_id];
+      variable_set('broadcast_dashboard_message_cust_hex', $set_prew_hex);
+      variable_set('broadcast_dashboard_message_cust_class', null); //unset unused
+    }
+
+  } 
+
+  /* @TODO: Is this needed still post-refactor? */
+  /*if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
     $current_title = $form_state['values']['broadcast_dashboard_custom_message'];
     $previous_title = variable_get('broadcast_dashboard_custom_message');
       // prevents check_plain from double encoding a pre-existing string
@@ -450,13 +471,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
         variable_set('broadcast_dashboard_custom_message',
                    $set_title);
       }
-  }
-
-  // Custom Message Color Check
-  $current_color = $form_state['values']['broadcast_dashboard_custom_message_color'];
-  $previous_color = variable_get('broadcast_dashboard_custom_message_color');
-  $set_color = $form_state['values']['broadcast_dashboard_custom_message_color'];
-  variable_set('broadcast_dashboard_custom_message_color', $set_color);
+  }*/
 
   // Set date and time message posted
   variable_set('broadcast_dashboard_date_message_posted', date("m/d/Y h:i:sa"));
@@ -585,8 +600,10 @@ function broadcast_dashboard_page_build(&$page) {
   } else if ($msg_type == "custom_msg") { // end no custom msg
     // For custom alerts
     // Set alert color based on setting
-    if (!empty($clr_code) && !empty($cust_msg)) {
-      $page[$region]['system_main']['#markup'] = '<div class="'. $clr_code .'" role="alert">' . $cust_msg . ' (Posted on: ' . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
+     if (isset($@TODO)) {
+      $page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '" role="alert">' . $preset_msg . " (Posted on: " . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
+    } else if (isset($preset_clr_hex)) {
+      $page[$region]['system_main']['#markup'] = '<div role="alert" style="background-color: ' . $preset_clr_hex . '; margin-bottom: 20px;">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . $page[$region]['system_main']['#markup'] . '</div>';
     }
   } // end custom msg
 
