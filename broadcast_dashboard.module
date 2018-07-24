@@ -605,7 +605,7 @@ function broadcast_dashboard_page_build(&$page) {
     } else if (isset($preset_clr_hex)) {
       $page[$region]['system_main']['#markup'] = '<div role="alert" style="background-color: ' . $preset_clr_hex . '; margin-bottom: 20px;">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . $page[$region]['system_main']['#markup'] . '</div>';
     }
-  } else if ($msg_type == "custom_msg") { // end no custom msg
+  } else if (($active == 1) && ($msg_id == "custom_msg")) { // end no custom msg
     // For custom alerts
     // Set alert color based on setting
      if (isset($cust_msg_clr_class)) {
