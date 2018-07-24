@@ -522,7 +522,9 @@ function broadcast_dashboard_test_display() {
     $TD_msg_id = variable_get('broadcast_dashboard_message');  
     $TD_region = variable_get('broadcast_dashboard_region');
     $TD_cust_msg = variable_get('broadcast_dashboard_custom_message');
-    $TD_cust_msg_clr = variable_get('broadcast_dashboard_custom_message_color');
+
+    $TD_cust_msg_class = variable_get('broadcast_dashboard_message_cust_class');
+    $TD_cust_msg_hex = variable_get('broadcast_dashboard_message_cust_hex');
 
     $TD_prew_msg = variable_get('broadcast_dashboard_message_prew');
 
@@ -535,7 +537,8 @@ function broadcast_dashboard_test_display() {
     print 'Pre-written clr class is: '. $TD_preset_clr_class; print "<br>";
     print 'Pre-written clr hex is: '. $TD_preset_clr_hex; print "<br>";
     print 'Custom message is: '. $cust_msg; print "<br>";
-    print 'Custom message color is: '. $TD_cust_msg_clr;
+    print 'Custom message class is: '. $TD_cust_msg_class; print "<br>";
+    print 'Custom message hex is: '. $TD_cust_msg_hex; print "<br>";
   }
 
   print '<br>';
