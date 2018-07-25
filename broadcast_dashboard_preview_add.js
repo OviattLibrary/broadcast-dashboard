@@ -28,6 +28,8 @@ jQuery(function($) {
 		custom_clr_class = $("#edit-broadcast-dashboard-settings-add-css-class").val();
 		custom_clr_hex = $("#edit-broadcast-dashboard-settings-add-hex-code").val();
 
+		date = new Date();
+
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
