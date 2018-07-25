@@ -40,7 +40,7 @@ function broadcast_dashboard_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('broadcast_dashboard_settings_form'),
     'access_callback' => TRUE,
-    'access arguments' => array('administer broadcast dashboard'),
+    'access arguments' => array('configure broadcast dashboard'),
     'type' => MENU_NORMAL_ITEM,
   );
 
@@ -96,6 +96,12 @@ function broadcast_dashboard_forms($form_id, $args) {
 function broadcast_dashboard_form($form_state) {  
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  // Settings link
+  $form['settings_markup'] = array(
+    '#type' => 'markup',
+    '#markup' => t('<div id="settingsmarkup"></div>'),
+  );
 
   drupal_set_message(t('To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.'), 'status', FALSE);
 
