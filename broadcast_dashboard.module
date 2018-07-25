@@ -887,6 +887,11 @@ function broadcast_dashboard_settings_form($form_state) {
     ),
   );
 
+  // Add preview include
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
+  );
+
   // Preview button
   $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_preview'] = array(
     '#type' => 'button',
