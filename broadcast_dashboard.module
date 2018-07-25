@@ -30,7 +30,7 @@ function broadcast_dashboard_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('broadcast_dashboard_form'),
     'access_callback' => TRUE,
-    'access arguments' => array('administer broadcast dashboard'),
+    'access arguments' => array('message broadcast dashboard'),
     'type' => MENU_NORMAL_ITEM,
   );
 
@@ -53,9 +53,13 @@ function broadcast_dashboard_menu() {
  */
 function broadcast_dashboard_permission() {
   return array(
-    'administer broadcast dashboard' => array (
+    'message broadcast dashboard' => array (
+      'title' => t('Publish Broadcast Dashboard Messages'),
+      'description' => t('Send out Broadcast Dashboard alerts.'),
+    ),
+    'configure broadcast dashboard' => array (
       'title' => t('Administer Broadcast Dashboard'),
-      'description' => t('Change configuration for, and send out, Broadcast Dashboard alerts.'),
+      'description' => t('Change configuration for Broadcast Dashboard.'),
     ),
   );
 }
