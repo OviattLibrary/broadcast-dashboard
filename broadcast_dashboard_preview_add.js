@@ -11,6 +11,18 @@ var custom_msg;
 var date;
 
 jQuery(function($) {
+	// Clear custom color text if another value is selected
+	$('input[type=radio][name="broadcast_dashboard_settings_add_color"]').on('change', function(){
+    switch($(this).val()){
+        case 'class' :
+          $('input[name="broadcast_dashboard_settings_add_hex_code"]').val('');
+          break;
+        case 'hex' :
+          $('input[name="broadcast_dashboard_settings_add_css_class"]').val('');
+          break;
+    }            
+	});
+
 	$('#edit-broadcast-dashboard-settings-add-preview').click(function() {
 		custom_msg = $("#edit-broadcast-dashboard-settings-add-msg-custom-message").val();
 		date = new Date();
@@ -22,24 +34,13 @@ jQuery(function($) {
     console.log("custom_clr_class: " + custom_clr_class);
     console.log("custom_clr_hex: " + custom_clr_hex);
 
-    if (current_id != "custom_msg") {
-    	// Not a custom message
-		  if (preset_clr_class != "") {
-		    $('#markuparea').html('<div class="' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
-		  } else if (preset_clr_hex != "") {
-		    $('#markuparea').html('<div role="alert" style="background-color: ' + preset_clr_hex + ';">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
-		  }
-		  // end no custom msg
-		} else if (current_id == "custom_msg") {
-			console.log("In custom msg markup");
-		  // For custom alerts
-		  if (custom_clr_hex == "") {
-		  	// It's a class
-		    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
-		  } else if (custom_clr_class == "") {
-		  	// It's a hex
-		    $('#markuparea').html('<div role="alert" style="background-color: ' + custom_clr_hex + ';">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
-		  }
+	  // For custom alerts
+	  if (custom_clr_hex == "") {
+	  	// It's a class
+	    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
+	  } else if (custom_clr_class == "") {
+	  	// It's a hex
+	    $('#markuparea').html('<div role="alert" style="background-color: ' + custom_clr_hex + ';">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
 		} // end custom msg
 	});
 });
