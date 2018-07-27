@@ -111,14 +111,6 @@ function broadcast_dashboard_form($form_state) {
 
   //drupal_set_message(t('To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.'), 'status', FALSE);
 
-  $form['broadcast_dashboard_active'] = array(
-    '#type' => "checkbox",
-    '#title' => t('Activate Broadcast'),
-    '#return_value' => 1,
-    '#default_value' => variable_get('broadcast_dashboard_active', 0),
-    '#description' => t('When activated, the selected message will be broadcast on the website.'),
-  );
-
   function broadcast_dashboard_get_messages_selector($element) {
   if ($element == "" || is_null($element)) {
     $element = "bd_id";
@@ -375,6 +367,15 @@ function broadcast_dashboard_form($form_state) {
   // Include Preview Javascript file
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview.js',
+  );
+
+  // Activation toggle
+  $form['broadcast_dashboard_active'] = array(
+    '#type' => "checkbox",
+    '#title' => t('Activate Broadcast'),
+    '#return_value' => 1,
+    '#default_value' => variable_get('broadcast_dashboard_active', 0),
+    '#description' => t('When activated, the selected message will be broadcast on the website.'),
   );
 
   // Preview button
