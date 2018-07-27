@@ -699,6 +699,12 @@ function broadcast_dashboard_settings_form($form_state) {
 
   $default_title = t('Select a message');
 
+  // Include Javascript
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
+    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
+  );
+
   if (broadcast_dashboard_has_rows()) {
 
     // START Update Message Block
@@ -728,12 +734,6 @@ function broadcast_dashboard_settings_form($form_state) {
           ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
         ),
       ),*/
-    );
-
-    // Include Javascript
-    $form['#attached']['js'] = array(
-      drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
-      drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
     );
 
     // Custom message editor
