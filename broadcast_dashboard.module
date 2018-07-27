@@ -917,7 +917,7 @@ function broadcast_dashboard_settings_form($form_state) {
     $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_submit'] = array(
       '#name' => 'submit_add_message',
       '#type' => 'submit',
-      '#value' => t('Update message'),
+      '#value' => t('Add message'),
       '#submit' => array('broadcast_dashboard_settings_add'),
     );
 
