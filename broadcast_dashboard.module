@@ -729,9 +729,10 @@ function broadcast_dashboard_settings_form($form_state) {
       ),*/
     );
 
-    // Include value grab Javascript file
+    // Include Javascript
     $form['#attached']['js'] = array(
       drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
+      drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
     );
 
     // Custom message editor
@@ -902,11 +903,6 @@ function broadcast_dashboard_settings_form($form_state) {
         ":input[name='broadcast_dashboard_settings_add_color']" => array("value" => 'hex')),
     ),
   );
-
-  // Add preview include
-  /*$form['#attached']['js'] = array(
-    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
-  );*/
 
   // Preview button
   $form['broadcast_dashboard_settings_add_msg']['broadcast_dashboard_settings_add_preview'] = array(
