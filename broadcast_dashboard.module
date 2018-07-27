@@ -177,8 +177,8 @@ function broadcast_dashboard_form($form_state) {
 
   $form['broadcast_dashboard_custom_message'] = array (
     '#type' => 'textarea',
-    '#default_value' => variable_get('broadcast_dashboard_custom_message_entered', 'Broadcast Dashboard Custom Message'),
-    '#title' => t('Broadcast Dashboard Custom Message'),
+    '#default_value' => variable_get('broadcast_dashboard_custom_message_entered'),
+    '#title' => t('Custom Message'),
     '#description' => t('Custom message to appear in place of pre-written notification text.'),
     '#size' => 60,
     '#maxlength' => 255,
