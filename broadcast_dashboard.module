@@ -1035,7 +1035,7 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
     $query->condition('bd_id',$current_id);
     $query->fields(
       array(
-        'bd_msg_title' => $new_name;
+        'bd_msg_title' => $new_name,
         'bd_msg_text' => $new_msg,
       )
     );
