@@ -18,17 +18,18 @@
 		var selector = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-select');
 		var id = selector.value;
 		var bd_text_field = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
-		var hidden_text = (document.getElementsByName('broadcast_dashboard_settings_update_msg_msg_text_' + id)).value;
+		var get_hidden_text = document.getElementsByName('broadcast_dashboard_settings_update_msg_msg_text_' + id);
+		var hidden_text = get_hidden_text.value;
 
 		console.log(id);
 		console.log(hidden_text);
 
-		bd_text_field.value = hidden_text.value;
+		bd_text_field.value = hidden_text;
 
 		selector.onchange = function(){
 			id = selector.value;
-			hidden_text = (document.getElementsByName('broadcast_dashboard_settings_update_msg_msg_text_' + id)).value;
-			bd_text_field.value = hidden_text.value;
+			hidden_text = get_hidden_text.value;
+			bd_text_field.value = hidden_text;
 		}
 	});
 });
