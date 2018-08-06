@@ -1025,7 +1025,7 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   // Check if message text is blank
-  //if (!empty($form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'])) {
+  if (!empty($form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'])) {
     #$current_id = $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_select']];
     /*$current_id = $form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'];
     $new_name = $form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_name_edit'];
@@ -1061,7 +1061,7 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
       )
     );
     $results = $query->execute();
-  //}
+  }
 
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
