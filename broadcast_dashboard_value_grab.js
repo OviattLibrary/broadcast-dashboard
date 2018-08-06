@@ -6,7 +6,7 @@
  */
  jQuery(function ($) {
 	$(document).ready(function() {
-		var input = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
+		/*var input = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
 		var selector = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-select');
 
 		// Added in so textarea is populated on page load
@@ -14,6 +14,15 @@
 
 		selector.onchange = function(){
 		     input.value = this.value;
+		}*/
+		var id = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-select');
+		var bd_text_field = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
+		var hidden_text = document.getElementById('broadcast_dashboard_settings_update_msg_msg_text_' + id);
+
+		bd_text_field.value = hidden_text.value;
+
+		id.onchange = function(){
+			bd_text_field.value = hidden_text.value;
 		}
 	});
 });
