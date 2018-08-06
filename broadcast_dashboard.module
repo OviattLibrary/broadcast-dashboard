@@ -1049,7 +1049,7 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
     echo $new_name + "\n";
     echo $new_msg + "\n";*/
 
-    die();
+    /*die();*/
 
     // Update query
     $query = db_update('broadcast_dashboard');
