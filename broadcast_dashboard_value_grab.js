@@ -23,12 +23,12 @@
 		console.log(id);
 		console.log(hidden_text);
 
-		bd_text_field.value = hidden_text.value;
+		bd_text_field.value = hidden_text;
 
 		selector.onchange = function(){
 			id = selector.value;
 			hidden_text = document.getElementsByName('broadcast_dashboard_settings_update_msg_msg_text_' + id)[0].value;
-			bd_text_field.value = hidden_text.value;
+			bd_text_field.value = hidden_text;
 		}
 	});
 });
