@@ -726,7 +726,7 @@ function broadcast_dashboard_settings_form($form_state) {
       '#type' => 'select',
       '#title' => t('Messages'),
       '#default_value' => $default_title,
-      '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
+      '#options' => broadcast_dashboard_get_messages("bd_id"),
       '#description' => t('Select a custom message to update.'),
       '#required' => FALSE,
       /*'#states' => array(
@@ -735,6 +735,68 @@ function broadcast_dashboard_settings_form($form_state) {
         ),
       ),*/
     );
+
+    /** *********************** **
+   ** SECTION FOR HIDDEN VALS **
+   ** *********************** **/
+
+  // Dynamically pre-insert values of pre-written messages into page
+
+  /** HIDDEN COLOR ELEMENTS **/
+
+  // Get values for loop
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  // For each color element in the table, create a hidden element
+  while ($row = $results->fetch(PDO::FETCH_BOTH)) {
+    //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
+
+    if (!empty($row["bd_clr_class"])) {
+      $form['broadcast_dashboard_settings_update_msg_clr_class_' . $row["bd_id"]] = array(
+        '#type' => 'hidden',
+        '#title' => t('Message Color Class'),
+        '#default_value' => $row["bd_clr_class"],
+        '#description' => t('The color class of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
+    } else if (!empty($row["bd_clr_hex"])) {
+      $form['broadcast_dashboard_settings_update_msg_clr_hex_' . $row["bd_id"]] = array(
+        '#type' => 'hidden',
+        '#title' => t('Message Color Hex'),
+        '#default_value' => $row["bd_clr_hex"],
+        '#description' => t('The hex color of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
+    }
+  }
+
+  /** HIDDEN MESSAGE TEXT **/
+
+  // Get values for loop
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_text'));
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  // For each message element in the table, create a hidden element
+  while ($row = $results->fetch(PDO::FETCH_BOTH)) {
+    //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
+
+    $form['broadcast_dashboard_settings_update_msg_msg_text_' . $row["bd_id"]] = array(
+        '#type' => 'hidden',
+        '#title' => t('Message Text Values'),
+        '#default_value' => $row["bd_msg_text"],
+        '#description' => t('The message text of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
+  }
+
+  /** ********************** **
+   ** END HIDDEN VAL SECTION **
+   ** ********************** **/
 
     // Custom message editor
     $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'] = array(
