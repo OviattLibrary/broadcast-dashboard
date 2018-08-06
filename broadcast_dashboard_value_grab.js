@@ -19,6 +19,8 @@
 		var bd_text_field = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
 		var hidden_text = document.getElementById('broadcast_dashboard_settings_update_msg_msg_text_' + id);
 
+		console.log(hidden_text);
+
 		bd_text_field.value = hidden_text.value;
 
 		id.onchange = function(){
