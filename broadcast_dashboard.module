@@ -1031,6 +1031,8 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
     $new_name = $form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_name_edit'];
     $new_msg = $form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_edit'];*/
 
+    var_dump($form_state);
+
     echo $form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'];
 
     $current_id = $form_state['values']['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'];
