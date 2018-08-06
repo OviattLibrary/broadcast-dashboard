@@ -1026,15 +1026,17 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
 
   // Check if message text is blank
   if (!empty($form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'])) {
-    $current_title = $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_select']];
-    $current_msg = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'];
+    $current_id = $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_select']];
+    $new_name = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_name_edit'];
+    $new_msg = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'];
 
     // Update query
     $query = db_update('broadcast_dashboard');
-    $query->condition('bd_msg_title',$current_title);
+    $query->condition('bd_id',$current_id);
     $query->fields(
       array(
-        'bd_msg_text' => $current_msg,
+        'bd_msg_title' => $new_name;
+        'bd_msg_text' => $new_msg,
       )
     );
     $results = $query->execute();
