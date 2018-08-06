@@ -6,15 +6,6 @@
  */
  jQuery(function ($) {
 	$(document).ready(function() {
-		/*var input = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
-		var selector = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-select');
-
-		// Added in so textarea is populated on page load
-		input.value = selector.value;
-
-		selector.onchange = function(){
-		     input.value = this.value;
-		}*/
 		var selector = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-select');
 		var id = selector.value;
 		var bd_text_field = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-edit');
