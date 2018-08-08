@@ -726,7 +726,7 @@ function broadcast_dashboard_settings_form($form_state) {
       '#type' => 'select',
       '#title' => t('Messages'),
       '#default_value' => $default_title,
-      '#options' => broadcast_dashboard_get_messages("bd_msg_text"),
+      '#options' => broadcast_dashboard_get_messages("bd_id"),
       '#description' => t('Select a custom message to update.'),
       '#required' => FALSE,
       /*'#states' => array(
@@ -734,6 +734,86 @@ function broadcast_dashboard_settings_form($form_state) {
           ':input[name="data_set"]' => array('value' => 'broadcast_dashboard'),
         ),
       ),*/
+    );
+
+    /** *********************** **
+     ** SECTION FOR HIDDEN VALS **
+     ** *********************** **/
+
+    // Dynamically pre-insert values of pre-written messages into page
+
+    /** HIDDEN COLOR ELEMENTS **/
+
+    // Get values for loop
+    $query = db_select('broadcast_dashboard');
+    $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_title', 'bd_clr_class', 'bd_clr_hex'));
+    $query->orderBy('bd_id', 'ASC');
+    $results = $query->execute();
+
+    // For each color element in the table, create a hidden element
+    while ($row = $results->fetch(PDO::FETCH_BOTH)) {
+      //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
+
+      $form['broadcast_dashboard_settings_update_msg_title_' . $row["bd_id"]] = array(
+        '#type' => 'hidden',
+        '#title' => t('Message Name'),
+        '#default_value' => $row["bd_msg_title"],
+        '#description' => t('The name of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
+
+      if (!empty($row["bd_clr_class"])) {
+        $form['broadcast_dashboard_settings_update_msg_clr_class_' . $row["bd_id"]] = array(
+          '#type' => 'hidden',
+          '#title' => t('Message Color Class'),
+          '#default_value' => $row["bd_clr_class"],
+          '#description' => t('The color class of the selected pre-written message ID' . $row["bd_id"]),
+          '#required' => FALSE,
+        );
+      } else if (!empty($row["bd_clr_hex"])) {
+        $form['broadcast_dashboard_settings_update_msg_clr_hex_' . $row["bd_id"]] = array(
+          '#type' => 'hidden',
+          '#title' => t('Message Color Hex'),
+          '#default_value' => $row["bd_clr_hex"],
+          '#description' => t('The hex color of the selected pre-written message ID' . $row["bd_id"]),
+          '#required' => FALSE,
+        );
+      }
+    }
+
+    /** HIDDEN MESSAGE TEXT **/
+
+    // Get values for loop
+    $query = db_select('broadcast_dashboard');
+    $query->fields('broadcast_dashboard', array('bd_id', 'bd_msg_text'));
+    $query->orderBy('bd_id', 'ASC');
+    $results = $query->execute();
+
+    // For each message element in the table, create a hidden element
+    while ($row = $results->fetch(PDO::FETCH_BOTH)) {
+      //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
+
+      $form['broadcast_dashboard_settings_update_msg_msg_text_' . $row["bd_id"]] = array(
+          '#type' => 'hidden',
+          '#title' => t('Message Text Values'),
+          '#default_value' => $row["bd_msg_text"],
+          '#description' => t('The message text of the selected pre-written message ID' . $row["bd_id"]),
+          '#required' => FALSE,
+        );
+    }
+
+    /** ********************** **
+     ** END HIDDEN VAL SECTION **
+     ** ********************** **/
+
+    // Name of message editor
+    $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_name_edit'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Message Name'),
+      //'#default_value' => broadcast_dashboard_get_message_text($arg),
+      '#default_value' => NULL,
+      '#description' => t('The name used to identify the message.'),
+      '#required' => TRUE,
     );
 
     // Custom message editor
@@ -745,6 +825,46 @@ function broadcast_dashboard_settings_form($form_state) {
       '#description' => t('The text that will be displayed when the selected message is turned on.'),
       '#required' => TRUE,
     );
+
+    $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_color'] = array(
+    '#type' => 'radios',
+    '#title' => t('Message Color'),
+    '#options' => array(
+      'class' => t('CSS Class'),
+      'hex' => t('Hex Code'),
+    ),
+    '#description' => t('Select how to set the message\'s background color.'),
+    '#required' => FALSE,
+    '#default_value' => 'class',
+  );
+
+  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_css_class'] = array(
+    '#type' => 'textfield',
+    '#title' => t('CSS Class'),
+    '#default_value' => NULL,
+    '#description' => t('Classes that will be added to this message\'s display.'),
+    '#required' => FALSE,
+    '#states' => array(
+      "visible" => array(
+        ":input[name='broadcast_dashboard_settings_update_color']" => array("value" => 'class')),
+      "required" => array(
+        ":input[name='broadcast_dashboard_settings_update_color']" => array("value" => 'class')),
+    ),
+  );
+
+  $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_hex_code'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Hex Code'),
+    '#default_value' => NULL,
+    '#description' => t('Color hex code that will be added to this message\'s display. Example: #ffffff'),
+    '#required' => FALSE,
+    '#states' => array(
+      "visible" => array(
+        ":input[name='broadcast_dashboard_settings_update_color']" => array("value" => 'hex')),
+      "required" => array(
+        ":input[name='broadcast_dashboard_settings_update_color']" => array("value" => 'hex')),
+    ),
+  );
 
     // Submit button
     $form['broadcast_dashboard_settings_update_msg']['update_existing_message_submit'] = array(
@@ -946,15 +1066,21 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
 
   // Check if message text is blank
   if (!empty($form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'])) {
-    $current_title = $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select']['#options'][$form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_select']];
-    $current_msg = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'];
+    $current_id = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_select'];
+    $new_name = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_name_edit'];
+    $new_msg = $form_state['values']['broadcast_dashboard_settings_update_msg_custom_message_edit'];
+    $new_class = $form_state['values']['broadcast_dashboard_settings_update_css_class'];
+    $new_hex = $form_state['values']['broadcast_dashboard_settings_update_hex_code'];
 
     // Update query
     $query = db_update('broadcast_dashboard');
-    $query->condition('bd_msg_title',$current_title);
+    $query->condition('bd_id',$current_id);
     $query->fields(
       array(
-        'bd_msg_text' => $current_msg,
+        'bd_msg_title' => $new_name,
+        'bd_msg_text' => $new_msg,
+        'bd_clr_class' => $new_class,
+        'bd_clr_hex' => $new_hex,
       )
     );
     $results = $query->execute();

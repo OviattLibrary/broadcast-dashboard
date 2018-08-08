@@ -62,12 +62,12 @@ jQuery(function($) {
 	// Clear custom color text if another value is selected
 	$('input[type=radio][name=broadcast_dashboard_custom_color]').on('change', function(){
     switch($(this).val()){
-        case 'class' :
-          $('input[name="broadcast_dashboard_custom_color_hex"]').val('');
-          break;
-        case 'hex' :
-          $('input[name="broadcast_dashboard_custom_color_css"]').val('');
-          break;
+      case 'class' :
+        $('input[name="broadcast_dashboard_custom_color_hex"]').val('');
+        break;
+      case 'hex' :
+        $('input[name="broadcast_dashboard_custom_color_css"]').val('');
+        break;
     }            
 	});
 
