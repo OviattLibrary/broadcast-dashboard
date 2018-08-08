@@ -15,8 +15,8 @@
 		var bd_name_field = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-name-edit');
 		var hidden_name = document.getElementsByName('broadcast_dashboard_settings_update_msg_title_' + id)[0].value;
 
-		var br_clr_class_select = document.getElementById('edit-broadcast-dashboard-settings-update-color-class');
-		var br_clr_hex_select = document.getElementById('edit-broadcast-dashboard-settings-update-color-hex');
+		var bd_clr_class_select = document.getElementById('edit-broadcast-dashboard-settings-update-color-class');
+		var bd_clr_hex_select = document.getElementById('edit-broadcast-dashboard-settings-update-color-hex');
 		var bd_clr_class_field = document.getElementById('edit-broadcast-dashboard-settings-update-css-class');
 		var bd_clr_hex_field = document.getElementById('edit-broadcast-dashboard-settings-update-hex-code');
 		var hidden_class = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_class_' + id)[0];
@@ -25,8 +25,8 @@
 		console.log(id);
 		console.log(hidden_name);
 		console.log(hidden_text);
-		console.log(hidden_class);
-		console.log(hidden_hex);
+		console.log(hidden_class.value);
+		console.log(hidden_hex.value);
 
 		bd_name_field.value = hidden_name;
 		bd_msg_field.value = hidden_text;
