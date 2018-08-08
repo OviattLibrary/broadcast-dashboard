@@ -363,6 +363,12 @@ function broadcast_dashboard_form($form_state) {
 function broadcast_dashboard_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
+  echo "<pre>";
+  print_r($form_state)
+  echo "</pre>";
+
+  die();
+
   // Active Check
   /*$current_active = $form_state['values']['broadcast_dashboard_active'];
   $previous_active = variable_get('broadcast_dashboard_active');*/
@@ -404,6 +410,10 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
       variable_set('broadcast_dashboard_message_prew_hex', $set_prew_hex);
       variable_set('broadcast_dashboard_message_prew_class', null); //unset unused
     }
+
+    // Watchdog log for pre-set message set
+    //$log_message_name = $form_state['values']['broadcast_dashboard_message']
+    //watchdog("broadcast_dashboard", "Broadcast Dashboard ")
 
   } else if ($set_msg_id == "custom_msg") {
     // Is a custom msg
