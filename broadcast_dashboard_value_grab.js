@@ -63,13 +63,13 @@
 			console.log(hidden_text);
 
 			if (hidden_class) {
-				hidden_hex.value = "";
+				hidden_hex = "";
 				console.log(hidden_class.value);
 				bd_clr_class_field.value = hidden_class.value;
 				bd_clr_class_select.checked = true;
 				bd_clr_hex_select.checked = false;
 			} else if (hidden_hex) {
-				hidden_class.value = "";
+				hidden_class = "";
 				console.log(hidden_hex.value);
 				bd_clr_hex_field.value = hidden_hex.value;
 				bd_clr_hex_select.checked = true;
