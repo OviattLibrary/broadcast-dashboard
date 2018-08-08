@@ -32,11 +32,11 @@
 		bd_msg_field.value = hidden_text;
 
 		if (hidden_class) {
-			bd_clr_class_field = hidden_class.value();
+			bd_clr_class_field = hidden_class.value;
 			bd_clr_class_select.checked = true;
 			bd_clr_hex_select.checked = false;
 		} else if (hidden_hex) {
-			bd_clr_hex_field = hidden_hex.value();
+			bd_clr_hex_field = hidden_hex.value;
 			bd_clr_hex_select.checked = true;
 			bd_clr_class_select.checked = false;
 		}
