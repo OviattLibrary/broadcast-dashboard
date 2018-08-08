@@ -76,15 +76,15 @@
 				bd_clr_class_field.value = "";
 				bd_clr_hex_field.value = "";
 				console.log(hidden_class.value);
-				bd_clr_class_field.value = hidden_class.value;
 				jQuery('#edit-broadcast-dashboard-settings-update-color-class').trigger('click').trigger('change');
+				bd_clr_class_field.value = hidden_class.value;
 			} else if (hidden_hex) {
 				hidden_class = "";
 				bd_clr_class_field.value = "";
 				bd_clr_hex_field.value = "";
 				console.log(hidden_hex.value);
-				bd_clr_hex_field.value = hidden_hex.value;
 				jQuery('#edit-broadcast-dashboard-settings-update-color-hex').trigger('click').trigger('change');
+				bd_clr_hex_field.value = hidden_hex.value;
 			}
 		}
 	});
