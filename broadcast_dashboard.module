@@ -364,7 +364,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
   echo "<pre>";
-  print_r($form_state)
+  print_r($form_state);
   echo "</pre>";
 
   die();
