@@ -92,10 +92,10 @@
 	$('input[type=radio][name=broadcast_dashboard_settings_update_color]').on('change', function(){
     switch($(this).val()){
         case 'class' :
-          $('input[name="broadcast_dashboard_settings_update_color"]').val('');
+          $('input[name="broadcast_dashboard_settings_update_css_class"]').val('');
           break;
         case 'hex' :
-          $('input[name="edit-broadcast-dashboard-settings-update-color-hex"]').val('');
+          $('input[name="broadcast_dashboard_settings_update_hex_code"]').val('');
           break;
     }            
 	});
