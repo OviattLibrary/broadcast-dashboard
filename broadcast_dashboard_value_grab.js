@@ -6,6 +6,9 @@
  */
  jQuery(function ($) {
 	$(document).ready(function() {
+		var hidden_class;
+		var hidden_hex;
+
 		var selector = document.getElementById('edit-broadcast-dashboard-settings-update-msg-custom-message-select');
 		var id = selector.value;
 
@@ -19,8 +22,8 @@
 		var bd_clr_hex_select = document.getElementById('edit-broadcast-dashboard-settings-update-color-hex');
 		var bd_clr_class_field = document.getElementById('edit-broadcast-dashboard-settings-update-css-class');
 		var bd_clr_hex_field = document.getElementById('edit-broadcast-dashboard-settings-update-hex-code');
-		var hidden_class = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_class_' + id)[0];
-		var hidden_hex = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_hex_' + id)[0];
+		hidden_class = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_class_' + id)[0];
+		hidden_hex = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_hex_' + id)[0];
 
 		console.log(id);
 		console.log(hidden_name);
