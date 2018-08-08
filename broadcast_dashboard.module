@@ -246,57 +246,6 @@ function broadcast_dashboard_form($form_state) {
 
   // Dynamically pre-insert values of pre-written messages into page
 
-  /*// Get number of rows
-  $result = db_select('broadcast_dashboard', 'bd_id')
-            ->fields('bd_id')
-            ->execute();
-  $num_of_rows = $result->rowCount();
-
-  /*** COLOR CLASS ***/
-
-  //Query DB for Rows
-  /*$query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class'));
-  $query->orderBy('bd_id', 'ASC');
-  $query->condition('bd_clr_hex', '');
-  $results = $query->execute();
-
-  //define rows
-  $clr_class_list = array();
-
-  //test if the results array has any values
-  if (is_array($results) || is_object($results)) {
-    foreach ($results as $result) {
-      $clr_class_list[$result->bd_id] = $result->bd_clr_class;
-    }
-  }
-
-  echo "<pre>";
-  print_r($clr_class_list);
-  echo "</pre>";
-
-  /*** HEX COLOR ***/
-
-  //Query DB for Rows
-  /*$query = db_select('broadcast_dashboard');
-  $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_hex'));
-  $query->orderBy('bd_id', 'ASC');
-  $query->condition('bd_clr_class', '');
-  $results = $query->execute();
-
-  //define rows
-  $clr_hex_list = array();
-
-  //test if the results array has any values
-  if (is_array($results) || is_object($results)) {
-    foreach ($results as $result) {
-      $clr_hex_list[$result->bd_id] = $result->bd_clr_hex;
-    }
-  }
-
-  echo "<pre>";
-  print_r($clr_hex_list);
-  echo "</pre>";*/
 
   /** HIDDEN COLOR ELEMENTS **/
 
