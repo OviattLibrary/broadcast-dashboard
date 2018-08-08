@@ -55,12 +55,18 @@
 			bd_name_field.value = hidden_name;
 			bd_msg_field.value = hidden_text;
 
+			console.log(id);
+			console.log(hidden_name);
+			console.log(hidden_text);
+
 			if (hidden_class) {
-				bd_clr_class_field = hidden_class.value;
+				console.log(hidden_class.value);
+				bd_clr_class_field.value = hidden_class.value;
 				bd_clr_class_select.checked = true;
 				bd_clr_hex_select.checked = false;
 			} else if (hidden_hex) {
-				bd_clr_hex_field = hidden_hex.value;
+				console.log(hidden_hex.value);
+				bd_clr_hex_field.value = hidden_hex.value;
 				bd_clr_hex_select.checked = true;
 				bd_clr_class_select.checked = false;
 			}
