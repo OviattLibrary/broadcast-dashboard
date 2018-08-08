@@ -27,14 +27,6 @@ function broadcast_dashboard_schema() {
 				'not null' => TRUE,
 				'unsigned' => TRUE,
 			),
-			'bd_msg_type' => array(
-				'description' => 'Logic check to see if this entry is a message.',
-				'type' => 'int',
-			),
-			'bd_clr_type' => array(
-				'description' => 'Logic check to see if this color is a message.',
-				'type' => 'int',
-			),
 			'bd_msg_title' => array(
 				'description' => 'Title of a message, to be displayed in short context menus.',
 				'type' => 'text',
@@ -43,15 +35,11 @@ function broadcast_dashboard_schema() {
 				'description' => 'Full default message, to be displayed on site.',
 				'type' => 'text',
 			),
-			'bd_clr_name' => array(
-				'description' => 'Name of a color used, to be displayed in short context menus.',
-				'type' => 'text',
-			),
 			'bd_clr_class' => array(
 				'description' => 'Class name for a message display color.',
 				'type' => 'text',
 			),
-			'bd_clr_class' => array(
+			'bd_clr_hex' => array(
 				'description' => 'Hex code for a message display color.',
 				'type' => 'text',
 				'size' => 'small',
