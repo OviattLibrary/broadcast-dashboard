@@ -58,6 +58,9 @@
 			bd_name_field.value = hidden_name;
 			bd_msg_field.value = hidden_text;
 
+			hidden_class = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_class_' + id)[0];
+			hidden_hex = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_hex_' + id)[0];
+
 			console.log(id);
 			console.log(hidden_name);
 			console.log(hidden_text);
