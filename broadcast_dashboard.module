@@ -385,7 +385,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   if ($set_msg_id != "custom_msg") {
     // Is not a custom message
     variable_set('broadcast_dashboard_custom_message_entered', null);
-    variable_set('broadcast_dashboard_message_prew_class', null);
+    variable_set('broadcast_dashboard_message_cust_class', null);
     variable_set('broadcast_dashboard_message_cust_hex', null);
 
     // Get pre-written message
