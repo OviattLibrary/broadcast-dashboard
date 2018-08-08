@@ -37,7 +37,7 @@
 			bd_clr_class_field.value = "";
 			bd_clr_hex_field.value = "";
 			bd_clr_class_field.value = hidden_class.value;
-			jQuery('#edit-broadcast-dashboard-settings-update-color-class').trigger('click').trigger('change');
+			//jQuery('#edit-broadcast-dashboard-settings-update-color-class').trigger('click').trigger('change');
 			/*bd_clr_class_select.checked = true;
 			bd_clr_hex_select.checked = false;*/
 		} else if (hidden_hex) {
@@ -45,7 +45,7 @@
 			bd_clr_class_field.value = "";
 			bd_clr_hex_field.value = "";
 			bd_clr_hex_field.value = hidden_hex.value;
-			jQuery('#edit-broadcast-dashboard-settings-update-color-hex').trigger('click').trigger('change');
+			//jQuery('#edit-broadcast-dashboard-settings-update-color-hex').trigger('click').trigger('change');
 			/*bd_clr_hex_select.checked = true;
 			bd_clr_class_select.checked = false;*/
 		}
