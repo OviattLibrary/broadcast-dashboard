@@ -59,6 +59,9 @@
 			console.log(hidden_name);
 			console.log(hidden_text);
 
+			hidden_class.value = "";
+			hidden_hex.value = "";
+
 			if (hidden_class) {
 				console.log(hidden_class.value);
 				bd_clr_class_field.value = hidden_class.value;
