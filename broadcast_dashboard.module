@@ -496,30 +496,6 @@ function broadcast_dashboard_test_display() {
 }
 
 /**
- * Global function to set alert color classes in page_build()
- */
-function color_setter($message_id) {
-
-  $result = db_query('SELECT bd_id, bd_clr_class, bd_clr_hex FROM broadcast_dashboard WHERE bd_id = :message_id', array(':message_id' => $message_id))->fetchAssoc(); 
-
-  $clr_class = $result[bd_clr_class];
-  $clr_hex = $result[bd_clr_hex];
-
-  if (empty($clr_hex)) {
-    return t($clr_class);
-  } else if (empty($clr_class)) {
-    return t($clr_hex);
-  } else {
-    return t($clr_class);
-  }
-
-  //drupal_set_message(t('The output for result is: @var', array('@var' => $value)), 'status');
-
-  //return t($value);
-}
-
-
-/**
  * Implements hook_page_build().
  */
 
