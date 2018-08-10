@@ -519,7 +519,7 @@ function broadcast_dashboard_page_build(&$page) {
     if (isset($preset_clr_class)) {
       $page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '" role="alert">' . $preset_msg . " (Posted on: " . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
     } else if (isset($preset_clr_hex)) {
-      $page[$region]['system_main']['#markup'] = '<div role="alert" style="background-color: ' . $preset_clr_hex . '; margin-bottom: 20px;">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . $page[$region]['system_main']['#markup'] . '</div>';
+      $page[$region]['system_main']['#markup'] = '<div class="well" role="alert" style="background-color: ' . $preset_clr_hex . '; margin-bottom: 20px;">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . $page[$region]['system_main']['#markup'] . '</div>';
     }
   } else if (($active == 1) && ($msg_id == "custom_msg")) { // end no custom msg
     // For custom alerts
@@ -527,7 +527,7 @@ function broadcast_dashboard_page_build(&$page) {
      if (isset($cust_msg_clr_class)) {
       $page[$region]['system_main']['#markup'] = '<div class="' . $cust_msg_clr_class . '" role="alert">' . $cust_msg . " (Posted on: " . $msg_date . ')' . $page[$region]['system_main']['#markup'] . '</div>';
     } else if (isset($cust_msg_clr_hex)) {
-      $page[$region]['system_main']['#markup'] = '<div role="alert" style="background-color: ' . $cust_msg_clr_hex . '; margin-bottom: 20px;">' . $cust_msg . " (Posted on: " . $msg_date . ')</div>' . $page[$region]['system_main']['#markup'] . '</div>';
+      $page[$region]['system_main']['#markup'] = '<div class="well" role="alert" style="background-color: ' . $cust_msg_clr_hex . '; margin-bottom: 20px;">' . $cust_msg . " (Posted on: " . $msg_date . ')</div>' . $page[$region]['system_main']['#markup'] . '</div>';
     }
   } // end custom msg
 
