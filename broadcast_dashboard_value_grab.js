@@ -25,10 +25,6 @@
 		hidden_class = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_class_' + id)[0];
 		hidden_hex = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_hex_' + id)[0];
 
-		console.log(id);
-		console.log(hidden_name);
-		console.log(hidden_text);
-
 		bd_name_field.value = hidden_name;
 		bd_msg_field.value = hidden_text;
 
@@ -37,17 +33,11 @@
 			bd_clr_class_field.value = "";
 			bd_clr_hex_field.value = "";
 			bd_clr_class_field.value = hidden_class.value;
-			//jQuery('#edit-broadcast-dashboard-settings-update-color-class').trigger('click').trigger('change');
-			/*bd_clr_class_select.checked = true;
-			bd_clr_hex_select.checked = false;*/
 		} else if (hidden_hex) {
 			console.log(hidden_hex.value);
 			bd_clr_class_field.value = "";
 			bd_clr_hex_field.value = "";
 			bd_clr_hex_field.value = hidden_hex.value;
-			//jQuery('#edit-broadcast-dashboard-settings-update-color-hex').trigger('click').trigger('change');
-			/*bd_clr_hex_select.checked = true;
-			bd_clr_class_select.checked = false;*/
 		}
 
 		selector.onchange = function(){
@@ -66,10 +56,6 @@
 
 			hidden_class = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_class_' + id)[0];
 			hidden_hex = document.getElementsByName('broadcast_dashboard_settings_update_msg_clr_hex_' + id)[0];
-
-			console.log(id);
-			console.log(hidden_name);
-			console.log(hidden_text);
 
 			if (hidden_class) {
 				hidden_hex = "";
@@ -91,12 +77,12 @@
 
 	$('input[type=radio][name=broadcast_dashboard_settings_update_color]').on('change', function(){
     switch($(this).val()){
-        case 'class' :
-          $('input[name="broadcast_dashboard_settings_update_css_class"]').val('');
-          break;
-        case 'hex' :
-          $('input[name="broadcast_dashboard_settings_update_hex_code"]').val('');
-          break;
-    }            
-	});
+	    case 'class' :
+	      $('input[name="broadcast_dashboard_settings_update_css_class"]').val('');
+	      break;
+	    case 'hex' :
+	      $('input[name="broadcast_dashboard_settings_update_hex_code"]').val('');
+	      break;
+    } 
+  });
 });

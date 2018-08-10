@@ -45,7 +45,6 @@ function broadcast_dashboard_menu() {
   );
 
   return $items;
-
 }
 
 /**
@@ -69,12 +68,6 @@ function broadcast_dashboard_permission() {
  */
 
 function broadcast_dashboard_forms($form_id, $args) {
-
-  // if ($form_id == ...)
-  /*store_color_values();
-  print_r(color_setter(3));
-  die();*/
-
   // Simply reroute the (non-existing) $form_id
   $forms['broadcast_dashboard_form'] = array(
     'callback' => 'broadcast_dashboard_form',
@@ -246,7 +239,6 @@ function broadcast_dashboard_form($form_state) {
 
   // Dynamically pre-insert values of pre-written messages into page
 
-
   /** HIDDEN COLOR ELEMENTS **/
 
   // Get values for loop
@@ -363,12 +355,6 @@ function broadcast_dashboard_form($form_state) {
 function broadcast_dashboard_form_submit($form, &$form_state) {
   $form_has_errors = FALSE;
 
-  /*echo "<pre>";
-  print_r($form_state);
-  echo "</pre>";
-
-  die();*/
-
   // Active Check
   /*$current_active = $form_state['values']['broadcast_dashboard_active'];
   $previous_active = variable_get('broadcast_dashboard_active');*/
@@ -395,8 +381,6 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     variable_set('broadcast_dashboard_message_cust_hex', null);
 
     // Get pre-written message
-    /*$current_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' + $set_msg_id];
-    $previous_prew_msg = variable_get('broadcast_dashboard_message_prew');*/
     $set_prew_msg = $form_state['values']['broadcast_dashboard_msg_text_' . $set_msg_id];
     variable_set('broadcast_dashboard_message_prew', $set_prew_msg);
 
@@ -439,19 +423,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
       variable_set('broadcast_dashboard_message_cust_class', null); //unset unused
     }
 
-  } 
-
-  /* @TODO: Is this needed still post-refactor? */
-  /*if (!empty($form_state['values']['broadcast_dashboard_custom_message'])) {
-    $current_title = $form_state['values']['broadcast_dashboard_custom_message'];
-    $previous_title = variable_get('broadcast_dashboard_custom_message');
-      // prevents check_plain from double encoding a pre-existing string
-      if ($current_title != $previous_title) {
-        $set_title = check_plain($form_state['values']['broadcast_dashboard_custom_message']);
-        variable_set('broadcast_dashboard_custom_message',
-                   $set_title);
-      }
-  }*/
+  }
 
   // Set date and time message posted
   variable_set('broadcast_dashboard_date_message_posted', date("m/d/Y h:i:sa"));
@@ -521,7 +493,6 @@ function broadcast_dashboard_test_display() {
   print '<br>';
   $msg_date = date("m/d/Y h:i:sa");
   print $msg_date;
-
 }
 
 /**
@@ -553,13 +524,6 @@ function color_setter($message_id) {
  */
 
 function broadcast_dashboard_page_build(&$page) {
-
-//  print '<pre>';
-//  print_r($page);
-//  print '<pre>';
-
-//  dpm($page);
-
   $active = variable_get('broadcast_dashboard_active');
   $msg_id = variable_get('broadcast_dashboard_message');
   $preset_msg = variable_get('broadcast_dashboard_message_prew');
@@ -646,13 +610,6 @@ function broadcast_dashboard_has_rows() {
 }
 
 function broadcast_dashboard_settings_form($form_state) {
-
-  /*echo "<pre>";
-  print_r(broadcast_dashboard_get_messages("bd_msg_text"));
-  echo "</pre>";
-
-  die();*/
-
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
@@ -1137,14 +1094,4 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
     drupal_set_message(t('The message was not successfully added. Make sure that all required fields are completed and try again.'),'error');
   }
 
-}
-
-/**
- * Debug function for testing
- */
-function debug_to_console( $data ) {
-    $output = $data;
-    if ( is_array( $output ) )
-        $output = implode( ',', $output);
-    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
 }
