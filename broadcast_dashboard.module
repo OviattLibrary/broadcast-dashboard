@@ -391,13 +391,13 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
 
       // Watchdog log for pre-set message set
       $log_message_name = broadcast_dashboard_get_value($set_msg_id, "bd_msg_title");
-      watchdog("broadcast_dashboard", "Broadcast Dashboard %m message activated", array('%m' => $log_message_name, WATCHDOG_INFO));
+      watchdog("broadcast_dashboard", "%m message activated", array('%m' => $log_message_name, WATCHDOG_INFO));
     } else if ($set_active != "1") {
       // The message has been deactivated, log as such
 
       // Watchdog log for pre-set message set
       $log_message_name = broadcast_dashboard_get_value($set_msg_id, "bd_msg_title");
-      watchdog("broadcast_dashboard", "Broadcast Dashboard %m message deactivated", array('%m' => $log_message_name, WATCHDOG_INFO));
+      watchdog("broadcast_dashboard", "%m message deactivated", array('%m' => $log_message_name, WATCHDOG_INFO));
     }
 
   } else if ($set_msg_id == "custom_msg") {
@@ -422,6 +422,20 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
       // Hex
       variable_set('broadcast_dashboard_message_cust_hex', $set_cust_hex);
       variable_set('broadcast_dashboard_message_cust_class', null); //unset unused
+    }
+
+    if ($set_active == "1") {
+      // The message has been activated, log as such
+
+      // Watchdog log for pre-set message set
+      $log_message_name = broadcast_dashboard_get_value($set_msg_id, "bd_msg_title");
+      watchdog("broadcast_dashboard", "Custom message activated", array(WATCHDOG_INFO));
+    } else if ($set_active != "1") {
+      // The message has been deactivated, log as such
+
+      // Watchdog log for pre-set message set
+      $log_message_name = broadcast_dashboard_get_value($set_msg_id, "bd_msg_title");
+      watchdog("broadcast_dashboard", "Custom message deactivated", array(WATCHDOG_INFO));
     }
 
   }
