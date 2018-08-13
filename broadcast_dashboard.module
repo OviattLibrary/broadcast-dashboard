@@ -563,8 +563,6 @@ function broadcast_dashboard_get_value($id, $element) {
     $element = "bd_msg_text";
   }
 
-  print_r($id . " " . $element);
-
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array($element));
@@ -580,12 +578,6 @@ function broadcast_dashboard_get_value($id, $element) {
       $value[$result->$element] = $result->$element;
     }
   }
-
-  echo "<pre>";
-  print_r($value);
-  echo "</pre>";
-
-  die();
 
   return $value[0];
 }
