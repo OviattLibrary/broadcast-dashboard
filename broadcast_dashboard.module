@@ -582,7 +582,7 @@ function broadcast_dashboard_get_value($id, $element) {
 
   echo "<pre>";
   print_r($value);
-  echo "</pre>"
+  echo "</pre>";
 
   die();
 
