@@ -387,7 +387,9 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     }
 
     // Watchdog log for pre-set message set
-    //$log_message_name = broadcast_dashboard_get_messages("bd_id");
+    $log_message_name = broadcast_dashboard_get_value($set_message_id, "bd_msg_text");
+    echo $log_message_name;
+    die();
     //watchdog("broadcast_dashboard", "Broadcast Dashboard ")
 
   } else if ($set_msg_id == "custom_msg") {
@@ -554,6 +556,37 @@ function broadcast_dashboard_get_messages($element) {
   }
 
   return $title_options;
+}
+
+function broadcast_dashboard_get_value($id, $element) {
+  if ($element == "" || is_null($element)) {
+    $element = "bd_msg_text";
+  }
+
+  //Query DB for Rows
+  $query = db_select('broadcast_dashboard');
+  $query->fields('broadcast_dashboard', array($element));
+  $query->condition('bd_id',$id);
+  $query->orderBy('bd_id', 'ASC');
+  $results = $query->execute();
+
+  echo "<pre>";
+  print_r($results);
+  echo "</pre>";
+
+  die();
+
+  //define rows
+  $value = array();
+
+  //test if the results array has any values
+  if (is_array($results) || is_object($results)) {
+    foreach ($results as $result) {
+      $value[$result->$element] = $result->bd_msg_title;
+    }
+  }
+
+  return $value;
 }
 
 /**
