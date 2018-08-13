@@ -143,8 +143,6 @@ function broadcast_dashboard_form($form_state) {
     '#description' => t('Select a pre-written message to broadcast, or input a custom one.'),
     '#required' => FALSE,
     '#states' => array(
-    "visible" => array(
-      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
       "required" => array(
       "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
     ),
@@ -158,8 +156,6 @@ function broadcast_dashboard_form($form_state) {
     '#description' => t('Select a location to display the message.'),
     '#required' => FALSE,
     '#states' => array(
-    "visible" => array(
-      "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
       "required" => array(
       "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
     ),
@@ -174,10 +170,8 @@ function broadcast_dashboard_form($form_state) {
     '#maxlength' => 255,
     '#states' => array(
       "visible" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
     ),
   );
@@ -194,10 +188,8 @@ function broadcast_dashboard_form($form_state) {
     '#default_value' => 'class',
     '#states' => array(
       "visible" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
     ),
   );
@@ -210,11 +202,9 @@ function broadcast_dashboard_form($form_state) {
     '#required' => FALSE,
     '#states' => array(
       "visible" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'class')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'class')),
     ),
@@ -228,11 +218,9 @@ function broadcast_dashboard_form($form_state) {
     '#required' => FALSE,
     '#states' => array(
       "visible" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
     ),
@@ -331,8 +319,6 @@ function broadcast_dashboard_form($form_state) {
     '#executes_submit_callback' => FALSE,
     '#attributes' => array('onclick' => "return (false);"),//array('onclick' => "runPreview('".$test_var."'); return (false);"),
     '#states' => array(
-      "visible" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
       "required" => array(
         "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
     ),
@@ -341,7 +327,7 @@ function broadcast_dashboard_form($form_state) {
   // Submit button
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Save Message'),
+    '#value' => t('Save'),
   );
 
   // Preview area
