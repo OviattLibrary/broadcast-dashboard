@@ -387,7 +387,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     }
 
     // Watchdog log for pre-set message set
-    $log_message_name = broadcast_dashboard_get_value($set_message_id, "bd_msg_text");
+    $log_message_name = broadcast_dashboard_get_value($set_message_id, "bd_msg_title");
     echo $log_message_name;
     die();
     //watchdog("broadcast_dashboard", "Broadcast Dashboard ")
@@ -566,8 +566,7 @@ function broadcast_dashboard_get_value($id, $element) {
   //Query DB for Rows
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array($element));
-  $query->condition('bd_id',$id);
-  $query->orderBy('bd_id', 'ASC');
+  $query->condition('bd_id', $id);
   $results = $query->execute();
 
   //define rows
@@ -586,7 +585,7 @@ function broadcast_dashboard_get_value($id, $element) {
 
   die();
 
-  return $value;
+  return $value[0];
 }
 
 /**
