@@ -574,12 +574,14 @@ function broadcast_dashboard_get_value($id, $element) {
 
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
+    $i = 0;
     foreach ($results as $result) {
-      $value[$result->$element] = $result->$element;
+      $value[$i] = $result->$element;
+      $i++;
     }
   }
 
-  print_r($value[0]); die();
+  print_r($value); die();
 
   return $value[0];
 }
