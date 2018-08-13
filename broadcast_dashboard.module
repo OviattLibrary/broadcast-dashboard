@@ -386,11 +386,19 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
       variable_set('broadcast_dashboard_message_prew_class', null); //unset unused
     }
 
-    // Watchdog log for pre-set message set
-    $log_message_name = broadcast_dashboard_get_value($set_msg_id, "bd_msg_title");
-    echo $log_message_name;
-    die();
-    //watchdog("broadcast_dashboard", "Broadcast Dashboard ")
+    if ($set_active == "1") {
+      // The message has been activated, log as such
+
+      // Watchdog log for pre-set message set
+      $log_message_name = broadcast_dashboard_get_value($set_msg_id, "bd_msg_title");
+      watchdog("broadcast_dashboard", "Broadcast Dashboard %m message activated", array('%m' => $log_message_name, WATCHDOG_INFO));
+    } else if ($set_active != "1") {
+      // The message has been deactivated, log as such
+
+      // Watchdog log for pre-set message set
+      $log_message_name = broadcast_dashboard_get_value($set_msg_id, "bd_msg_title");
+      watchdog("broadcast_dashboard", "Broadcast Dashboard %m message deactivated", array('%m' => $log_message_name, WATCHDOG_INFO));
+    }
 
   } else if ($set_msg_id == "custom_msg") {
     // Is a custom msg
