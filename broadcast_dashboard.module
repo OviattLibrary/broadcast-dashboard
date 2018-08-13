@@ -570,21 +570,21 @@ function broadcast_dashboard_get_value($id, $element) {
   $query->orderBy('bd_id', 'ASC');
   $results = $query->execute();
 
-  echo "<pre>";
-  print_r($results);
-  echo "</pre>";
-
-  die();
-
   //define rows
   $value = array();
 
   //test if the results array has any values
   if (is_array($results) || is_object($results)) {
     foreach ($results as $result) {
-      $value[$result->$element] = $result->bd_msg_title;
+      $value[$result->$element] = $result->$element;
     }
   }
+
+  echo "<pre>";
+  print_r($value);
+  echo "</pre>"
+
+  die();
 
   return $value;
 }
