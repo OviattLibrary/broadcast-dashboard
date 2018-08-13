@@ -55,7 +55,7 @@ function broadcast_dashboard_menu() {
     'type' => MENU_LOCAL_TASK,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('broadcast_dashboard_settings_form'),
-    'access arguments' => array('message broadcast dashboard'),
+    'access arguments' => array('configure broadcast dashboard'),
   );
 
   return $items;
