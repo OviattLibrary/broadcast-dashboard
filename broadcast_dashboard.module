@@ -44,7 +44,7 @@ function broadcast_dashboard_menu() {
     'type' => MENU_NORMAL_ITEM,
   );*/
 
-  $items['admin/config/system/broadcast_dashboard'] = array(
+  $items['admin/config/system/broadcast_dashboard/broadcast'] = array(
     'title' => 'Message Broadcast',
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'weight' => -10
