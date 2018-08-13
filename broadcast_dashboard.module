@@ -107,7 +107,7 @@ function broadcast_dashboard_form($form_state) {
   if(user_access('configure broadcast dashboard')) {
     $form['settings_markup'] = array(
       '#type' => 'markup',
-      '#markup' => t('<div id="settingsmarkup"><p>To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.</p></div>'),
+      '#markup' => t('<div id="settingsmarkup"><p>To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings tab</a>.</p></div>'),
     );
   } else {
     $form['settings_markup'] = array(
