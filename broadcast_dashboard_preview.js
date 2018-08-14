@@ -79,8 +79,8 @@ jQuery(function($) {
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
-		// Hex check for string
-		if (custom_clr_hex === "") {
+		// Hex check for not null
+		if (custom_clr_hex) {
 			console.log("There is a hex");
 			var firstCharacter = custom_clr_hex.substring(0, 1);
 
