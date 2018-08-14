@@ -27,8 +27,6 @@ jQuery(function($) {
 
 		current_id = $("#edit-broadcast-dashboard-message").val();
 
-		console.log(current_id + "\n");
-
 		// If the value isn't custom_msg, it's preset
 		if (current_id != "custom_msg") {
 			var text_id = 'broadcast_dashboard_msg_text_' + current_id;
@@ -37,11 +35,9 @@ jQuery(function($) {
 			if ( $("input[type='hidden'][name='broadcast_dashboard_clr_class_" + current_id + "']").length ) {
 				// Class
 				preset_clr_class = $("input[type='hidden'][name='broadcast_dashboard_clr_class_" + current_id + "']").attr('value');
-				console.log("Class: " + preset_clr_class);
 			} else if ( $("input[type='hidden'][name='broadcast_dashboard_clr_hex_" + current_id + "']").length ) {
 				// Hex
 				preset_clr_hex = $("input[type='hidden'][name='broadcast_dashboard_clr_hex_" + current_id + "']").attr('value');
-				console.log("Hex: " + preset_clr_hex);
 			}
 		} else {
 			// It's custom
@@ -89,23 +85,6 @@ jQuery(function($) {
 			}
 		}
 
-		/*if (!empty($add_hex)) {
-	    $firstCharacter = substr($add_hex, 0, 1);
-
-	    echo "Hex input: " . $add_hex . "\n";
-	    echo "First char: " . $firstCharacter . "\n";
-
-	    if ($firstCharacter != "#") {
-	      $add_hex = "#" . $add_hex;
-	    }
-
-	    echo "New hex: " . $add_hex;
-	  }*/
-
-    console.log("custom_msg: " + custom_msg);
-    console.log("custom_clr_class: " + custom_clr_class);
-    console.log("custom_clr_hex: " + custom_clr_hex);
-
     if (current_id != "custom_msg") {
     	// Not a custom message
 		  if (preset_clr_class != "") {
@@ -115,7 +94,6 @@ jQuery(function($) {
 		  }
 		  // end no custom msg
 		} else if (current_id == "custom_msg") {
-			console.log("In custom msg markup");
 		  // For custom alerts
 		  if (custom_clr_hex == "") {
 		  	// It's a class
