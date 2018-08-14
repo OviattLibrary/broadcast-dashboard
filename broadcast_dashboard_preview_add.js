@@ -33,9 +33,19 @@ jQuery(function($) {
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
-    console.log("custom_msg: " + custom_msg);
-    console.log("custom_clr_class: " + custom_clr_class);
-    console.log("custom_clr_hex: " + custom_clr_hex);
+		// Hex check for not null
+		if (custom_clr_hex) {
+			var firstCharacter = custom_clr_hex.substring(0, 1);
+
+			if (firstCharacter != "#") {
+				custom_clr_hex = "#" + custom_clr_hex;
+				$('#edit-broadcast-dashboard-settings-add-hex-code').val(custom_clr_hex);
+			}
+		}
+		
+	    console.log("custom_msg: " + custom_msg);
+	    console.log("custom_clr_class: " + custom_clr_class);
+	    console.log("custom_clr_hex: " + custom_clr_hex);
 
 	  // For custom alerts
 	  if (custom_clr_hex == "") {
