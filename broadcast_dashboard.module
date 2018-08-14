@@ -414,6 +414,16 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     $set_cust_class = $form_state['values']['broadcast_dashboard_custom_color_css'];
     $set_cust_hex = $form_state['values']['broadcast_dashboard_custom_color_hex'];
 
+    // Hex check for string
+    if (!empty($set_cust_hex)) {
+      $firstCharacter = substr($set_cust_hex, 0, 1);
+
+      if ($firstCharacter != "#") {
+        $set_cust_hex = "#" . $set_cust_hex;
+      }
+      
+    }
+
     if ($set_cust_class != ""){
       // Class
       variable_set('broadcast_dashboard_message_cust_class', $set_cust_class);
@@ -1113,7 +1123,7 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
   if ($form_has_errors == FALSE) {
     // Watchdog add message
     watchdog("broadcast_dashboard", "%m message added", array('%m' => $add_name, WATCHDOG_INFO));
-    
+
     drupal_set_message(t('The message was added successfully.'));
   }
 
