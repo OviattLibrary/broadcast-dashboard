@@ -2,7 +2,7 @@
 
 A Drupal 7 module that broadcasts pre-written or custom inserted text to specified regions of a website when switched on, acting as an informational alert system.
 
-* This project is currently in Beta. Stable release 1.0 coming soon. *
+*This project is currently in Beta. Stable release 1.0 coming soon.*
 
 ## Getting Started
 
