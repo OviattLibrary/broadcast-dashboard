@@ -79,6 +79,32 @@ jQuery(function($) {
 		// Set date on click
 		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
+		// Hex check for string
+		if (custom_clr_hex === "") {
+			console.log("There is a hex");
+			var firstCharacter = custom_clr_hex.substring(0, 1);
+
+			if (firstCharacter != "#") {
+				console.log("It has no #!");
+				custom_clr_hex = "#" + custom_clr_hex;
+				console.log("It now " + custom_clr_hex);
+				$('input[name="broadcast_dashboard_custom_color_hex"]').val(custom_clr_hex);
+			}
+		}
+
+		/*if (!empty($add_hex)) {
+	    $firstCharacter = substr($add_hex, 0, 1);
+
+	    echo "Hex input: " . $add_hex . "\n";
+	    echo "First char: " . $firstCharacter . "\n";
+
+	    if ($firstCharacter != "#") {
+	      $add_hex = "#" . $add_hex;
+	    }
+
+	    echo "New hex: " . $add_hex;
+	  }*/
+
     console.log("custom_msg: " + custom_msg);
     console.log("custom_clr_class: " + custom_clr_class);
     console.log("custom_clr_hex: " + custom_clr_hex);
