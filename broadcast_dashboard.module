@@ -1005,6 +1005,9 @@ function broadcast_dashboard_settings_edit($form, &$form_state) {
     $new_class = $form_state['values']['broadcast_dashboard_settings_update_css_class'];
     $new_hex = $form_state['values']['broadcast_dashboard_settings_update_hex_code'];
 
+    // Watchdog message edited
+    watchdog("broadcast_dashboard", "%m message modified", array('%m' => $new_name, WATCHDOG_INFO));
+
     // Update query
     $query = db_update('broadcast_dashboard');
     $query->condition('bd_id',$current_id);
@@ -1031,6 +1034,10 @@ function broadcast_dashboard_settings_delete($form, &$form_state) {
   $form_has_errors = FALSE;
 
   $delete_row = $form_state['values']['broadcast_dashboard_settings_delete_msg_custom_message_select'];
+
+  // Watchdog message deleted
+  $log_message_name = broadcast_dashboard_get_value($delete_row, "bd_msg_title");
+  watchdog("broadcast_dashboard", "%m message deleted", array('%m' => $log_message_name, WATCHDOG_INFO));
 
   // Get the number of rows in the table
   $result = db_select('broadcast_dashboard', 'bd_id')
@@ -1104,6 +1111,9 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
   }
 
   if ($form_has_errors == FALSE) {
+    // Watchdog add message
+    watchdog("broadcast_dashboard", "%m message added", array('%m' => $add_name, WATCHDOG_INFO));
+    
     drupal_set_message(t('The message was added successfully.'));
   }
 
