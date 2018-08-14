@@ -81,13 +81,10 @@ jQuery(function($) {
 
 		// Hex check for not null
 		if (custom_clr_hex) {
-			console.log("There is a hex");
 			var firstCharacter = custom_clr_hex.substring(0, 1);
 
 			if (firstCharacter != "#") {
-				console.log("It has no #!");
 				custom_clr_hex = "#" + custom_clr_hex;
-				console.log("It now " + custom_clr_hex);
 				$('input[name="broadcast_dashboard_custom_color_hex"]').val(custom_clr_hex);
 			}
 		}
