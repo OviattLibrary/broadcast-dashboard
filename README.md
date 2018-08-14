@@ -30,7 +30,7 @@ Coming soon.
 
 ## Authors
 
-** Oviatt Library Web Team **
+**Oviatt Library Web Team**
 * **Sam Thacker** - *Primary development* - [codedeeply](https://github.com/codedeeply)
 * **David Morck** - *Debugging assistance* - [dmorck](https://github.com/dmorck)
 
