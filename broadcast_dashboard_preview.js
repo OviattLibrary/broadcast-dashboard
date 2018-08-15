@@ -51,8 +51,10 @@ jQuery(function($) {
 		console.log("hexVisibilityCheck fired");
 		// Display custom-hexer spectrum if hex is selected
 		if ( ($("input[name='broadcast_dashboard_message'").val() == "custom_msg") && $("input[name='broadcast_dashboard_custom_color']").is(':checked')) {
+			custom.log("Showing hex picker");
 			$(".custom-hexer").show();
 		} else {
+			custom.log("Hiding hex picker");
 			$(".custom-hexer").hide();
 		}
 	}
@@ -60,7 +62,7 @@ jQuery(function($) {
 	// Get initial values on page ready
 	$.getCurrentValues();
 
-	// Do initial visibiliy check on page ready
+	// Do initial visibility check on page ready
 	$.hexVisibilityCheck();
 
 	// Grab new values every time the message type is changed
