@@ -55,6 +55,13 @@ jQuery(function($) {
 		$.getCurrentValues();
 	});
 
+	// Display custom-hexer spectrum if hex is selected
+	if ($("input[name='broadcast_dashboard_custom_color']").is(':checked')) {
+		$(".custom-hexer").show();
+	} else {
+		$(".custom-hexer").hide();
+	}
+
 	// Clear custom color text if another value is selected
 	$('input[type=radio][name=broadcast_dashboard_custom_color]').on('change', function(){
     switch($(this).val()){
