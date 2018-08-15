@@ -8,7 +8,7 @@ jQuery(function($) {
   $(".custom-hexer").spectrum({
     color: "#ECC",
     showInput: true,
-    className: "full-spectrum",
+    className: "custom-hexer",
     showInitial: true,
     showPalette: true,
     showSelectionPalette: true,
