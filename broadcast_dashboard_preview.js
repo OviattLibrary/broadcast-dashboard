@@ -51,10 +51,10 @@ jQuery(function($) {
 		console.log("hexVisibilityCheck fired");
 		// Display custom-hexer spectrum if hex is selected
 		if ( ($("input[name='broadcast_dashboard_message'").val() == "custom_msg") && $("input[name='broadcast_dashboard_custom_color']").is(':checked')) {
-			custom.log("Showing hex picker");
+			console.log("Showing hex picker");
 			$(".custom-hexer").show();
 		} else {
-			custom.log("Hiding hex picker");
+			console.log("Hiding hex picker");
 			$(".custom-hexer").hide();
 		}
 	}
