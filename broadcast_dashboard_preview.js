@@ -48,6 +48,7 @@ jQuery(function($) {
 	}
 
 	$.hexVisibilityCheck = function() {
+		console.log("hexVisibilityCheck fired");
 		// Display custom-hexer spectrum if hex is selected
 		if ( ($("input[name='broadcast_dashboard_message'").val() == "custom_msg") && $("input[name='broadcast_dashboard_custom_color']").is(':checked')) {
 			$(".custom-hexer").show();
