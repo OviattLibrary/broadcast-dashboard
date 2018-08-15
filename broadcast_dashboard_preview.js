@@ -47,20 +47,25 @@ jQuery(function($) {
 		}
 	}
 
+	$.hexVisibilityCheck = function() {
+		// Display custom-hexer spectrum if hex is selected
+		if ( ($("input[name='broadcast_dashboard_message'").val() == "custom_msg") && $("input[name='broadcast_dashboard_custom_color']").is(':checked')) {
+			$(".custom-hexer").show();
+		} else {
+			$(".custom-hexer").hide();
+		}
+	}
+
 	// Get initial values on page ready
 	$.getCurrentValues();
+
+	// Do initial visibiliy check on page ready
+	$.hexVisibilityCheck();
 
 	// Grab new values every time the message type is changed
 	$('#edit-broadcast-dashboard-message').change(function() {
 		$.getCurrentValues();
 	});
-
-	// Display custom-hexer spectrum if hex is selected
-	if ($("input[name='broadcast_dashboard_custom_color']").is(':checked')) {
-		$(".custom-hexer").show();
-	} else {
-		$(".custom-hexer").hide();
-	}
 
 	// Clear custom color text if another value is selected
 	$('input[type=radio][name=broadcast_dashboard_custom_color]').on('change', function(){
