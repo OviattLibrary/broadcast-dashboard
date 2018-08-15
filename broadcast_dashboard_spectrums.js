@@ -28,6 +28,7 @@ jQuery(function($) {
     
     },
     change: function(color) {
+      alert(color.toHexString());
       $("edit-broadcast-dashboard-custom-color-hex--2").value(color.toHexString());
     },
     palette: [
