@@ -28,7 +28,7 @@ jQuery(function($) {
     
     },
     change: function(color) {
-      $("edit-broadcast-dashboard-custom-color-hex--2").text(color.toHexString());
+      $("edit-broadcast-dashboard-custom-color-hex--2").value(color.toHexString());
     },
     palette: [
         ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
