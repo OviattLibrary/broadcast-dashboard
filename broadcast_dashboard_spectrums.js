@@ -5,7 +5,7 @@
  * This file allows multiple Spectrum hex picker definitions.
  */
 jQuery(function($) {
-  $("#custom-hexer").spectrum({
+  $(".custom-hexer").spectrum({
     color: "#ECC",
     showInput: true,
     className: "full-spectrum",
