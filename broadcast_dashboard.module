@@ -313,6 +313,7 @@ function broadcast_dashboard_form($form_state) {
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview.js',
     drupal_get_path('module', 'broadcast_dashboard') . '/spectrum.js',
+    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_spectrums.js',
   );
 
   // Include spectrum css
