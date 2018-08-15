@@ -226,6 +226,19 @@ function broadcast_dashboard_form($form_state) {
     ),
   );
 
+  $form['custom_hex_area'] = array(
+    '#type' => 'markup',
+    '#markup' => t('<div id="custom_hex_area"><input type="text" class="custom-hexer"/></div>'),
+    '#states' => array(
+      "visible" => array(
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
+        ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
+      "required" => array(
+        ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
+        ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
+    ),
+  );
+
   /** *********************** **
    ** SECTION FOR HIDDEN VALS **
    ** *********************** **/
@@ -340,6 +353,7 @@ function broadcast_dashboard_form($form_state) {
     '#type' => 'markup',
     '#markup' => t('<div id="markuparea"></div>'),
   );
+
 
   return $form;
 }
