@@ -172,7 +172,7 @@ function broadcast_dashboard_form($form_state) {
       "visible" => array(
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
     ),
   );
@@ -191,7 +191,7 @@ function broadcast_dashboard_form($form_state) {
       "visible" => array(
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
     ),
   );
@@ -207,7 +207,7 @@ function broadcast_dashboard_form($form_state) {
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'class')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'class')),
     ),
@@ -224,7 +224,7 @@ function broadcast_dashboard_form($form_state) {
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
       "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
+        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE),
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg'),
         ":input[name='broadcast_dashboard_custom_color']" => array("value" => 'hex')),
     ),
@@ -238,7 +238,7 @@ function broadcast_dashboard_form($form_state) {
 
   /** HIDDEN COLOR ELEMENTS **/
 
-  // Get values for loop
+  // Get values for loop1
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
   $query->orderBy('bd_id', 'ASC');
