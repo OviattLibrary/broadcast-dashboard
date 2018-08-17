@@ -29,7 +29,7 @@ jQuery(function($) {
     },
     change: function(color) {
       alert(color.toHexString());
-      $("input[name='edit-broadcast-dashboard-custom-color-hex--2'").val(color.toHexString());
+      $("input[name='broadcast_dashboard_custom_color_hex'").val(color.toHexString());
     },
     palette: [
         ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
