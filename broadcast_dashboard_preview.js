@@ -77,11 +77,9 @@ jQuery(function($) {
     switch($(this).val()){
       case 'class' :
         $('input[name="broadcast_dashboard_custom_color_hex"]').val('');
-        $.hexVisibilityCheck();
         break;
       case 'hex' :
         $('input[name="broadcast_dashboard_custom_color_css"]').val('');
-        $.hexVisibilityCheck();
         break;
     }            
 	});
