@@ -238,7 +238,7 @@ function broadcast_dashboard_form($form_state) {
 
   /** HIDDEN COLOR ELEMENTS **/
 
-  // Get values for loop1
+  // Get values for loop
   $query = db_select('broadcast_dashboard');
   $query->fields('broadcast_dashboard', array('bd_id', 'bd_clr_class', 'bd_clr_hex'));
   $query->orderBy('bd_id', 'ASC');
