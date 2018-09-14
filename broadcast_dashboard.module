@@ -741,12 +741,12 @@ function broadcast_dashboard_settings_form($form_state) {
       //printf("ID: %s  class_name: %s  class_hex: %s", $row["bd_id"], $row["bd_clr_class"], $row["bd_clr_hex"]);
 
       $form['broadcast_dashboard_settings_update_msg_msg_text_' . $row["bd_id"]] = array(
-          '#type' => 'hidden',
-          '#title' => t('Message Text Values'),
-          '#default_value' => $row["bd_msg_text"],
-          '#description' => t('The message text of the selected pre-written message ID' . $row["bd_id"]),
-          '#required' => FALSE,
-        );
+        '#type' => 'hidden',
+        '#title' => t('Message Text Values'),
+        '#default_value' => $row["bd_msg_text"],
+        '#description' => t('The message text of the selected pre-written message ID' . $row["bd_id"]),
+        '#required' => FALSE,
+      );
     }
 
     /** ********************** **
