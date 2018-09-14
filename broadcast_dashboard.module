@@ -497,26 +497,26 @@ function broadcast_dashboard_test_display() {
   print 'Active state is: ' . $active; print "<br>";
   
   if ($active == 1) {
-    $TD_msg_id = variable_get('broadcast_dashboard_message');  
-    $TD_region = variable_get('broadcast_dashboard_region');
-    $TD_cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
+    $broadcast_dashboard_test_display_msg_id = variable_get('broadcast_dashboard_message');  
+    $broadcast_dashboard_test_display_region = variable_get('broadcast_dashboard_region');
+    $broadcast_dashboard_test_display_cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
 
-    $TD_cust_msg_class = variable_get('broadcast_dashboard_message_cust_class');
-    $TD_cust_msg_hex = variable_get('broadcast_dashboard_message_cust_hex');
+    $broadcast_dashboard_test_display_cust_msg_class = variable_get('broadcast_dashboard_message_cust_class');
+    $broadcast_dashboard_test_display_cust_msg_hex = variable_get('broadcast_dashboard_message_cust_hex');
 
-    $TD_prew_msg = variable_get('broadcast_dashboard_message_prew');
+    $broadcast_dashboard_test_display_prew_msg = variable_get('broadcast_dashboard_message_prew');
 
-    $TD_preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
-    $TD_preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
+    $broadcast_dashboard_test_display_preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
+    $broadcast_dashboard_test_display_preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
 
-    print 'Message ID is: '. $TD_msg_id; print "<br>";
+    print 'Message ID is: '. $broadcast_dashboard_test_display_msg_id; print "<br>";
     print 'Target region is: '. $region; print "<br>";
-    print 'Pre-written msg is: '. $TD_prew_msg; print "<br>";
-    print 'Pre-written clr class is: '. $TD_preset_clr_class; print "<br>";
-    print 'Pre-written clr hex is: '. $TD_preset_clr_hex; print "<br>";
-    print 'Custom message is: '. $TD_cust_msg; print "<br>";
-    print 'Custom message class is: '. $TD_cust_msg_class; print "<br>";
-    print 'Custom message hex is: '. $TD_cust_msg_hex; print "<br>";
+    print 'Pre-written msg is: '. $broadcast_dashboard_test_display_prew_msg; print "<br>";
+    print 'Pre-written clr class is: '. $broadcast_dashboard_test_display_preset_clr_class; print "<br>";
+    print 'Pre-written clr hex is: '. $broadcast_dashboard_test_display_preset_clr_hex; print "<br>";
+    print 'Custom message is: '. $broadcast_dashboard_test_display_cust_msg; print "<br>";
+    print 'Custom message class is: '. $broadcast_dashboard_test_display_cust_msg_class; print "<br>";
+    print 'Custom message hex is: '. $broadcast_dashboard_test_display_cust_msg_hex; print "<br>";
   }
 
   print '<br>';
