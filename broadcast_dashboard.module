@@ -510,7 +510,7 @@ function broadcast_dashboard_test_display() {
     $broadcast_dashboard_test_display_preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
 
     print 'Message ID is: '. $broadcast_dashboard_test_display_msg_id; print "<br>";
-    print 'Target region is: '. $region; print "<br>";
+    print 'Target region is: '. $broadcast_dashboard_test_display_region; print "<br>";
     print 'Pre-written msg is: '. $broadcast_dashboard_test_display_prew_msg; print "<br>";
     print 'Pre-written clr class is: '. $broadcast_dashboard_test_display_preset_clr_class; print "<br>";
     print 'Pre-written clr hex is: '. $broadcast_dashboard_test_display_preset_clr_hex; print "<br>";
