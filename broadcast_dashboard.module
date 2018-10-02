@@ -544,14 +544,14 @@ function broadcast_dashboard_page_build(&$page) {
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
   // DEV - test notification
-  $markup_content = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['system_main']['#markup'] . '</div>';
+  $markup_content = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page["$region"]['system_main']['#markup'] . '</div>';
 
   // No custom, push preset message
   if (($active == 1) && ($msg_id != "custom_msg")) {  
     if (isset($preset_clr_class)) {
       //$page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
       $message_content = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
-      $page[$region]['system_main'] = array(
+      $page["$region"]['system_main'] = array(
         '#markup' => $message_content,
       );
 
