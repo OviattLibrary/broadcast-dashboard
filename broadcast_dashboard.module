@@ -549,7 +549,12 @@ function broadcast_dashboard_page_build(&$page) {
   // No custom, push preset message
   if (($active == 1) && ($msg_id != "custom_msg")) {  
     if (isset($preset_clr_class)) {
-      $page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
+      //$page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
+      $message_content = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
+      $page[$region]['system_main'] = array(
+        '#markup' => $message_content,
+      );
+
     } else if (isset($preset_clr_hex)) {
       $page[$region]['system_main']['#markup'] = '<div style="background-color: ' . $preset_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>' . $markup_content;
     }
