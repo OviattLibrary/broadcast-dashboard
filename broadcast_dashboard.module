@@ -543,10 +543,10 @@ function broadcast_dashboard_page_build(&$page) {
   $cust_msg_clr_hex = variable_get('broadcast_dashboard_message_cust_hex');
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
-  $markup_content = $page[$region]['main']['#markup'];
+  $markup_content = $page[$region]['system_main']['#markup'];
 
   // DEV - test notification
-  $page[$region]['main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $markup_content . '</div>';
+  $page[$region]['system_main']['#markup'] = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $markup_content . '</div>';
 
   // No custom, push preset message
   if (($active == 1) && ($msg_id != "custom_msg")) {  
