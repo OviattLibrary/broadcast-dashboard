@@ -531,7 +531,7 @@ function broadcast_dashboard_test_display() {
  * Implements hook_page_build().
  */
 
-function broadcast_dashboard_page_build(&$page) {
+function broadcast_dashboard_page_alter(&$page) {
   $active = variable_get('broadcast_dashboard_active');
   $msg_id = variable_get('broadcast_dashboard_message');
   $preset_msg = variable_get('broadcast_dashboard_message_prew');
