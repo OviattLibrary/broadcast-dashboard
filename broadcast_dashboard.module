@@ -540,7 +540,7 @@ function broadcast_dashboard_page_build(&$page) {
   $cust_msg_clr_hex = variable_get('broadcast_dashboard_message_cust_hex');
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
-  if (!isset($page[$region]['system_main'])) {
+  if (!isset($page[$region]['system_main']['#markup'])) {
     $page[$region]['system_main'] = '';
   }
 
