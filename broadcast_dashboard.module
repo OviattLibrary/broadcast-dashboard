@@ -541,7 +541,7 @@ function broadcast_dashboard_page_build(&$page) {
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
   if (!isset($page[$region]['system_main']['#markup'])) {
-    $page[$region]['system_main'] = '';
+    $page[$region]['system_main']['#markup'] = '';
   }
 
   // DEV - test notification
