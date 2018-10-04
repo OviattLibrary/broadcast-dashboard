@@ -66,3 +66,7 @@
     background-color: #d6d8d9;
     border-color: #c6c8ca;
 }
+
+.bd_p p:last-child {
+    margin-bottom: 0px;
+}
