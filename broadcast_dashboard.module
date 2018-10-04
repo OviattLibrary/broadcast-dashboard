@@ -540,6 +540,11 @@ function broadcast_dashboard_page_build(&$page) {
   $cust_msg_clr_hex = variable_get('broadcast_dashboard_message_cust_hex');
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
+  // Add CSS if active
+  if ($active == 1) {
+    drupal_add_css(drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_style.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+  }
+
   if (!isset($page[$region]['system_main']['#markup'])) {
     $page[$region]['system_main']['#markup'] = '';
   }
