@@ -6,15 +6,15 @@ A Drupal 7 module that broadcasts pre-written or custom inserted text to specifi
 
 ## Getting Started
 
-Coming soon.
+After copying the module files to the appropriate Drupal module directory, simply go to the Modules section in your Drupal setup and enable the module. If there is a need to change what gets stored in the database (a table is created upon install), modify the *broadcast_dashboard.install* file as needed. By default, the module table is aptly named *broadcast_dashboard*.
 
 ### Prerequisites
 
-Currently, this has only been tested on a Drupal 7 installation.
+Currently, this has only been tested on a Drupal 7 installation. A Drupal 8 port is planned for future development.
 
-### Installing
+### Permissions
 
-Coming soon.
+Broadcast Dashboard has two permission classes available: *Publish Messages* and *Administer*. Roles with *Publish Messages* are able to set and deploy messages to a set region on the webpage. Roles with *Administer* are able to access module settings, which include the ability to update, add, or delete pre-written messages.
 
 ## Deployment
 
@@ -26,7 +26,7 @@ Coming soon.
 
 ## Versioning
 
-Coming soon.
+Version numbers are assigned using the [Semver](https://semver.org) format.
 
 ## Authors
 
