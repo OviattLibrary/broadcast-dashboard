@@ -53,7 +53,7 @@ function broadcast_dashboard_schema() {
 
 /*
  * Implements hook_uninstall().
- * @todo Describe what function does here
+ * Removed used module variables, then drops table.
  */
 function broadcast_dashboard_uninstall() {
   variable_del('broadcast_dashboard_active');
