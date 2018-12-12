@@ -38,7 +38,7 @@ See also the list of [contributors](https://github.com/OviattLibrary/broadcast-d
 
 ## License
 
-Coming soon.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/OviattLibrary/broadcast-dashboard/blob/master/LICENSE.md) file for details.
 
 ## Acknowledgments
 
