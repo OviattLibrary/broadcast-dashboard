@@ -1176,7 +1176,7 @@ function broadcast_dashboard_feed() {
   $rssfeed .= '<item>';
     $rssfeed .= '<title>Test Title</title>';
     $rssfeed .= '<description>Test desc</description>';
-    $rssfeed .= '<pubDate>' . echo date('m/d/Y h:i:s a', time()); . '</pubDate>';
+    $rssfeed .= '<pubDate>' . date('m/d/Y h:i:s a', time()); . '</pubDate>';
   $rssfeed .= '</item>';
   $rssfeed .= '</channel>';
   $rssfeed .= '</rss>';
