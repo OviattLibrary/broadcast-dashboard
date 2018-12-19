@@ -1164,6 +1164,7 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
  * The feed portion of the module, for communicating/replaying BD status information to other servers.
  */
 function broadcast_dashboard_feed() {
+  print(header("Content-Type: application/rss+xml; charset=ISO-8859-1"));
   print("This is a test.");
   exit();
 }
