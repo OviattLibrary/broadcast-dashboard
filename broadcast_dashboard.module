@@ -1065,6 +1065,7 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
   $current_feed_toggle = variable_get("broadcast_dashboard_feed_active");
   $new_feed_toggle = $form_state['values']['broadcast_dashboard_settings_set_feed'];
 
+  echo "Feed toggle was: " . $current_feed_toggle . "\n";
   echo "Feed toggled to: " . $new_feed_toggle;
   die();
 
