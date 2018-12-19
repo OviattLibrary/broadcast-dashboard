@@ -1166,6 +1166,6 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
 function broadcast_dashboard_feed() {
   print(header("Content-Type: application/rss+xml; charset=ISO-8859-1"));
   print("This is a test.");
-  print("Current BD status: " . get_variable("broadcast_dashboard_active"));
+  print("Current BD status: " . variable_get("broadcast_dashboard_active"));
   exit();
 }
