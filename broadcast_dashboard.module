@@ -49,6 +49,14 @@ function broadcast_dashboard_menu() {
     'access arguments' => array('configure broadcast dashboard'),
   );
 
+  $items['broadcast_dashboard_feed'] =array(
+    'title' => 'API RSS Feed',
+    'description' => 'RSS feed for current status of Broadcast Dashboard message publications.',
+    'type' => MENU_CALLBACK,//@todo
+    'page callback' => 'broadcast_dashboard_feed',
+    'access arguments' => NULL,
+  );
+
   return $items;
 }
 
@@ -1149,4 +1157,12 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
     drupal_set_message(t('The message was not successfully added. Make sure that all required fields are completed and try again.'),'error');
   }
 
+}
+
+/**
+ * The feed portion of the module, for communicating/replaying BD status information to other servers.
+ */
+function broadcast_dashboard_feed() {
+  print("This is a test.");
+  exit();
 }
