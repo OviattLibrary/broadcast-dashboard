@@ -1220,7 +1220,7 @@ function broadcast_dashboard_feed() {
   $rssfeed .= '<channel>';
   $rssfeed .= '<title>Broadcast Dashboard RSS Feed</title>';
   $rssfeed .= '<link>'.$_SERVER['REQUEST_URI'].'</link>';
-  $rssfeed .= '<description>Status feed for Broascast Dashboard</description>';
+  $rssfeed .= '<description>Status feed for Broadcast Dashboard</description>';
   $rssfeed .= '<language>en-us</language>';
 
   $rssfeed .= '<item>';
