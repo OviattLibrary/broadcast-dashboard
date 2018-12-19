@@ -54,7 +54,8 @@ function broadcast_dashboard_menu() {
     'description' => 'RSS feed for current status of Broadcast Dashboard message publications.',
     'type' => MENU_CALLBACK,//@todo
     'page callback' => 'broadcast_dashboard_feed',
-    'access arguments' => NULL,
+    'access arguments' => array('access content'),
+    'access callback' => TRUE,
   );
 
   return $items;
