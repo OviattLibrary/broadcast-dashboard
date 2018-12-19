@@ -1164,8 +1164,25 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
  * The feed portion of the module, for communicating/replaying BD status information to other servers.
  */
 function broadcast_dashboard_feed() {
-  print(header("Content-Type: application/rss+xml; charset=ISO-8859-1"));
-  echo("This is a test. <br>");
-  echo("Current BD status: " . variable_get("broadcast_dashboard_active"));
+  header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+  $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
+  $rssfeed .= '<rss version="2.0">';
+  $rssfeed .= '<channel>';
+  $rssfeed .= '<title>Broadcast Dashboard RSS Feed</title>';
+  $rssfeed .= '<link>'.$_SERVER['REQUEST_URI'].'</link>';
+  $rssfeed .= '<description>Status feed for Broascast Dashboard</description>';
+  $rssfeed .= '<language>en-us</language>';
+
+  $rssfeed .= '<item>';
+    $rssfeed .= '<title>Test Title</title>';
+    $rssfeed .= '<description>Test desc</description>';
+    $rssfeed .= '<pubDate>' . echo date('m/d/Y h:i:s a', time()); . '</pubDate>';
+  $rssfeed .= '</item>';
+  $rssfeed .= '</channel>';
+  $rssfeed .= '</rss>';
+
+  echo $rssfeed;
+  //echo("This is a test. <br>");
+  //echo("Current BD status: " . variable_get("broadcast_dashboard_active"));
   exit();
 }
