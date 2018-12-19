@@ -692,6 +692,14 @@ function broadcast_dashboard_settings_form($form_state) {
     '#default_value' => FALSE,
   );
 
+  // Submit button
+  $form['broadcast_dashboard_settings_feed_toggle']['settings_feed_submit'] = array(
+    '#name' => 'submit_update_feed',
+    '#type' => 'submit',
+    '#value' => t('Update settings'),
+    '#submit' => array('broadcast_dashboard_settings_feed'),
+  );
+
   // END Feed Toggle Block
 
   if (broadcast_dashboard_has_rows()) {
@@ -1046,6 +1054,32 @@ function broadcast_dashboard_settings_form($form_state) {
  *
  * Does not extend hook_form_submit().
  */
+
+/**
+ * For the updating of feed settings.
+ */
+
+function broadcast_dashboard_settings_feed($form, &$form_state) {
+  $form_has_errors = FALSE;
+
+  $current_feed_toggle = variable_get("broadcast_dashboard_feed_active");
+  $new_feed_toggle = $form_state['values']['broadcast_dashboard_settings_set_feed'];
+
+  echo "Feed toggled to: " . variable_set('broadcast_dashboard_feed_active');
+  die();
+
+  // Check if the toggle changed
+  if ($current_feed_toggle != $new_feed_toggle) {
+    // The setting changed
+
+    // Watchdog message feed update
+    watchdog("broadcast_dashboard", "RSS feed toggled")
+  }
+
+  $
+
+  // Watchdog message feed update
+}
 
 /**
  * For the edited of a current message form.
