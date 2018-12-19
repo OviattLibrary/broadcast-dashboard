@@ -10,7 +10,8 @@
  * @todo Describe what function does here
  */
 function broadcast_dashboard_install() {
-	
+	// Disable RSS feed by default
+	variable_set('broadcast_dashboard_feed_active', 0);
 }
 
 /*
