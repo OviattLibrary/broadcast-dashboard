@@ -1073,7 +1073,7 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
     // The setting changed
 
     // Watchdog message feed update
-    watchdog("broadcast_dashboard", "RSS feed toggled")
+    //watchdog("broadcast_dashboard", "RSS feed toggled")
   }
 
 }
