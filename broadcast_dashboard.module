@@ -1257,7 +1257,7 @@ function broadcast_dashboard_feed() {
     //echo("Current BD status: " . variable_get("broadcast_dashboard_active"));
 
   } else {
-    header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+    //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
     $rssfeed = "The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.";
     echo $rssfeed;
   }
