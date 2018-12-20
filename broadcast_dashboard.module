@@ -559,7 +559,7 @@ function broadcast_dashboard_page_build(&$page) {
   }
 
   // DEV - test notification
-  $markup_content = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['system_main']['#markup'] . '</div>';
+  //$markup_content = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['system_main']['#markup'] . '</div>';
 
   // No custom, push preset message
   if (($active == 1) && ($msg_id != "custom_msg")) {  
