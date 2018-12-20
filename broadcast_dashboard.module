@@ -52,7 +52,7 @@ function broadcast_dashboard_menu() {
   $items['broadcast_dashboard_feed'] = array(
     'title' => 'API RSS Feed',
     'description' => 'RSS feed for current status of Broadcast Dashboard message publications.',
-    'type' => MENU_CALLBACK,//@todo
+    'type' => MENU_CALLBACK,
     'page callback' => 'broadcast_dashboard_feed',
     'access arguments' => array('access content'),
     'access callback' => TRUE,
@@ -1065,16 +1065,31 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
   $current_feed_toggle = variable_get("broadcast_dashboard_feed_active");
   $new_feed_toggle = $form_state['values']['broadcast_dashboard_settings_set_feed'];
 
-  echo "Feed toggle was: " . $current_feed_toggle . "\n";
+  /*echo "Feed toggle was: " . $current_feed_toggle . "\n";
   echo "Feed toggled to: " . $new_feed_toggle;
-  die();
+  die();*/
 
   // Check if the toggle changed
   if ($current_feed_toggle != $new_feed_toggle) {
-    // The setting changed
+    // The setting changed, set new
+    variable_set("broadcast_dashboard_feed_active", $new_feed_toggle);
 
     // Watchdog message feed update
-    //watchdog("broadcast_dashboard", "RSS feed toggled")
+    switch($new_feed_toggle) {
+      case 0:
+        watchdog("broadcast_dashboard", "RSS feed toggled off", array(WATCHDOG_INFO));
+        break;
+      case 1:
+        watchdog("broadcast_dashboard", "RSS feed toggled on", array(WATCHDOG_INFO));
+        break;
+      default:
+        watchdog("broadcast_dashboard", "RSS feed toggled", array(WATCHDOG_INFO));
+        break;
+    }
+  }
+
+  if ($form_has_errors == FALSE) {
+    drupal_set_message(t('The settings have successfully been saved.'));
   }
 
 }
@@ -1215,6 +1230,8 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
  * The feed portion of the module, for communicating/replaying BD status information to other servers.
  */
 function broadcast_dashboard_feed() {
+  $feed_active = variable_get('broadcast_dashboard_feed');
+
   header("Content-Type: application/rss+xml; charset=ISO-8859-1");
   $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
   $rssfeed .= '<rss version="2.0">';
