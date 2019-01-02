@@ -1231,30 +1231,44 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
  */
 function broadcast_dashboard_feed() {
   $feed_active = variable_get('broadcast_dashboard_feed_active');
+  $msg_active = variable_get('broadcast_dashboard_active');
 
   if ($feed_active == 1) {
     // The feed is enabled
 
-    header("Content-Type: application/rss+xml; charset=ISO-8859-1");
-    $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
-    $rssfeed .= '<rss version="2.0">';
-    $rssfeed .= '<channel>';
-    $rssfeed .= '<title>Broadcast Dashboard RSS Feed</title>';
-    $rssfeed .= '<link>'.$_SERVER['REQUEST_URI'].'</link>';
-    $rssfeed .= '<description>Status feed for Broadcast Dashboard</description>';
-    $rssfeed .= '<language>en-us</language>';
+    if ($msg_active == 1) {
+      // There is currently an active message
 
-    $rssfeed .= '<item>';
-      $rssfeed .= '<title>Test Title</title>';
-      $rssfeed .= '<description>Test desc</description>';
-      $rssfeed .= '<pubDate>' . date('m/d/Y h:i:s a', time()) . '</pubDate>';
-    $rssfeed .= '</item>';
-    $rssfeed .= '</channel>';
-    $rssfeed .= '</rss>';
+      header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+      $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
+      $rssfeed .= '<rss version="2.0">';
+      $rssfeed .= '<channel>';
+      $rssfeed .= '<title>Broadcast Dashboard RSS Feed</title>';
+      $rssfeed .= '<link>'.$_SERVER['REQUEST_URI'].'</link>';
+      $rssfeed .= '<description>Status feed for Broadcast Dashboard</description>';
+      $rssfeed .= '<language>en-us</language>';
 
-    echo $rssfeed;
-    //echo("This is a test. <br>");
-    //echo("Current BD status: " . variable_get("broadcast_dashboard_active"));
+      $rssfeed .= '<item>';
+        $rssfeed .= '<title>Test Title</title>';
+        $rssfeed .= '<description>Test desc</description>';
+        $rssfeed .= '<pubDate>' . date('m/d/Y h:i:s a', time()) . '</pubDate>';
+      $rssfeed .= '</item>';
+      $rssfeed .= '</channel>';
+      $rssfeed .= '</rss>';
+
+      echo $rssfeed;
+      //echo("This is a test. <br>");
+      //echo("Current BD status: " . variable_get("broadcast_dashboard_active"));
+
+    } else {
+      // Feed enabled, but no active message
+
+      //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+      $rssfeed = '0';
+
+      echo $rssfeed;
+
+    }
 
   } else {
     //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
