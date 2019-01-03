@@ -2,8 +2,6 @@
 
 A Drupal 7 module that broadcasts pre-written or custom inserted text to specified regions of a website when switched on, acting as an informational alert system.
 
-*This project is currently in Beta. Stable release 1.0 coming soon.*
-
 ## Getting Started
 
 After copying the module files to the appropriate Drupal module directory, simply go to the Modules section in your Drupal setup and enable the module. If there is a need to change what gets stored in the database (a table is created upon install), modify the *broadcast_dashboard.install* file as needed.
