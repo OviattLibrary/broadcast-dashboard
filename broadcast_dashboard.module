@@ -680,7 +680,7 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_settings_feed_toggle'] = array(
       '#type' => 'fieldset',
       '#title' => t('API RSS Feed Settings'),
-      '#description' => t('Enable or disable the built-in RSS feed for Broadcast Dashboard messages. Feed can be found at /broadcast_dashboard_feed.'),
+      '#description' => t('Enable or disable the built-in RSS feed for Broadcast Dashboard messages. Feed can be found at <a href="/broadcast_dashboard_feed">/broadcast_dashboard_feed</a>.'),
       '#collapsible' => FALSE,
     );
 
