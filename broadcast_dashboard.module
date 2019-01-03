@@ -1243,12 +1243,7 @@ function broadcast_dashboard_feed() {
       $active = variable_get('broadcast_dashboard_active');
       $msg_id = variable_get('broadcast_dashboard_message');
       $preset_msg = variable_get('broadcast_dashboard_message_prew');
-      // $preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
-      // $preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
-      // $region = variable_get('broadcast_dashboard_region');
       $cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
-      // $cust_msg_clr_class = variable_get('broadcast_dashboard_message_cust_class');
-      // $cust_msg_clr_hex = variable_get('broadcast_dashboard_message_cust_hex');
       $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
       // Convert message set date from String to Date
@@ -1279,7 +1274,7 @@ function broadcast_dashboard_feed() {
       $rssfeed .= '</rss>';
 
       echo $rssfeed;
-      
+
     } else {
       // Feed enabled, but no active message
 
