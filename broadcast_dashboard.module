@@ -1252,7 +1252,7 @@ function broadcast_dashboard_feed() {
       $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
       // Convert message set date from String to Date
-      $rss_data = strtotime($msg_date);
+      $rss_date = strtotime($msg_date);
 
       // No custom, push preset message
       if (($active == 1) && ($msg_id != "custom_msg")) {
@@ -1273,7 +1273,7 @@ function broadcast_dashboard_feed() {
       $rssfeed .= '<item>';
         $rssfeed .= '<title>Test Title</title>';
         $rssfeed .= '<description>'. $bd_msg . ' (Posted on: ' . $msg_date . ')</description>';
-        $rssfeed .= '<pubDate>' . $rss_date . '</pubDate>';
+        $rssfeed .= '<pubDate>' . date('m/d/Y h:i:s a', $rss_date) . '</pubDate>';
       $rssfeed .= '</item>';
       $rssfeed .= '</channel>';
       $rssfeed .= '</rss>';
