@@ -1279,9 +1279,7 @@ function broadcast_dashboard_feed() {
       $rssfeed .= '</rss>';
 
       echo $rssfeed;
-      //echo("This is a test. <br>");
-      //echo("Current BD status: " . variable_get("broadcast_dashboard_active"));
-
+      
     } else {
       // Feed enabled, but no active message
 
