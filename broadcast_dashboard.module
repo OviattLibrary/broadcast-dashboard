@@ -49,6 +49,15 @@ function broadcast_dashboard_menu() {
     'access arguments' => array('configure broadcast dashboard'),
   );
 
+  $items['broadcast_dashboard_feed'] = array(
+    'title' => 'API RSS Feed',
+    'description' => 'RSS feed for current status of Broadcast Dashboard message publications.',
+    'type' => MENU_CALLBACK,
+    'page callback' => 'broadcast_dashboard_feed',
+    'access arguments' => array('access content'),
+    'access callback' => TRUE,
+  );
+
   return $items;
 }
 
@@ -666,6 +675,33 @@ function broadcast_dashboard_settings_form($form_state) {
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
   );
 
+  // START Feed Toggle Block
+
+  $form['broadcast_dashboard_settings_feed_toggle'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('API RSS Feed Settings'),
+      '#description' => t('Enable or disable the built-in RSS feed for Broadcast Dashboard messages. Feed can be found at <a href="/broadcast_dashboard_feed">/broadcast_dashboard_feed</a>.'),
+      '#collapsible' => FALSE,
+    );
+
+  $form['broadcast_dashboard_settings_feed_toggle']['broadcast_dashboard_settings_set_feed'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable Feed'),
+    '#description' => t('Turn on the RSS feed for set, active messages.'),
+    '#required' => FALSE,
+    '#default_value' => variable_get('broadcast_dashboard_feed_active'),
+  );
+
+  // Submit button
+  $form['broadcast_dashboard_settings_feed_toggle']['settings_feed_submit'] = array(
+    '#name' => 'submit_update_feed',
+    '#type' => 'submit',
+    '#value' => t('Update settings'),
+    '#submit' => array('broadcast_dashboard_settings_feed'),
+  );
+
+  // END Feed Toggle Block
+
   if (broadcast_dashboard_has_rows()) {
 
     // START Update Message Block
@@ -1020,6 +1056,45 @@ function broadcast_dashboard_settings_form($form_state) {
  */
 
 /**
+ * For the updating of feed settings.
+ */
+
+function broadcast_dashboard_settings_feed($form, &$form_state) {
+  $form_has_errors = FALSE;
+
+  $current_feed_toggle = variable_get("broadcast_dashboard_feed_active");
+  $new_feed_toggle = $form_state['values']['broadcast_dashboard_settings_set_feed'];
+
+  /*echo "Feed toggle was: " . $current_feed_toggle . "\n";
+  echo "Feed toggled to: " . $new_feed_toggle;
+  die();*/
+
+  // Check if the toggle changed
+  if ($current_feed_toggle != $new_feed_toggle) {
+    // The setting changed, set new
+    variable_set("broadcast_dashboard_feed_active", $new_feed_toggle);
+
+    // Watchdog message feed update
+    switch($new_feed_toggle) {
+      case 0:
+        watchdog("broadcast_dashboard", "RSS feed toggled off", array(WATCHDOG_INFO));
+        break;
+      case 1:
+        watchdog("broadcast_dashboard", "RSS feed toggled on", array(WATCHDOG_INFO));
+        break;
+      default:
+        watchdog("broadcast_dashboard", "RSS feed toggled", array(WATCHDOG_INFO));
+        break;
+    }
+  }
+
+  if ($form_has_errors == FALSE) {
+    drupal_set_message(t('The settings have successfully been saved.'));
+  }
+
+}
+
+/**
  * For the edited of a current message form.
  */
 function broadcast_dashboard_settings_edit($form, &$form_state) {
@@ -1149,4 +1224,72 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
     drupal_set_message(t('The message was not successfully added. Make sure that all required fields are completed and try again.'),'error');
   }
 
+}
+
+/**
+ * The feed portion of the module, for communicating/replaying BD status information to other servers.
+ */
+function broadcast_dashboard_feed() {
+  $feed_active = variable_get('broadcast_dashboard_feed_active');
+  $msg_active = variable_get('broadcast_dashboard_active');
+
+  if ($feed_active == 1) {
+    // The feed is enabled
+
+    if ($msg_active == 1) {
+      // There is currently an active message
+
+      // Set vars logic
+      $active = variable_get('broadcast_dashboard_active');
+      $msg_id = variable_get('broadcast_dashboard_message');
+      $preset_msg = variable_get('broadcast_dashboard_message_prew');
+      $cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
+      $msg_date = variable_get('broadcast_dashboard_date_message_posted');
+
+      // Convert message set date from String to Date
+      $rss_date = strtotime($msg_date);
+
+      // No custom, push preset message
+      if (($active == 1) && ($msg_id != "custom_msg")) {
+        $bd_msg = $preset_msg;
+      } else if (($active == 1) && ($msg_id == "custom_msg")) { // end no custom msg
+        $bd_msg = $custom_msg;
+      } // end custom msg
+
+      header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+      $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
+      $rssfeed .= '<rss version="2.0">';
+      $rssfeed .= '<channel>';
+      $rssfeed .= '<title>Broadcast Dashboard RSS Feed</title>';
+      $rssfeed .= '<link>'.$_SERVER['REQUEST_URI'].'</link>';
+      $rssfeed .= '<description>Status feed for Broadcast Dashboard</description>';
+      $rssfeed .= '<language>en-us</language>';
+
+      $rssfeed .= '<item>';
+        $rssfeed .= '<title>Test Title</title>';
+        $rssfeed .= '<description>'. $bd_msg . ' (Posted on: ' . $msg_date . ')</description>';
+        $rssfeed .= '<pubDate>' . date('r', $rss_date) . '</pubDate>';
+      $rssfeed .= '</item>';
+      $rssfeed .= '</channel>';
+      $rssfeed .= '</rss>';
+
+      echo $rssfeed;
+
+    } else {
+      // Feed enabled, but no active message
+
+      //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+      $rssfeed = '0';
+
+      echo $rssfeed;
+
+    }
+
+  } else {
+    //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+    $rssfeed = "The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.";
+    echo $rssfeed;
+  }
+  
+  exit();
 }
