@@ -1239,8 +1239,24 @@ function broadcast_dashboard_feed() {
     if ($msg_active == 1) {
       // There is currently an active message
 
-      $bd_msg = variable_get('broadcast_dashboard_custom_message');
-      $bd_time = variable_get('broadcast_dashboard_date_message_posted');
+      // Set vars logic
+      $active = variable_get('broadcast_dashboard_active');
+      $msg_id = variable_get('broadcast_dashboard_message');
+      $preset_msg = variable_get('broadcast_dashboard_message_prew');
+      // $preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
+      // $preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
+      // $region = variable_get('broadcast_dashboard_region');
+      $cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
+      // $cust_msg_clr_class = variable_get('broadcast_dashboard_message_cust_class');
+      // $cust_msg_clr_hex = variable_get('broadcast_dashboard_message_cust_hex');
+      $msg_date = variable_get('broadcast_dashboard_date_message_posted');
+
+      // No custom, push preset message
+      if (($active == 1) && ($msg_id != "custom_msg")) {
+        $bd_msg = $preset_msg;
+      } else if (($active == 1) && ($msg_id == "custom_msg")) { // end no custom msg
+        $bd_msg = $custom_msg;
+      } // end custom msg
 
       header("Content-Type: application/rss+xml; charset=ISO-8859-1");
       $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
@@ -1253,7 +1269,7 @@ function broadcast_dashboard_feed() {
 
       $rssfeed .= '<item>';
         $rssfeed .= '<title>Test Title</title>';
-        $rssfeed .= '<description>'. $bd_msg . '</description>';
+        $rssfeed .= '<description>'. $bd_msg . ' (Posted on: ' . $msg_date . ') </description>';
         $rssfeed .= '<pubDate>' . date('m/d/Y h:i:s a', time()) . '</pubDate>';
       $rssfeed .= '</item>';
       $rssfeed .= '</channel>';
