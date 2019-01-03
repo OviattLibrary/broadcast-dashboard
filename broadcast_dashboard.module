@@ -1273,7 +1273,7 @@ function broadcast_dashboard_feed() {
       $rssfeed .= '<item>';
         $rssfeed .= '<title>Test Title</title>';
         $rssfeed .= '<description>'. $bd_msg . ' (Posted on: ' . $msg_date . ')</description>';
-        $rssfeed .= '<pubDate>' . date('m/d/Y h:i:s a', $rss_date) . '</pubDate>';
+        $rssfeed .= '<pubDate>' . date('r', $rss_date) . '</pubDate>';
       $rssfeed .= '</item>';
       $rssfeed .= '</channel>';
       $rssfeed .= '</rss>';
