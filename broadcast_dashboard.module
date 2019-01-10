@@ -675,16 +675,16 @@ function broadcast_dashboard_settings_form($form_state) {
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
   );
 
-  // START Feed Toggle Block
+  // START Feed Settings Block
 
-  $form['broadcast_dashboard_settings_feed_toggle'] = array(
+  $form['broadcast_dashboard_settings_feed'] = array(
       '#type' => 'fieldset',
       '#title' => t('API RSS Feed Settings'),
       '#description' => t('Enable or disable the built-in RSS feed for Broadcast Dashboard messages. Feed can be found at <a href="/broadcast_dashboard_feed">/broadcast_dashboard_feed</a>.'),
       '#collapsible' => FALSE,
     );
 
-  $form['broadcast_dashboard_settings_feed_toggle']['broadcast_dashboard_settings_set_feed'] = array(
+  $form['broadcast_dashboard_settings_feed']['broadcast_dashboard_settings_set_feed'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable Feed'),
     '#description' => t('Turn on the RSS feed for set, active messages.'),
@@ -692,8 +692,16 @@ function broadcast_dashboard_settings_form($form_state) {
     '#default_value' => variable_get('broadcast_dashboard_feed_active'),
   );
 
+  $form['broadcast_dashboard_settings_feed']['broadcast_dashboard_settings_set_feed_style'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Style Feed Output'),
+    '#description' => t('If enabled, the RSS feed will output custom classes wrapping the message. By default, this is turned off.'),
+    '#required' => FALSE,
+    '#default_value' => variable_get('broadcast_dashboard_feed_styling'),
+  );
+
   // Submit button
-  $form['broadcast_dashboard_settings_feed_toggle']['settings_feed_submit'] = array(
+  $form['broadcast_dashboard_settings_feed']['settings_feed_submit'] = array(
     '#name' => 'submit_update_feed',
     '#type' => 'submit',
     '#value' => t('Update settings'),
@@ -1065,6 +1073,9 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
   $current_feed_toggle = variable_get("broadcast_dashboard_feed_active");
   $new_feed_toggle = $form_state['values']['broadcast_dashboard_settings_set_feed'];
 
+  $current_feed_style = variable_get("broadcast_dashboard_feed_style");
+  $new_feed_style = $form_state['values']['broadcast_dashboard_settings_set_feed_style'];
+
   /*echo "Feed toggle was: " . $current_feed_toggle . "\n";
   echo "Feed toggled to: " . $new_feed_toggle;
   die();*/
@@ -1084,6 +1095,25 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
         break;
       default:
         watchdog("broadcast_dashboard", "RSS feed toggled", array(WATCHDOG_INFO));
+        break;
+    }
+  }
+
+  // Check if the toggle changed
+  if ($current_feed_style != $new_feed_style) {
+    // The setting changed, set new
+    variable_set("broadcast_dashboard_feed_style", $new_feed_style);
+
+    // Watchdog message feed update
+    switch($new_feed_style) {
+      case 0:
+        watchdog("broadcast_dashboard", "RSS feed styling toggled off", array(WATCHDOG_INFO));
+        break;
+      case 1:
+        watchdog("broadcast_dashboard", "RSS feed styling toggled on", array(WATCHDOG_INFO));
+        break;
+      default:
+        watchdog("broadcast_dashboard", "RSS feed styling toggled", array(WATCHDOG_INFO));
         break;
     }
   }
