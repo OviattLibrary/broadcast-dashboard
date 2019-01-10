@@ -1336,8 +1336,7 @@ function broadcast_dashboard_feed() {
     } else {
       // Feed enabled, but no active message
 
-      //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
-      $rssfeed = '0';
+      $rssfeed = '<div class="feed-error">There is no current message set for broadcast.</div>';
 
       echo $rssfeed;
 
@@ -1345,7 +1344,7 @@ function broadcast_dashboard_feed() {
 
   } else {
     //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
-    $rssfeed = "The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.";
+    $rssfeed = '<div class="feed-error">The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.</div>';
     echo $rssfeed;
   }
   
