@@ -1311,7 +1311,7 @@ function broadcast_dashboard_feed() {
         }
       } else {
         // No custom classes to add, still add date
-        $bd_msg = . $bd_msg . ' (Posted on: ' . $msg_date . ')';
+        $bd_msg = $bd_msg . ' (Posted on: ' . $msg_date . ')';
       }
 
       header("Content-Type: application/rss+xml; charset=ISO-8859-1");
