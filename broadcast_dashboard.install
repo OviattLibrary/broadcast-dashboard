@@ -70,7 +70,7 @@ function broadcast_dashboard_uninstall() {
   db_drop_table($table);
 }
 
-/*
+/**
  * Setting feed active variable in update hook
  */
 function broadcast_dashboard_update_7001() {
