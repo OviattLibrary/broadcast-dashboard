@@ -1324,7 +1324,7 @@ function broadcast_dashboard_feed() {
       $rssfeed .= '<language>en-us</language>';
 
       $rssfeed .= '<item>';
-        $rssfeed .= '<title>Test Title</title>';
+        $rssfeed .= '<title>Broadcast Message</title>';
         $rssfeed .= '<description>'. $bd_msg . '</description>';
         $rssfeed .= '<pubDate>' . date('r', $rss_date) . '</pubDate>';
       $rssfeed .= '</item>';
