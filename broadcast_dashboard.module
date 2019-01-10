@@ -1296,7 +1296,7 @@ function broadcast_dashboard_feed() {
       // No custom, push preset message
       if (($active == 1) && (!$is_custom)) {
         $bd_msg = $preset_msg;
-      } else if (($active == 1) && ($is_custom) { // end no custom msg
+      } else if (($active == 1) && ($is_custom)) { // end no custom msg
         $bd_msg = $custom_msg;
       } // end custom msg
 
