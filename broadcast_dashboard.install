@@ -71,7 +71,7 @@ function broadcast_dashboard_uninstall() {
 }
 
 /*
- * Broadcast Dashboard - Setting feed active variable in update hook
+ * Setting feed active variable in update hook
  */
 function broadcast_dashboard_update_7001() {
 	variable_set("broadcast_dashboard_feed_style", 0);
