@@ -1243,7 +1243,7 @@ function broadcast_dashboard_feed() {
       $active = variable_get('broadcast_dashboard_active');
       $msg_id = variable_get('broadcast_dashboard_message');
       $preset_msg = variable_get('broadcast_dashboard_message_prew');
-      $cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
+      $custom_msg = variable_get('broadcast_dashboard_custom_message_entered');
       $msg_date = variable_get('broadcast_dashboard_date_message_posted');
 
       // Convert message set date from String to Date
