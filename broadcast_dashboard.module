@@ -1076,6 +1076,9 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
   $current_feed_style = variable_get("broadcast_dashboard_feed_style");
   $new_feed_style = $form_state['values']['broadcast_dashboard_settings_set_feed_style'];
 
+  echo "the current feed style is: " . $current_feed_style;
+  echo "\n the new feed style is: " . $new_feed_style;
+
   /*echo "Feed toggle was: " . $current_feed_toggle . "\n";
   echo "Feed toggled to: " . $new_feed_toggle;
   die();*/
@@ -1101,9 +1104,6 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
 
   // Check if the toggle changed
   if ($current_feed_style != $new_feed_style) {
-    echo "the current feed style is: " . $current_feed_style;
-    echo "\n the new feed style is: " . $new_feed_style;
-
     // The setting changed, set new
     variable_set("broadcast_dashboard_feed_style", $new_feed_style);
 
