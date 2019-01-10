@@ -1101,6 +1101,9 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
 
   // Check if the toggle changed
   if ($current_feed_style != $new_feed_style) {
+    echo "the current feed style is: " . $current_feed_style;
+    echo "\n the new feed style is: " . $new_feed_style;
+
     // The setting changed, set new
     variable_set("broadcast_dashboard_feed_style", $new_feed_style);
 
@@ -1117,6 +1120,9 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
         break;
     }
   }
+
+  echo "\npost submit the variable is: " . variable_get('broadcast_dashboard_feed_style');
+  die();
 
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
