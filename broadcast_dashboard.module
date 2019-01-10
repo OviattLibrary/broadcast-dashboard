@@ -1123,7 +1123,6 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
   }
 
   echo "\npost submit the variable is: " . variable_get('broadcast_dashboard_feed_style');
-  die();
 
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
