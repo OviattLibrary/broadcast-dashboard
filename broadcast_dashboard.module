@@ -1304,10 +1304,10 @@ function broadcast_dashboard_feed() {
       if ($style_feed == 1) {
         if (!$is_custom) {
           // Not custom message; grab class from reg var
-          $bd_msg = "<![CDATA[<div class='" . $preset_clr_class . "'>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</div>]]';
+          $bd_msg = "<div class='" . $preset_clr_class . "'>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</div>';
         } else if ($is_custom) {
           // Custom class; grab class from custom var
-          $bd_msg = "<![CDATA[<div class='" . $cust_msg_clr_class . "'>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</div>]]';
+          $bd_msg = "<div class='" . $cust_msg_clr_class . "'>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</div>';
         }
       } else {
         // No custom classes to add, still add date
