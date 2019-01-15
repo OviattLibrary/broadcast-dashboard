@@ -1,70 +1,84 @@
+/**
+ * @file
+ * Broadcast Dashboard additional Style file
+ * 
+ * Allowing the module to come with Bootstrap v3.3.7 alert classing.
+ */
+
 .alert {
-  position: relative;
-  padding: $alert-padding-y $alert-padding-x;
-  margin-bottom: $alert-margin-bottom;
-  border: $alert-border-width solid transparent;
-  @include border-radius($alert-border-radius);
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
-
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .alert-link {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+.alert-dismissable,
 .alert-dismissible {
-  padding-right: ($close-font-size + $alert-padding-x * 2);
-
-  /* Adjust close link position */
-  .close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: $alert-padding-y $alert-padding-x;
-    color: inherit;
-  }
+  padding-right: 35px;
 }
-
-.alert-primary {
-    color: #004085;
-    background-color: #cce5ff;
-    border-color: #b8daff;
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
 }
-
-.alert-secondary {
-    color: #383d41;
-    background-color: #e2e3e5;
-    border-color: #d6d8db;
-}
-
 .alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
 }
-
-.alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
+.alert-success hr {
+  border-top-color: #c9e2b3;
 }
-
-.alert-warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
+.alert-success .alert-link {
+  color: #2b542c;
 }
-
 .alert-info {
-    color: #0c5460;
-    background-color: #d1ecf1;
-    border-color: #bee5eb;
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
 }
-
-.alert-light {
-    color: #818182;
-    background-color: #fefefe;
-    border-color: #fdfdfe;
+.alert-info hr {
+  border-top-color: #a6e1ec;
 }
-
-.alert-dark {
-    color: #1b1e21;
-    background-color: #d6d8d9;
-    border-color: #c6c8ca;
+.alert-info .alert-link {
+  color: #245269;
+}
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+.alert-warning .alert-link {
+  color: #66512c;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+.alert-danger .alert-link {
+  color: #843534;
 }
 
 .bd_p p:last-child {
