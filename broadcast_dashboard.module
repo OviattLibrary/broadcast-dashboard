@@ -1266,6 +1266,8 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
  * The feed portion of the module, for communicating/replaying BD status information to other servers.
  */
 function broadcast_dashboard_feed() {
+  header('Access-Control-Allow-Origin: *');
+
   $feed_active = variable_get('broadcast_dashboard_feed_active');
   $msg_active = variable_get('broadcast_dashboard_active');
   $style_feed = variable_get('broadcast_dashboard_feed_style');
@@ -1314,7 +1316,6 @@ function broadcast_dashboard_feed() {
         $bd_msg = $bd_msg . ' (Posted on: ' . $msg_date . ')';
       }
 
-      header('Access-Control-Allow-Origin: *');
       header("Content-Type: application/rss+xml; charset=ISO-8859-1");
       $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
       $rssfeed .= '<rss version="2.0">';
