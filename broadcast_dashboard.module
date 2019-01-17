@@ -466,6 +466,9 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   // Set date and time message posted
   variable_set('broadcast_dashboard_date_message_posted', date("m/d/Y h:i:sa"));
 
+  // Clear the cache so the updates are immediate
+  drupal_flush_all_caches();
+
   if ($form_has_errors == FALSE) {
     drupal_set_message(t('The settings have successfully been saved.'));
   }
