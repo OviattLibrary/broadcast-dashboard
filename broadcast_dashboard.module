@@ -1327,7 +1327,7 @@ function broadcast_dashboard_feed() {
 
       $rssfeed .= '<item>';
         $rssfeed .= '<title>Broadcast Message</title>';
-        $rssfeed .= '<description><p>'. $bd_msg . '</p></description>';
+        $rssfeed .= '<description>'. $bd_msg . '</description>';
         $rssfeed .= '<pubDate>' . date('r', $rss_date) . '</pubDate>';
       $rssfeed .= '</item>';
       $rssfeed .= '</channel>';
