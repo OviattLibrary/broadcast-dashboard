@@ -561,28 +561,25 @@ function broadcast_dashboard_page_build(&$page) {
     $page[$region]['system_main']['#markup'] = '';
   }
 
-  // DEV - test notification
-  // $markup_content = '<div class="alert alert-info" role="alert">This system is currently being tested. Ignore any alerts.' . $page[$region]['system_main']['#markup'] . '</div>';
-
   // No custom, push preset message
   if (($active == 1) && ($msg_id != "custom_msg")) {  
     if (isset($preset_clr_class)) {
-      //$page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
-      $message_content = '<div class="' . $preset_clr_class . ' bd_p"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
+      //$page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
+      $message_content = '<div class="' . $preset_clr_class . ' bd_p"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
       $page[$region]['system_main'] = array(
         '#markup' => $message_content,
       );
 
     } else if (isset($preset_clr_hex)) {
-      $page[$region]['system_main']['#markup'] = '<div style="background-color: ' . $preset_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>' . $markup_content;
+      $page[$region]['system_main']['#markup'] = '<div style="background-color: ' . $preset_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>';
     }
   } else if (($active == 1) && ($msg_id == "custom_msg")) { // end no custom msg
     // For custom alerts
     // Set alert color based on setting
      if (isset($cust_msg_clr_class)) {
-      $page[$region]['system_main']['#markup'] = '<div class="' . $cust_msg_clr_class . ' bd_p"><p role="alert" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')' . '</p></div>' . $markup_content;
+      $page[$region]['system_main']['#markup'] = '<div class="' . $cust_msg_clr_class . ' bd_p"><p role="alert" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
     } else if (isset($cust_msg_clr_hex)) {
-      $page[$region]['system_main']['#markup'] = '<div style="background-color: ' . $cust_msg_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>' . $markup_content;
+      $page[$region]['system_main']['#markup'] = '<div style="background-color: ' . $cust_msg_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>';
     }
   } // end custom msg
 
@@ -1309,10 +1306,10 @@ function broadcast_dashboard_feed() {
       if ($style_feed == 1) {
         if (!$is_custom) {
           // Not custom message; grab class from reg var
-          $bd_msg = "<div class='" . $preset_clr_class . "'>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</div>';
+          $bd_msg = "<div class='" . $preset_clr_class . "'><p>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</p></div>';
         } else if ($is_custom) {
           // Custom class; grab class from custom var
-          $bd_msg = "<div class=\"" . $cust_msg_clr_class . "\">" . $bd_msg . ' (Posted on: ' . $msg_date . ')</div>';
+          $bd_msg = "<div class=\"" . $cust_msg_clr_class . "\"><p>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</p></div>';
         }
       } else {
         // No custom classes to add, still add date
