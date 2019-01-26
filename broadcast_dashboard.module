@@ -58,6 +58,15 @@ function broadcast_dashboard_menu() {
     'access callback' => TRUE,
   );
 
+  $items['broadcast_dashboard_plaintext_feed'] = array(
+    'title' => 'API Plain Text Feed',
+    'description' => 'Plain text feed for current status of Broadcast Dashboard message publications.',
+    'type' => MENU_CALLBACK,
+    'page callback' => 'broadcast_dashboard_plaintext_feed',
+    'access arguments' => array('access content'),
+    'access callback' => TRUE,
+  );
+
   return $items;
 }
 
@@ -680,7 +689,7 @@ function broadcast_dashboard_settings_form($form_state) {
   $form['broadcast_dashboard_settings_feed'] = array(
       '#type' => 'fieldset',
       '#title' => t('API RSS Feed Settings'),
-      '#description' => t('Enable or disable the built-in RSS feed for Broadcast Dashboard messages. Feed can be found at <a href="/broadcast_dashboard_feed">/broadcast_dashboard_feed</a>.'),
+      '#description' => t('Enable or disable the built-in RSS feed for Broadcast Dashboard messages. RSS feed can be found at <a href="/broadcast_dashboard_feed">/broadcast_dashboard_feed</a>. Plain text feed can be found at <a href="/broadcast_dashboard_plaintext_feed">/broadcast_dashboard_plaintext_feed</a>.'),
       '#collapsible' => FALSE,
     );
 
@@ -1348,6 +1357,82 @@ function broadcast_dashboard_feed() {
     //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
     $rssfeed = '<div class="feed-error">The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.</div>';
     echo $rssfeed;
+  }
+  
+  exit();
+}
+
+/**
+ * The plain text feed portion of the module, for communicating/replaying BD status information to other servers.
+ */
+function broadcast_dashboard_plaintext_feed() {
+  header('Access-Control-Allow-Origin: *');
+
+  $feed_active = variable_get('broadcast_dashboard_feed_active');
+  $msg_active = variable_get('broadcast_dashboard_active');
+  $style_feed = variable_get('broadcast_dashboard_feed_style');
+
+  if ($feed_active == 1) {
+    // The feed is enabled
+
+    if ($msg_active == 1) {
+      // There is currently an active message
+
+      // Set vars logic
+      $active = variable_get('broadcast_dashboard_active');
+      $msg_id = variable_get('broadcast_dashboard_message');
+      $preset_msg = variable_get('broadcast_dashboard_message_prew');
+      $custom_msg = variable_get('broadcast_dashboard_custom_message_entered');
+      $msg_date = variable_get('broadcast_dashboard_date_message_posted');
+      $preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
+      $cust_msg_clr_class = variable_get('broadcast_dashboard_message_cust_class');
+
+      $is_custom = NULL;
+
+      // Set if message is custom
+      $is_custom = ($msg_id == "custom_msg") ? true : false;
+
+      // Convert message set date from String to Date
+      $rss_date = strtotime($msg_date);
+
+      // No custom, push preset message
+      if (($active == 1) && (!$is_custom)) {
+        $bd_msg = $preset_msg;
+      } else if (($active == 1) && ($is_custom)) { // end no custom msg
+        $bd_msg = $custom_msg;
+      } // end custom msg
+
+      // Add custom classes if enabled; append date to end
+      if ($style_feed == 1) {
+        if (!$is_custom) {
+          // Not custom message; grab class from reg var
+          $bd_msg = "<div class='" . $preset_clr_class . "'><p>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</p></div>';
+        } else if ($is_custom) {
+          // Custom class; grab class from custom var
+          $bd_msg = "<div class=\"" . $cust_msg_clr_class . "\"><p>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</p></div>';
+        }
+      } else {
+        // No custom classes to add, still add date
+        $bd_msg = $bd_msg . ' (Posted on: ' . $msg_date . ')';
+      }
+
+      $ptfeed = $bd_msg;
+
+      echo $ptfeed;
+
+    } else {
+      // Feed enabled, but no active message
+
+      $ptfeed = '<div class="feed-error">There is no current message set for broadcast.</div>';
+
+      echo $ptfeed;
+
+    }
+
+  } else {
+    //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+    $ptfeed = '<div class="feed-error">The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.</div>';
+    echo $ptfeed;
   }
   
   exit();
