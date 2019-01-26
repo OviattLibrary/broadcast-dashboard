@@ -1,3 +1,4 @@
 ## GitAttributes
 
 *.module linguist-language=PHP
+*.install linguist-language=PHP
