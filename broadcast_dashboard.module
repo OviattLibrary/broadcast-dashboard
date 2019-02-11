@@ -125,8 +125,6 @@ function broadcast_dashboard_form($form_state) {
     );
   }
 
-  //drupal_set_message(t('To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.'), 'status', FALSE);
-
   function broadcast_dashboard_get_messages_selector($element) {
   if ($element == "" || is_null($element)) {
     $element = "bd_id";
@@ -730,13 +728,6 @@ function broadcast_dashboard_settings_form($form_state) {
       '#collapsible' => FALSE,
     );
 
-    // Header
-    // Hiding header becasue fieldset has a title. @TODO: accessiblility -- do we need an <h2> for clarity?
-    /*$form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
-      '#type' => 'markup',
-      '#markup' => t('<h2>Custom Messages</h2>'),
-    );*/
-
     $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
       '#type' => 'select',
       '#title' => t('Messages'),
@@ -1219,13 +1210,6 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
   $add_msg = $form_state['values']['broadcast_dashboard_settings_add_msg_custom_message'];
   $add_class = $form_state['values']['broadcast_dashboard_settings_add_css_class'];
   $add_hex = $form_state['values']['broadcast_dashboard_settings_add_hex_code'];
-
-  if (empty($add_name)) echo "add name empty<br>";
-  if (empty($add_msg)) echo "add msg empty<br>";
-  if (empty($add_class)) echo "add class empty<br>";
-  if (empty($add_hex)) echo "add hex empty<br>";
-
-  //die();
 
   // Hex check for string
   if (!empty($add_hex)) {
