@@ -88,7 +88,7 @@ jQuery(function($) {
     if (current_id != "custom_msg") {
     	// Not a custom message
 		  if (preset_clr_class != "") {
-		    $('#markuparea').html('<div class="well ' + preset_clr_class + '" role="alert" style="padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').html('<div class="well ' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (preset_clr_hex != "") {
 		    $('#markuparea').html('<div role="alert" style="background-color: ' + preset_clr_hex + '; padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
@@ -97,7 +97,7 @@ jQuery(function($) {
 		  // For custom alerts
 		  if (custom_clr_hex == "") {
 		  	// It's a class
-		    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert" style="padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (custom_clr_class == "") {
 		  	// It's a hex
 		    $('#markuparea').html('<div role="alert" style="background-color: ' + custom_clr_hex + '; padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + custom_msg + " (Posted on: " + msg_date + ')</div>');

@@ -125,8 +125,6 @@ function broadcast_dashboard_form($form_state) {
     );
   }
 
-  //drupal_set_message(t('To edit module configuration, see the <a href="/admin/config/system/broadcast_dashboard/settings">Settings page</a>.'), 'status', FALSE);
-
   function broadcast_dashboard_get_messages_selector($element) {
   if ($element == "" || is_null($element)) {
     $element = "bd_id";
@@ -574,21 +572,21 @@ function broadcast_dashboard_page_build(&$page) {
   if (($active == 1) && ($msg_id != "custom_msg")) {  
     if (isset($preset_clr_class)) {
       //$page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
-      $message_content = '<div class="' . $preset_clr_class . ' bd_p"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
+      $message_content = '<div class="' . $preset_clr_class . ' bd_p"><p role="alert" class="lead" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
       $page[$region]['system_main'] = array(
         '#markup' => $message_content,
       );
 
     } else if (isset($preset_clr_hex)) {
-      $page[$region]['system_main']['#markup'] = '<div style="background-color: ' . $preset_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>';
+      $page[$region]['system_main']['#markup'] = '<div class="bd_p" style="background-color: ' . $preset_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" class="lead" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>';
     }
   } else if (($active == 1) && ($msg_id == "custom_msg")) { // end no custom msg
     // For custom alerts
     // Set alert color based on setting
      if (isset($cust_msg_clr_class)) {
-      $page[$region]['system_main']['#markup'] = '<div class="' . $cust_msg_clr_class . ' bd_p"><p role="alert" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
+      $page[$region]['system_main']['#markup'] = '<div class="' . $cust_msg_clr_class . ' bd_p"><p role="alert" class="lead" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
     } else if (isset($cust_msg_clr_hex)) {
-      $page[$region]['system_main']['#markup'] = '<div style="background-color: ' . $cust_msg_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>';
+      $page[$region]['system_main']['#markup'] = '<div class="bd_p" style="background-color: ' . $cust_msg_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"<p role="alert" class="lead" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>';
     }
   } // end custom msg
 
@@ -729,13 +727,6 @@ function broadcast_dashboard_settings_form($form_state) {
       '#description' => t('Update an existing pre-written Broadcast Dashboard message.'),
       '#collapsible' => FALSE,
     );
-
-    // Header
-    // Hiding header becasue fieldset has a title. @TODO: accessiblility -- do we need an <h2> for clarity?
-    /*$form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_header'] = array(
-      '#type' => 'markup',
-      '#markup' => t('<h2>Custom Messages</h2>'),
-    );*/
 
     $form['broadcast_dashboard_settings_update_msg']['broadcast_dashboard_settings_update_msg_custom_message_select'] = array(
       '#type' => 'select',
@@ -1219,13 +1210,6 @@ function broadcast_dashboard_settings_add($form, &$form_state) {
   $add_msg = $form_state['values']['broadcast_dashboard_settings_add_msg_custom_message'];
   $add_class = $form_state['values']['broadcast_dashboard_settings_add_css_class'];
   $add_hex = $form_state['values']['broadcast_dashboard_settings_add_hex_code'];
-
-  if (empty($add_name)) echo "add name empty<br>";
-  if (empty($add_msg)) echo "add msg empty<br>";
-  if (empty($add_class)) echo "add class empty<br>";
-  if (empty($add_hex)) echo "add hex empty<br>";
-
-  //die();
 
   // Hex check for string
   if (!empty($add_hex)) {
