@@ -1,5 +1,5 @@
 ; $Id$
-; Broadcast Dashboard, v. 1.1
+; Broadcast Dashboard, v. 1.1.2
 ; Written by Sam Thacker
 ; For CSU Northridge's Oviatt Library
 name = Broadcast Dashboard
@@ -14,4 +14,4 @@ files[] = broadcast_dashboard.module
 ;scripts[] = broadcast_dashboard_confirm_delete.js
 ;scripts[] = broadcast_dashboard_preview_add.js
 ;scripts[] = broadcast_dashboard_color_value_set.js
-version = 7.x-1.1
+version = 7.x-1.1.2
