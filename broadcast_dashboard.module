@@ -240,7 +240,7 @@ function broadcast_dashboard_form($form_state) {
 
   $form['broadcast_dashboard_custom_color_css_help']['content'] = array(
       '#type' => 'markup',
-      '#markup' => t('<div id="css_help"><p>By default, the module comes with basic Bootstrap v3.3.7 CSS classes for <a href="https://getbootstrap.com/docs/3.3/components/#alerts">alert</a> and <a href="https://getbootstrap.com/docs/3.3/components/#jumbotron">jumbotron</a> in the broadcast_dashboard_style.css file. Alert color classes include <i>success</i> (green), <i>info</i> (blue), <i>warning</i> (yellow), and <i>danger</i> (red).<br><br>An example class use would be:<br><i>jumbotron alert alert-info</i>.</p></div>'),
+      '#markup' => t('<div id="css_help"><p>By default, the module comes with basic Bootstrap v3.3.7 CSS classes for <a href="https://getbootstrap.com/docs/3.3/components/#alerts">alert</a> and <a href="https://getbootstrap.com/docs/3.3/components/#jumbotron">jumbotron</a> in the broadcast_dashboard_style.css file. Alert color classes include <i>success</i> (green), <i>info</i> (blue), <i>warning</i> (yellow), and <i>danger</i> (red).<br>An example class use would be: <i>jumbotron alert alert-info</i>.</p></div>'),
     );
 
   $form['broadcast_dashboard_custom_color_hex'] = array(
