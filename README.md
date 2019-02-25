@@ -35,7 +35,7 @@ Coming soon.
 
 ## Contributing
 
-Please read the [Contributing instructions](https://github.com/OviattLibrary/broadcast-dashboard/blob/master/CONTRIBUTING.mdd) for details on bug reporting or contributing code.
+Please read the [Contributing instructions](https://github.com/OviattLibrary/broadcast-dashboard/blob/master/CONTRIBUTING.md) for details on bug reporting or contributing code.
 
 ## Versioning
 
