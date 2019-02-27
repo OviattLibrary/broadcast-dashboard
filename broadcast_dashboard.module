@@ -1396,6 +1396,8 @@ function broadcast_dashboard_plaintext_feed() {
   $msg_active = variable_get('broadcast_dashboard_active');
   $style_feed = variable_get('broadcast_dashboard_feed_style');
 
+  header("Content-Type: text/plain");
+
   if ($feed_active == 1) {
     // The feed is enabled
 
