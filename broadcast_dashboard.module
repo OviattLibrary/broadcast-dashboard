@@ -1426,19 +1426,8 @@ function broadcast_dashboard_plaintext_feed() {
         $bd_msg = $custom_msg;
       } // end custom msg
 
-      // Add custom classes if enabled; append date to end
-      if ($style_feed == 1) {
-        if (!$is_custom) {
-          // Not custom message; grab class from reg var
-          $bd_msg = "<div class='" . $preset_clr_class . "'><p>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</p></div>';
-        } else if ($is_custom) {
-          // Custom class; grab class from custom var
-          $bd_msg = "<div class=\"" . $cust_msg_clr_class . "\"><p>" . $bd_msg . ' (Posted on: ' . $msg_date . ')</p></div>';
-        }
-      } else {
-        // No custom classes to add, still add date
-        $bd_msg = $bd_msg . ' (Posted on: ' . $msg_date . ')';
-      }
+      // Do NOT add classes as this is a plaintext feed; append date to end
+      $bd_msg = $bd_msg . ' (Posted on: ' . $msg_date . ')';
 
       $ptfeed = $bd_msg;
 
