@@ -1433,7 +1433,7 @@ function broadcast_dashboard_plaintext_feed() {
 
       $ptfeed = $bd_msg;
 
-      echo $ptfeed;
+      echo strip_tags($ptfeed);
 
     } else {
       // Feed enabled, but no active message
