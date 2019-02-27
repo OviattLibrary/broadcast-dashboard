@@ -1438,16 +1438,16 @@ function broadcast_dashboard_plaintext_feed() {
     } else {
       // Feed enabled, but no active message
 
-      $ptfeed = '<div class="feed-error">There is no current message set for broadcast.</div>';
+      $ptfeed = 'There is no current message set for broadcast.';
 
-      echo $ptfeed;
+      echo strip_tags($ptfeed);
 
     }
 
   } else {
     //header("Content-Type: application/rss+xml; charset=ISO-8859-1");
-    $ptfeed = '<div class="feed-error">The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.</div>';
-    echo $ptfeed;
+    $ptfeed = 'The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.';
+    echo strip_tags($ptfeed);
   }
   
   exit();
