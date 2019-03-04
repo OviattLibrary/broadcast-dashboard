@@ -664,7 +664,7 @@ function broadcast_dashboard_get_value($id, $element) {
   }
 
   // Check if array is empty
-  if ($value === undefined || $value.length == 0) {
+  if ($value.length == 0) {
     return NULL;
   } else {
     return $value[0];
