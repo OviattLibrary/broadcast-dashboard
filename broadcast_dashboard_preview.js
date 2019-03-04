@@ -5,6 +5,8 @@
  * This file allows for real-time previewing of messages before they're sent out.
  */
 
+ /* A note about date formatting here: as noted by issue #17, Javascript months would by default be off by one. In order to fix the standard MM/DD/YYYY output as would be actually displayed by the PHP output upon message post, we have to pad the month by 1. In order for this to be accurate in WORD form (since "1" is seen as "February" to JS), a more elaborate solution would be required and may be addressed in a later build. */
+
 var preset_msg;
 var preset_clr_class;
 var preset_clr_hex;
@@ -14,6 +16,11 @@ var custom_msg;
 var date;
 
 var current_id;
+
+// Date fix function
+function setMonth(n) {
+	return n + 1;
+}
 
 jQuery(function($) {
 	// Declare function to grab values
@@ -73,7 +80,7 @@ jQuery(function($) {
 		date = new Date();
 
 		// Set date on click
-		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+		msg_date = "" + setMonth(date.getMonth()) + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
 		// Hex check for not null
 		if (custom_clr_hex) {
@@ -88,7 +95,7 @@ jQuery(function($) {
     if (current_id != "custom_msg") {
     	// Not a custom message
 		  if (preset_clr_class != "") {
-		    $('#markuparea').html('<div class="well ' + preset_clr_class + '" role="alert" style="padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').html('<div class="well ' + preset_clr_class + '" role="alert">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (preset_clr_hex != "") {
 		    $('#markuparea').html('<div role="alert" style="background-color: ' + preset_clr_hex + '; padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + preset_msg + " (Posted on: " + msg_date + ')</div>');
 		  }
@@ -97,7 +104,7 @@ jQuery(function($) {
 		  // For custom alerts
 		  if (custom_clr_hex == "") {
 		  	// It's a class
-		    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert" style="padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
+		    $('#markuparea').html('<div class="' + custom_clr_class + '" role="alert">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
 		  } else if (custom_clr_class == "") {
 		  	// It's a hex
 		    $('#markuparea').html('<div role="alert" style="background-color: ' + custom_clr_hex + '; padding: 15px; border: 1px solid transparent; border-radius: 4px;">' + custom_msg + " (Posted on: " + msg_date + ')</div>');
