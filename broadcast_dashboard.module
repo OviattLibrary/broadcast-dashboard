@@ -113,6 +113,9 @@ function broadcast_dashboard_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
+  //Include CSS for the backend
+  drupal_add_css(drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_style.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+
   if(user_access('configure broadcast dashboard')) {
     $form['settings_markup'] = array(
       '#type' => 'markup',
@@ -690,6 +693,9 @@ function broadcast_dashboard_has_rows() {
 function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  // Include CSS for backend
+  drupal_add_css(drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_style.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
 
   $default_title = t('Select a message');
 
