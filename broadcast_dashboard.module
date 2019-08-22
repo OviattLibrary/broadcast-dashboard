@@ -3,7 +3,7 @@
 /**
  * @file
  * Broadcast Dashboard module file
- * 
+ *
  * This module 'broadcasts' pre-written or custom inserted text to specified areas of a website when switched on.
  */
 
@@ -109,9 +109,12 @@ function broadcast_dashboard_forms($form_id, $args) {
  * Implements hook_form().
  */
 
-function broadcast_dashboard_form($form_state) {  
+function broadcast_dashboard_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  //Include CSS for the backend
+  drupal_add_css(drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_style.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
 
   if(user_access('configure broadcast dashboard')) {
     $form['settings_markup'] = array(
@@ -397,7 +400,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   $previous_region = variable_get('broadcast_dashboard_region');*/
   $set_region = $form_state['values']['broadcast_dashboard_region'];
   variable_set('broadcast_dashboard_region', $set_region);
-  
+
   // Custom Message Set
   if ($set_msg_id != "custom_msg") {
     // Is not a custom message
@@ -439,7 +442,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     variable_set('broadcast_dashboard_message_prew', null);
     variable_set('broadcast_dashboard_message_prew_class', null);
     variable_set('broadcast_dashboard_message_prew_hex', null);
-    
+
     // Set custom message
     $set_cust_msg = $form_state['values']['broadcast_dashboard_custom_message'];
     variable_set('broadcast_dashboard_custom_message_entered', $set_cust_msg);
@@ -455,7 +458,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
       if ($firstCharacter != "#") {
         $set_cust_hex = "#" . $set_cust_hex;
       }
-      
+
     }
 
     if ($set_cust_class != ""){
@@ -513,9 +516,9 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
  *
  */
 
-function broadcast_dashboard_test_display() {                  
+function broadcast_dashboard_test_display() {
 
-  global $theme_key; 
+  global $theme_key;
   print 'Our current theme is: ' . $theme_key . '<br>';
 
   $regions = system_region_list($theme_key, $show = REGIONS_ALL, $labels = TRUE);
@@ -523,12 +526,12 @@ function broadcast_dashboard_test_display() {
   print_r($regions);
   print '</pre>';
 
-  $active = variable_get('broadcast_dashboard_active'); 
+  $active = variable_get('broadcast_dashboard_active');
 
   print 'Active state is: ' . $active; print "<br>";
-  
+
   if ($active == 1) {
-    $broadcast_dashboard_test_display_msg_id = variable_get('broadcast_dashboard_message');  
+    $broadcast_dashboard_test_display_msg_id = variable_get('broadcast_dashboard_message');
     $broadcast_dashboard_test_display_region = variable_get('broadcast_dashboard_region');
     $broadcast_dashboard_test_display_cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
 
@@ -581,7 +584,7 @@ function broadcast_dashboard_page_build(&$page) {
   }
 
   // No custom, push preset message
-  if (($active == 1) && ($msg_id != "custom_msg")) {  
+  if (($active == 1) && ($msg_id != "custom_msg")) {
     if (isset($preset_clr_class)) {
       //$page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
       $message_content = '<div class="' . $preset_clr_class . ' bd_p"><p role="alert" class="lead" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
@@ -690,6 +693,9 @@ function broadcast_dashboard_has_rows() {
 function broadcast_dashboard_settings_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
+
+  // Include CSS for backend
+  drupal_add_css(drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_style.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
 
   $default_title = t('Select a message');
 
@@ -1385,7 +1391,7 @@ function broadcast_dashboard_feed() {
     $rssfeed = '<div class="feed-error">The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.</div>';
     echo $rssfeed;
   }
-  
+
   exit();
 }
 
@@ -1452,6 +1458,6 @@ function broadcast_dashboard_plaintext_feed() {
     $ptfeed = 'The Broadcast Dashboard feed is disabled. Please contact your system administrator to enable it.';
     echo strip_tags($ptfeed);
   }
-  
+
   exit();
 }

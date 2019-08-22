@@ -1,7 +1,7 @@
 /**
  * @file
  * Broadcast Dashboard additional Style file
- * 
+ *
  * Allowing the module to come with Bootstrap v3.3.7 alert classing.
  */
 
@@ -88,7 +88,7 @@
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
+  /*background-color: #eee;*/
 }
 .jumbotron h1,
 .jumbotron .h1 {
