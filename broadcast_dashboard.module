@@ -533,7 +533,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   // Check scheduler fields for active and data
   $broadcast_dashboard_scheduler_active = variable_get('broadcast_dashboard_scheduler_active');
 
-  if ($broadcast_dashboard_scheduler_active != 1 || ((null !== $form_state['values']['broadcast_dashboard_scheduler']) && (null !== $form_state['values']['broadcast_dashboard_unscheduler']))) {
+  if ($broadcast_dashboard_scheduler_active != 1 || ((null == $form_state['values']['broadcast_dashboard_scheduler']) && (null == $form_state['values']['broadcast_dashboard_unscheduler']))) {
     // If scheduling setting is turned off OR both scheduler fields are blank, wipe all scheduling info.
     variable_set('broadcast_dashboard_scheduler_publish_time', null);
     $bd_scheduler_publish = null;
@@ -541,6 +541,8 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     $bd_scheduler_unpublish = null;
     variable_set('broadcast_dashboard_scheduler_publish_value', null);
     variable_set('broadcast_dashboard_scheduler_unpublish_value', null);
+    watchdog("broadcast_dashboard", "Condition 1 Fired; Scheduler: " .  $form_state['values']['broadcast_dashboard_scheduler'], array(WATCHDOG_INFO));
+
   } else if ($broadcast_dashboard_scheduler_active == 1) {
     // Scheduling is activated
     // If we get here, one of the two scheduler fields has data to process.
@@ -548,6 +550,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     // Get field data, populate to vars and set machine UNIX timestamp values
     $bd_scheduler_publish = $form_state['values']['broadcast_dashboard_scheduler'];
     $bd_scheduler_unpublish = $form_state['values']['broadcast_dashboard_unscheduler'];
+    watchdog("broadcast_dashboard", "Condition 2 Fired", array(WATCHDOG_INFO));
 
     if ($bd_scheduler_publish != null) {
       variable_set('broadcast_dashboard_scheduler_publish_time', $bd_scheduler_publish);
@@ -618,7 +621,7 @@ function broadcast_dashboard_test_display() {
 
   print 'Active state is: ' . $active; print "<br>";
 
-  if ($active == 1) {
+  //if ($active == 1) {
     $broadcast_dashboard_test_display_msg_id = variable_get('broadcast_dashboard_message');
     $broadcast_dashboard_test_display_region = variable_get('broadcast_dashboard_region');
     $broadcast_dashboard_test_display_cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
@@ -652,7 +655,7 @@ function broadcast_dashboard_test_display() {
     print 'Scheduler unpublish is: ' . $broadcast_dashboard_scheduler_unpublish; print "<br>";
     print 'Scheduler unpublish EPOCH is: ' . $broadcast_dashboard_scheduler_val_unpub; print "<br>";
 
-  }
+  //}
 
   print '<br>';
   $msg_date = date("m/d/Y h:i:sa");
@@ -1662,13 +1665,12 @@ function broadcast_dashboard_cron() {
     watchdog("broadcast_dashboard", variable_get('broadcast_dashboard_scheduler_active') . " is active state for scheduler", array('%m' => $log_message_name, WATCHDOG_DEBUG));
 
     // First check if we need to publish/activate
-    if ($current >= $scheduler_pub) {
+    if ((!empty($scheduler_pub)) && ($current >= $scheduler_pub)) {
       variable_set('broadcast_dashboard_active', 1);
       broadcast_dashboard_page_build($page);
     }
 
-    // Second check if we need to unpublish/deactivate
-    if ($current >= $scheduler_unpub) {
+    if ((!empty($scheduler_unpub)) && ($current >= $scheduler_unpub)) {
       variable_set('broadcast_dashboard_active', 0);
       broadcast_dashboard_page_build($page);
     }
