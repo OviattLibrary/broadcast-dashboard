@@ -579,6 +579,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     // marking "active" as 2
     $current = time();
     $scheduler_pub = variable_get('broadcast_dashboard_scheduler_publish_value');
+    $scheduler_unpub = variable_get('broadcast_dashboard_scheduler_unpublish_value');
 
     echo "Current: " + $current; echo "<br>";
     echo "Schedule pub: " + $scheduler_pub; echo "<br>";
@@ -588,9 +589,16 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
       variable_set('broadcast_dashboard_active', 2);
     } else if (($scheduler_pub != null) && ($current >= $scheduler_pub)) {
       // Time given to publish has already passed
-      variable_set('broadcast_dashboard_active', 1);
-    }
 
+      if (($scheduler_unpub != null) && ($current >= $scheduler_unpublish)) {
+        // Time to unpublish has already passed
+        variable_set('broadcast_dashboard_active', 0);
+        drupal_set_message(t("Time to schedule unpublishing has already passed, so the message was not activated."), 'warning');
+      } else {
+        variable_set('broadcast_dashboard_active', 1);
+        drupal_set_message(t("Time to schedule publish has already passed, so the message was activated."), 'warning');
+      }
+    }
   }
 
   // Clear the cache so the updates are immediate
