@@ -558,8 +558,6 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     $bd_scheduler_unpublish = null;
     variable_set('broadcast_dashboard_scheduler_publish_value', null);
     variable_set('broadcast_dashboard_scheduler_unpublish_value', null);
-    watchdog("broadcast_dashboard", "Condition 1 Fired; Scheduler: " .  $form_state['values']['broadcast_dashboard_scheduler'], array(WATCHDOG_INFO));
-
   } else if ($broadcast_dashboard_scheduler_active == 1) {
     // Scheduling is activated
     // If we get here, one of the two scheduler fields has data to process.
@@ -567,7 +565,6 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     // Get field data, populate to vars and set machine UNIX timestamp values
     $bd_scheduler_publish = $form_state['values']['broadcast_dashboard_scheduler'];
     $bd_scheduler_unpublish = $form_state['values']['broadcast_dashboard_unscheduler'];
-    watchdog("broadcast_dashboard", "Condition 2 Fired", array(WATCHDOG_INFO));
 
     if ($bd_scheduler_publish != null) {
       variable_set('broadcast_dashboard_scheduler_publish_time', $bd_scheduler_publish);
