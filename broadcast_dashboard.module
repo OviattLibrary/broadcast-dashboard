@@ -581,9 +581,9 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
     $scheduler_pub = variable_get('broadcast_dashboard_scheduler_publish_value');
     $scheduler_unpub = variable_get('broadcast_dashboard_scheduler_unpublish_value');
 
-    echo "Current: " + $current; echo "<br>";
-    echo "Schedule pub: " + $scheduler_pub; echo "<br>";
-    echo ($current <= $scheduler_pub);
+    //echo "Current: " + $current; echo "<br>";
+    //echo "Schedule pub: " + $scheduler_pub; echo "<br>";
+    //echo ($current <= $scheduler_pub);
 
     if (($scheduler_pub != null) && ($current <= $scheduler_pub)) {
       variable_set('broadcast_dashboard_active', 2);
