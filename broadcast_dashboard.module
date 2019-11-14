@@ -8,6 +8,18 @@
  */
 
 /**
+ * Load in additional include files for the module.
+ */
+
+// Drush include file
+module_load_include('inc', 'broadcast_dashboard', 'broadcast_dashboard.drush.inc');
+
+/**
+ * Global module definitions
+ */
+define('BD_DATE_FORMAT', 'Y-m-d H:i:s');
+
+/**
  * Implements hook_help().
  */
 
@@ -113,6 +125,7 @@ function broadcast_dashboard_form($form_state) {
   $theme_default = variable_get('theme_default', NULL);
   $regions = system_region_list($theme_default, $show = REGIONS_ALL, $labels = TRUE);
 
+
   //Include CSS for the backend
   drupal_add_css(drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_style.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
 
@@ -152,6 +165,15 @@ function broadcast_dashboard_form($form_state) {
   }
   return $title_options;
 }
+
+ // Separate message fields from activation fields
+// $form['broadcast_dashboard_message_fields'] = array(
+//     '#type' => 'fieldset',
+//     '#title' => t('Message Configuration'),
+//     '#weight' => 5,
+//     '#collapsible' => TRUE,
+//     '#collapsed' => FALSE,
+// );
 
  // Custom message selector
   $form['broadcast_dashboard_message'] = array(
@@ -340,8 +362,17 @@ function broadcast_dashboard_form($form_state) {
     drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview.js',
   );
 
+   // Separate message fields from activation fields
+   $form['broadcast_dashboard_activation_fields'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Activation Configuration'),
+    '#weight' => 2,
+    '#collapsible' => FALSE,
+    '#collapsed' => FALSE,
+   );
+
   // Activation toggle
-  $form['broadcast_dashboard_active'] = array(
+  $form['broadcast_dashboard_activation_fields']['broadcast_dashboard_active'] = array(
     '#type' => "checkbox",
     '#title' => t('Activate Broadcast'),
     '#return_value' => 1,
@@ -349,8 +380,36 @@ function broadcast_dashboard_form($form_state) {
     '#description' => t('When activated, the selected message will be broadcast on the website.'),
   );
 
+  // Scheduler section
+  if (variable_get('broadcast_dashboard_scheduler_active') == 1) {
+    $bd_scheduler_publish = variable_get('broadcast_dashboard_scheduler_publish_time');
+    $bd_scheduler_unpublish = variable_get('broadcast_dashboard_scheduler_unpublish_time');
+    $bd_scheduler_publish_val = variable_get('broadcast_dashboard_scheduler_publish_value');
+    $bd_scheduler_unpublish_val = variable_get('broadcast_dashboard_scheduler_unpublish_value');
+
+    $form['broadcast_dashboard_activation_fields']['broadcast_dashboard_scheduler'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Publish broadcast on'),
+      '#maxlength' => 30,
+      '#required' => false,
+      '#description' => t('Format: @year-@month-@day @hour:@min:@sec. Leave the date blank for no published scheduling.', array('@year' => date('Y'), '@month' => date('m'), '@day' => date('d'), '@hour' => date('H'), '@min' => date('i'), '@sec' => date('s'))),
+      '#default_value' => isset($bd_scheduler_publish_val) ? format_date($bd_scheduler_publish_val, 'custom', BD_DATE_FORMAT) : null,
+    );
+
+    $form['broadcast_dashboard_activation_fields']['broadcast_dashboard_unscheduler'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Unpublish broadcast on'),
+      '#maxlength' => 30,
+      '#required' => false,
+      '#description' => t('Format: @year-@month-@day @hour:@min:@sec. Leave the date blank for no unpublished scheduling.', array('@year' => date('Y'), '@month' => date('m'), '@day' => date('d'), '@hour' => date('H'), '@min' => date('i'), '@sec' => date('s'))),
+      '#default_value' => isset($bd_scheduler_unpublish_val) ? format_date($bd_scheduler_unpublish_val, 'custom', BD_DATE_FORMAT) : null,
+    );
+
+
+  }
+
   // Preview button
-  $form['preview'] = array(
+  $form['broadcast_dashboard_activation_fields']['preview'] = array(
     '#type' => 'button',
     '#value' => t('Preview'),
     '#executes_submit_callback' => FALSE,
@@ -362,13 +421,13 @@ function broadcast_dashboard_form($form_state) {
   );
 
   // Submit button
-  $form['submit'] = array(
+  $form['broadcast_dashboard_activation_fields']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
   );
 
   // Preview area
-  $form['preview_area'] = array(
+  $form['broadcast_dashboard_activation_fields']['preview_area'] = array(
     '#type' => 'markup',
     '#markup' => t('<div id="markuparea"></div>'),
   );
@@ -488,6 +547,60 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   // Set date and time message posted
   variable_set('broadcast_dashboard_date_message_posted', date("m/d/Y h:i:sa"));
 
+  // Check scheduler fields for active and data
+  $broadcast_dashboard_scheduler_active = variable_get('broadcast_dashboard_scheduler_active');
+
+  if ($broadcast_dashboard_scheduler_active != 1 || ((null == $form_state['values']['broadcast_dashboard_scheduler']) && (null == $form_state['values']['broadcast_dashboard_unscheduler']))) {
+    // If scheduling setting is turned off OR both scheduler fields are blank, wipe all scheduling info.
+    variable_set('broadcast_dashboard_scheduler_publish_time', null);
+    $bd_scheduler_publish = null;
+    variable_set('broadcast_dashboard_scheduler_unpublish_time', null);
+    $bd_scheduler_unpublish = null;
+    variable_set('broadcast_dashboard_scheduler_publish_value', null);
+    variable_set('broadcast_dashboard_scheduler_unpublish_value', null);
+  } else if ($broadcast_dashboard_scheduler_active == 1) {
+    // Scheduling is activated
+    // If we get here, one of the two scheduler fields has data to process.
+
+    // Get field data, populate to vars and set machine UNIX timestamp values
+    $bd_scheduler_publish = $form_state['values']['broadcast_dashboard_scheduler'];
+    $bd_scheduler_unpublish = $form_state['values']['broadcast_dashboard_unscheduler'];
+
+    if ($bd_scheduler_publish != null) {
+      variable_set('broadcast_dashboard_scheduler_publish_time', $bd_scheduler_publish);
+      variable_set('broadcast_dashboard_scheduler_publish_value', strtotime($bd_scheduler_publish));
+    }
+    if ($bd_scheduler_unpublish != null) {
+      variable_set('broadcast_dashboard_scheduler_unpublish_time', $bd_scheduler_unpublish);
+      variable_set('broadcast_dashboard_scheduler_unpublish_value', strtotime($bd_scheduler_unpublish));
+    }
+
+    // If publish time isn't current time yet, tell page_build() to hold off until cron fires by
+    // marking "active" as 2
+    $current = time();
+    $scheduler_pub = variable_get('broadcast_dashboard_scheduler_publish_value');
+    $scheduler_unpub = variable_get('broadcast_dashboard_scheduler_unpublish_value');
+
+    //echo "Current: " + $current; echo "<br>";
+    //echo "Schedule pub: " + $scheduler_pub; echo "<br>";
+    //echo ($current <= $scheduler_pub);
+
+    if (($scheduler_pub != null) && ($current <= $scheduler_pub)) {
+      variable_set('broadcast_dashboard_active', 2);
+    } else if (($scheduler_pub != null) && ($current >= $scheduler_pub)) {
+      // Time given to publish has already passed
+
+      if (($scheduler_unpub != null) && ($current >= $scheduler_unpub)) {
+        // Time to unpublish has already passed
+        variable_set('broadcast_dashboard_active', 0);
+        drupal_set_message(t("Time to schedule unpublishing has already passed, so the message was not activated."), 'warning');
+      } else {
+        variable_set('broadcast_dashboard_active', 1);
+        drupal_set_message(t("Time to schedule publish has already passed, so the message was activated."), 'warning');
+      }
+    }
+  }
+
   // Clear the cache so the updates are immediate
   cache_clear_all();
 
@@ -530,7 +643,7 @@ function broadcast_dashboard_test_display() {
 
   print 'Active state is: ' . $active; print "<br>";
 
-  if ($active == 1) {
+  //if ($active == 1) {
     $broadcast_dashboard_test_display_msg_id = variable_get('broadcast_dashboard_message');
     $broadcast_dashboard_test_display_region = variable_get('broadcast_dashboard_region');
     $broadcast_dashboard_test_display_cust_msg = variable_get('broadcast_dashboard_custom_message_entered');
@@ -543,6 +656,12 @@ function broadcast_dashboard_test_display() {
     $broadcast_dashboard_test_display_preset_clr_class = variable_get('broadcast_dashboard_message_prew_class');
     $broadcast_dashboard_test_display_preset_clr_hex = variable_get('broadcast_dashboard_message_prew_hex');
 
+    $broadcast_dashboard_scheduler_active = variable_get('broadcast_dashboard_scheduler_active');
+    $broadcast_dashboard_scheduler_publish = variable_get('broadcast_dashboard_scheduler_publish_time');
+    $broadcast_dashboard_scheduler_unpublish = variable_get('broadcast_dashboard_scheduler_unpublish_time');
+    $broadcast_dashboard_scheduler_val_pub = variable_get('broadcast_dashboard_scheduler_publish_value');
+    $broadcast_dashboard_scheduler_val_unpub = variable_get('broadcast_dashboard_scheduler_unpublish_value');
+
     print 'Message ID is: '. $broadcast_dashboard_test_display_msg_id; print "<br>";
     print 'Target region is: '. $broadcast_dashboard_test_display_region; print "<br>";
     print 'Pre-written msg is: '. $broadcast_dashboard_test_display_prew_msg; print "<br>";
@@ -551,7 +670,14 @@ function broadcast_dashboard_test_display() {
     print 'Custom message is: '. $broadcast_dashboard_test_display_cust_msg; print "<br>";
     print 'Custom message class is: '. $broadcast_dashboard_test_display_cust_msg_class; print "<br>";
     print 'Custom message hex is: '. $broadcast_dashboard_test_display_cust_msg_hex; print "<br>";
-  }
+    print '<br>';
+    print 'Scheduler state is: ' . $broadcast_dashboard_scheduler_active; print "<br>";
+    print 'Scheduler publish is: ' . $broadcast_dashboard_scheduler_publish; print "<br>";
+    print 'Scheduler publish EPOCH is: ' . $broadcast_dashboard_scheduler_val_pub; print "<br>";
+    print 'Scheduler unpublish is: ' . $broadcast_dashboard_scheduler_unpublish; print "<br>";
+    print 'Scheduler unpublish EPOCH is: ' . $broadcast_dashboard_scheduler_val_unpub; print "<br>";
+
+  //}
 
   print '<br>';
   $msg_date = date("m/d/Y h:i:sa");
@@ -573,6 +699,10 @@ function broadcast_dashboard_page_build(&$page) {
   $cust_msg_clr_class = variable_get('broadcast_dashboard_message_cust_class');
   $cust_msg_clr_hex = variable_get('broadcast_dashboard_message_cust_hex');
   $msg_date = variable_get('broadcast_dashboard_date_message_posted');
+  // Scheduler vars
+  $bd_scheduler_active = variable_get('broadcast_dashboard_scheduler_active');
+  $bd_scheduler_publish = variable_get('broadcast_dashboard_scheduler_publish_value');
+  $bd_scheduler_unpublish = variable_get('broadcast_dashboard_scheduler_unpublish_value');
 
   // Add CSS if active
   if ($active == 1) {
@@ -741,6 +871,43 @@ function broadcast_dashboard_settings_form($form_state) {
 
   // END Feed Toggle Block
 
+  // START Scheduler/Cron Settings
+
+ $form['broadcast_dashboard_settings_scheduler'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Scheduler Settings'),
+      '#description' => t('Enable or disable the scheduled publishing and unpublishing of messages. This functionality requires cron be enabled; recommended interval is 1 hour.'),
+      '#collapsible' => FALSE,
+    );
+
+  $form['broadcast_dashboard_settings_scheduler']['broadcast_dashboard_settings_set_scheduler'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable Scheduler'),
+    '#description' => t('Turn on the option to schedule the publishing and unpublishing of messages.'),
+    '#required' => FALSE,
+    '#default_value' => variable_get('broadcast_dashboard_scheduler_active'),
+  );
+
+  // Submit button
+  $form['broadcast_dashboard_settings_scheduler']['settings_scheduler_submit'] = array(
+    '#name' => 'submit_update_scheduler',
+    '#type' => 'submit',
+    '#value' => t('Update settings'),
+    '#submit' => array('broadcast_dashboard_settings_scheduler'),
+  );
+
+  // Warning if cron is over an hour
+  // @todo for another release
+  $scheduler_is_set = variable_get('broadcast_dashboard_scheduler_active');
+  // Cron rate only works for Drupal 8
+  /*$cron_rate = $cron_config->get('interval');
+
+  if ($scheduler_is_set && ($cron_rate > 3600)) {
+    drupal_set_message(t('Cron should be set to run every hour for scheduler to function correctly. It\'s currently set for every ' . ($cron_rate / 3600) . 'hours.'), 'warning');
+  }*/
+
+  // END Scheduler/Cron Settings
+
   if (broadcast_dashboard_has_rows()) {
 
     // START Update Message Block
@@ -841,7 +1008,7 @@ function broadcast_dashboard_settings_form($form_state) {
       '#title' => t('Message Name'),
       //'#default_value' => broadcast_dashboard_get_message_text($arg),
       '#default_value' => NULL,
-      '#description' => t('The name used to identify the message.'),
+        '#description' => t('The name used to identify the message.'),
       '#required' => TRUE,
     );
 
@@ -1180,6 +1347,48 @@ function broadcast_dashboard_settings_feed($form, &$form_state) {
 }
 
 /**
+ * For the updating of scheduler settings.
+ */
+
+function broadcast_dashboard_settings_scheduler($form, &$form_state) {
+  $current_scheduler_toggle = variable_get("broadcast_dashboard_scheduler_active");
+  $new_scheduler_toggle = $form_state['values']['broadcast_dashboard_settings_set_scheduler'];
+
+  // Check if the toggle changed
+  if ($current_scheduler_toggle!= $new_scheduler_toggle) {
+    // The setting changed, set new
+    variable_set("broadcast_dashboard_scheduler_active", $new_scheduler_toggle);
+
+    // Watchdog message feed update
+    switch($new_scheduler_toggle) {
+      case 0:
+        watchdog("broadcast_dashboard", "Scheduler toggled off", array(WATCHDOG_INFO));
+        break;
+      case 1:
+        watchdog("broadcast_dashboard", "Scheduler toggled on", array(WATCHDOG_INFO));
+        break;
+      default:
+        watchdog("broadcast_dashboard", "Scheduler toggled", array(WATCHDOG_INFO));
+        break;
+    }
+
+    // Clear cars if scheduler switched off
+    if ($new_scheduler_toggle == 0) {
+      variable_set('broadcast_dashboard_scheduler_publish_time', null);
+      variable_set('broadcast_dashboard_scheduler_unpublish_time', null);
+      variable_set('broadcast_dashboard_scheduler_publish_value', null);
+      variable_set('broadcast_dashboard_scheduler_unpublish_value', null);
+    }
+
+  }
+
+  if ($form_has_errors == FALSE) {
+    drupal_set_message(t('The settings have successfully been saved.'));
+  }
+
+}
+
+/**
  * For the edited of a current message form.
  */
 function broadcast_dashboard_settings_edit($form, &$form_state) {
@@ -1460,4 +1669,33 @@ function broadcast_dashboard_plaintext_feed() {
   }
 
   exit();
+}
+
+/**
+ * Implements hook_cron().
+ * This is to allow for scheduling/unscheduling of posts.
+ */
+
+function broadcast_dashboard_cron() {
+  $scheduler_active = variable_get('broadcast_dashboard_scheduler_active');
+  $scheduler_pub = variable_get('broadcast_dashboard_scheduler_publish_value');
+  $scheduler_unpub = variable_get('broadcast_dashboard_scheduler_unpublish_value');
+  $current = time();
+
+  if ($scheduler_active == 1) {
+    watchdog("broadcast_dashboard", "Cron fired for BD", array('%m' => $log_message_name, WATCHDOG_DEBUG));
+    watchdog("broadcast_dashboard", variable_get('broadcast_dashboard_scheduler_active') . " is active state for scheduler", array('%m' => $log_message_name, WATCHDOG_DEBUG));
+
+    // First check if we need to publish/activate
+    if ((!empty($scheduler_pub)) && ($current >= $scheduler_pub)) {
+      variable_set('broadcast_dashboard_active', 1);
+      broadcast_dashboard_page_build($page);
+    }
+
+    if ((!empty($scheduler_unpub)) && ($current >= $scheduler_unpub)) {
+      variable_set('broadcast_dashboard_active', 0);
+      broadcast_dashboard_page_build($page);
+    }
+  }
+
 }
