@@ -64,6 +64,19 @@ function broadcast_dashboard_uninstall() {
   variable_del('broadcast_dashboard_date_message_posted');
   variable_del('broadcast_dashboard_feed_active');
   variable_del('broadcast_dashboard_feed_styling');
+  variable_del('broadcast_dashboard_custom_message_entered');
+  variable_del('broadcast_dashboard_message_cust_class');
+  variable_del('broadcast_dashboard_message_cust_hex');
+  variable_del('broadcast_dashboard_message_prew');
+  variable_del('broadcast_dashboard_message_prew_class');
+  variable_del('broadcast_dashboard_message_prew_hex');
+  variable_del('broadcast_dashboard_message_cust_class');
+  variable_del('broadcast_dashboard_message_cust_hex');
+  variable_del('broadcast_dashboard_scheduler_active');
+  variable_del('broadcast_dashboard_scheduler_publish_time');
+  variable_del('broadcast_dashboard_scheduler_unpublish_time');
+  variable_del('broadcast_dashboard_scheduler_publish_value');
+  variable_del('broadcast_dashboard_scheduler_unpublish_value');
 
   // Drop Broadcast Dashboard table
   $table = 'broadcast_dashboard';
