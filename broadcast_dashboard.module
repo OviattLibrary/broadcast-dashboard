@@ -414,10 +414,6 @@ function broadcast_dashboard_form($form_state) {
     '#value' => t('Preview'),
     '#executes_submit_callback' => FALSE,
     '#attributes' => array('onclick' => "return (false);"),//array('onclick' => "runPreview('".$test_var."'); return (false);"),
-    '#states' => array(
-      "required" => array(
-        "input[name='broadcast_dashboard_active']" => array("checked" => TRUE)),
-    ),
   );
 
   // Submit button
