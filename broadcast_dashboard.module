@@ -1685,6 +1685,9 @@ function broadcast_dashboard_cron() {
     // First check if we need to publish/activate
     if ((!empty($scheduler_pub)) && ($current >= $scheduler_pub)) {
       variable_set('broadcast_dashboard_active', 1);
+      // Change post date to current run
+      $msg_date = date("m/d/Y h:i:sa");
+      variable_set('broadcast_dashboard_date_message_posted', $msg_date);
       broadcast_dashboard_page_build($page);
     }
 
