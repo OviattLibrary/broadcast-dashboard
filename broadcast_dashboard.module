@@ -541,7 +541,7 @@ function broadcast_dashboard_form_submit($form, &$form_state) {
   }
 
   // Set date and time message posted
-  variable_set('broadcast_dashboard_date_message_posted', date("m/d/Y h:i:sa"));
+  variable_set('broadcast_dashboard_date_message_posted', date("m/d/Y h:ia"));
 
   // Check scheduler fields for active and data
   $broadcast_dashboard_scheduler_active = variable_get('broadcast_dashboard_scheduler_active');

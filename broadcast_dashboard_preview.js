@@ -1,7 +1,7 @@
 /**
  * @file
  * Broadcast Dashboard additional Javascript file
- * 
+ *
  * This file allows for real-time previewing of messages before they're sent out.
  */
 
@@ -71,18 +71,13 @@ jQuery(function($) {
       case 'hex' :
         $('input[name="broadcast_dashboard_custom_color_css"]').val('');
         break;
-    }            
+    }
 	});
 
 	$('#edit-preview').click(function() {
 		$.getCurrentValues();
 		current_id = $("#edit-broadcast-dashboard-message").val();
-		date = new Date();
-
-		// Set date on click
-		msg_date = "" + setMonth(date.getMonth()) + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-
-		// Hex check for not null
+:q		// Hex check for not null
 		if (custom_clr_hex) {
 			var firstCharacter = custom_clr_hex.substring(0, 1);
 

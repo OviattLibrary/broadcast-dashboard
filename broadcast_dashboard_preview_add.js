@@ -1,7 +1,7 @@
 /**
  * @file
  * Broadcast Dashboard additional Javascript file
- * 
+ *
  * This file allows for real-time previewing of messages before added to the database from the settings page.
  */
 
@@ -20,7 +20,7 @@ jQuery(function($) {
         case 'hex' :
           $('input[name="broadcast_dashboard_settings_add_css_class"]').val('');
           break;
-    }            
+    }
 	});
 
 	$('#edit-broadcast-dashboard-settings-add-preview').click(function() {
@@ -30,10 +30,23 @@ jQuery(function($) {
 
 		date = new Date();
 
-		// Set date on click
-		msg_date = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    // Determine if we need to display am or pm
+    var timeend="am"
 
-		// Hex check for not null
+    var hours = date.getHours();
+    var hours = (hours+24-2)%24;
+    // If 00, it's 12am
+    if (hours==0) {
+      hours=12;
+    } else if (hours>12) {
+      hours = hours % 12;
+      timeend="pm";
+    }
+
+		// Set date on click
+		msg_date = "" + setMonth(date.getMonth()) + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + timeend;
+
+    // Hex check for not null
 		if (custom_clr_hex) {
 			var firstCharacter = custom_clr_hex.substring(0, 1);
 
@@ -42,7 +55,7 @@ jQuery(function($) {
 				$('#edit-broadcast-dashboard-settings-add-hex-code').val(custom_clr_hex);
 			}
 		}
-		
+
 	    console.log("custom_msg: " + custom_msg);
 	    console.log("custom_clr_class: " + custom_clr_class);
 	    console.log("custom_clr_hex: " + custom_clr_hex);
