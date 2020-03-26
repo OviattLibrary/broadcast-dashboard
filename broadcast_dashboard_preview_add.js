@@ -10,6 +10,11 @@ var custom_clr_hex;
 var custom_msg;
 var date;
 
+// Date fix function
+function setMonth(n) {
+	return n + 1;
+}
+
 jQuery(function($) {
 	// Clear custom color text if another value is selected
 	$('input[type=radio][name="broadcast_dashboard_settings_add_color"]').on('change', function(){
@@ -30,21 +35,14 @@ jQuery(function($) {
 
 		date = new Date();
 
-    // Determine if we need to display am or pm
-    var timeend="am"
-
+    // Determine if we need to display am or pm, and convert hours from military to 12-hour
     var hours = date.getHours();
-    var hours = (hours+24-2)%24;
-    // If 00, it's 12am
-    if (hours==0) {
-      hours=12;
-    } else if (hours>12) {
-      hours = hours % 12;
-      timeend="pm";
-    }
+    var timeend = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // hour '0' is '12'am
 
 		// Set date on click
-		msg_date = "" + setMonth(date.getMonth()) + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + timeend;
+		msg_date = "" + setMonth(date.getMonth()) + "/" + date.getDate() + "/" + date.getFullYear() + " " + hours + ":" + date.getMinutes() + timeend;
 
     // Hex check for not null
 		if (custom_clr_hex) {

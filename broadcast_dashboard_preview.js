@@ -77,7 +77,19 @@ jQuery(function($) {
 	$('#edit-preview').click(function() {
 		$.getCurrentValues();
 		current_id = $("#edit-broadcast-dashboard-message").val();
-:q		// Hex check for not null
+
+		date = new Date();
+
+    // Determine if we need to display am or pm, and convert hours from military to 12-hour
+    var hours = date.getHours();
+    var timeend = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // hour '0' is '12'am
+
+		// Set date on click
+		msg_date = "" + setMonth(date.getMonth()) + "/" + date.getDate() + "/" + date.getFullYear() + " " + hours + ":" + date.getMinutes() + timeend;
+
+    // Hex check for not null
 		if (custom_clr_hex) {
 			var firstCharacter = custom_clr_hex.substring(0, 1);
 
