@@ -405,6 +405,18 @@ function broadcast_dashboard_form($form_state) {
       '#default_value' => isset($bd_scheduler_unpublish_val) ? format_date($bd_scheduler_unpublish_val, 'custom', BD_DATE_FORMAT) : null,
     );
 
+    // Include Javascript
+    $form['#attached']['js'] = array(
+      drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_scheduler_reset.js',
+    );
+
+    // Scheduler reset button
+    $form['broadcast_dashboard_activation_fields']['broadcast_dashboard_scheduler_reset'] = array(
+      '#type' => 'button',
+      '#value' => t('Clear Schedule'),
+      '#executes_submit_callback' => FALSE,
+      '#attributes' => array('onclick' => "return (false);"),
+    );
 
   }
 
@@ -1688,11 +1700,15 @@ function broadcast_dashboard_cron() {
       // Change post date to current run
       $msg_date = date("m/d/Y h:i:sa");
       variable_set('broadcast_dashboard_date_message_posted', $msg_date);
+      // Remove the timestamp as we've used it now
+      variable_set('broadcast_dashboard_scheduler_publish_value', null);
       broadcast_dashboard_page_build($page);
     }
 
     if ((!empty($scheduler_unpub)) && ($current >= $scheduler_unpub)) {
       variable_set('broadcast_dashboard_active', 0);
+      // Remove the timestamp as we've used it now
+      variable_set('broadcast_dashboard_scheduler_unpublish_value', null);
       broadcast_dashboard_page_build($page);
     }
   }
