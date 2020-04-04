@@ -208,7 +208,7 @@ function broadcast_dashboard_form($form_state) {
     '#title' => t('Custom Message'),
     '#description' => t('Custom message to appear in place of pre-written notification text.'),
     '#size' => 60,
-    '#maxlength' => 255,
+    '#maxlength' => 512,
     '#states' => array(
       "visible" => array(
         ":input[name='broadcast_dashboard_message']" => array("value" => 'custom_msg')),
@@ -1014,6 +1014,7 @@ function broadcast_dashboard_settings_form($form_state) {
       '#title' => t('Message Text'),
       //'#default_value' => broadcast_dashboard_get_message_text($arg),
       '#default_value' => NULL,
+      '#maxlength' => 512,
       '#description' => t('The text that will be displayed when the selected message is turned on.'),
       '#required' => TRUE,
     );
@@ -1169,6 +1170,7 @@ function broadcast_dashboard_settings_form($form_state) {
     '#default_value' => NULL,
     '#description' => t('The text that will be displayed when the selected message is turned on.'),
     '#required' => FALSE,
+    '#maxlength' => 512,
     '#states' => array(
       'required' => array(
         ":input[name='broadcast_dashboard_settings_add_msg_name_message']" => array('filled' => TRUE),
