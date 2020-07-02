@@ -713,7 +713,7 @@ function broadcast_dashboard_page_build(&$page) {
   if (($active == 1) && ($msg_id != "custom_msg")) {
     if (isset($preset_clr_class)) {
       // Split at <hr>s
-      $preset_msg = str_replace('<hr>', '</p><hr><p role="alert" class="lead" aria-live="assertive">', $preset_msg);
+      $preset_msg = str_replace('<hr />', '</p><hr /><p role="alert" class="lead" aria-live="assertive">', $preset_msg);
 
       //$page[$region]['system_main']['#markup'] = '<div class="' . $preset_clr_class . '"><p role="alert" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
       $message_content = '<div class="' . $preset_clr_class . ' bd_p"><p role="alert" class="lead" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
@@ -723,7 +723,7 @@ function broadcast_dashboard_page_build(&$page) {
 
     } else if (isset($preset_clr_hex)) {
       // Split at <hr>s
-      $preset_msg = str_replace('<hr>', '</p><hr><p role="alert" class="lead" aria-live="assertive">', $preset_msg);
+      $preset_msg = str_replace('<hr />', '</p><hr /><p role="alert" class="lead" aria-live="assertive">', $preset_msg);
 
       $page[$region]['system_main']['#markup'] = '<div class="bd_p" style="background-color: ' . $preset_clr_hex . '; padding: 15px; border: 1px solid transparent; border-radius: 4px; margin-bottom: 20px;"><p role="alert" class="lead" aria-live="assertive">' . $preset_msg . " (Posted on: " . $msg_date . ')</div>' . '</p></div>';
     }
@@ -732,7 +732,7 @@ function broadcast_dashboard_page_build(&$page) {
     // Set alert color based on setting
      if (isset($cust_msg_clr_class)) {
        // Split at <hr>s
-       $cust_msg = str_replace('<hr>', '</p><hr><p role="alert" class="lead" aria-live="assertive">', $cust_msg);
+       $cust_msg = str_replace('<hr />', '</p><hr /><p role="alert" class="lead" aria-live="assertive">', $cust_msg);
 
        $page[$region]['system_main']['#markup'] = '<div class="' . $cust_msg_clr_class . ' bd_p"><p role="alert" class="lead" aria-live="assertive">' . $cust_msg . " (Posted on: " . $msg_date . ')' . '</p></div>';
      } else if (isset($cust_msg_clr_hex)) {
