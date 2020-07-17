@@ -2,11 +2,20 @@
  * @file
  * Broadcast Dashboard additional Javascript file
  *
+ * This file contains all JS elements that rely on a ready call.
  * This file allows for Settings value selection to pass the correct message title to input.
  */
  jQuery(function ($) {
 	$(document).ready(function() {
 
+    // SECTION -- For scheduler reset
+    $("#edit-broadcast-dashboard-scheduler-reset").on("click", function() {
+        //console.log('fired');
+        $("#edit-broadcast-dashboard-scheduler").val('');
+        $("#edit-broadcast-dashboard-unscheduler").val('');
+      });
+
+    // SECTION -- For Settings value section to pass the correct message title to input:q!
     var hidden_class;
 		var hidden_hex;
 

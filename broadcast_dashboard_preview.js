@@ -75,7 +75,7 @@ jQuery(function($) {
 	});
 
 	$('#edit-preview').click(function() {
-		$.getCurrentValues();
+    $.getCurrentValues();
 		current_id = $("#edit-broadcast-dashboard-message").val();
 
 		date = new Date();

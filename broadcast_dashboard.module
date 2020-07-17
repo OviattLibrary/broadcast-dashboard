@@ -358,8 +358,9 @@ function broadcast_dashboard_form($form_state) {
    ** ********************** **/
 
   // Include Preview Javascript file
-  $form['#attached']['js'] = array(
-    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview.js',
+  $form['#attached']['js'][] = array(
+    'data' => drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview.js',
+    'type' => 'file',
   );
 
    // Separate message fields from activation fields
@@ -405,6 +406,19 @@ function broadcast_dashboard_form($form_state) {
       '#default_value' => isset($bd_scheduler_unpublish_val) ? format_date($bd_scheduler_unpublish_val, 'custom', BD_DATE_FORMAT) : null,
     );
 
+    // Include Javascript
+    $form['#attached']['js'][] = array(
+      'data' => drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_scheduler_reset.js',
+      'type' => 'file',
+    );
+
+    // Scheduler reset button
+    $form['broadcast_dashboard_activation_fields']['broadcast_dashboard_scheduler_reset'] = array(
+      '#type' => 'button',
+      '#value' => t('Clear Schedule'),
+      '#executes_submit_callback' => FALSE,
+      '#attributes' => array('onclick' => "return (false);"),
+    );
 
   }
 
@@ -838,9 +852,14 @@ function broadcast_dashboard_settings_form($form_state) {
   $default_title = t('Select a message');
 
   // Include Javascript
-  $form['#attached']['js'] = array(
-    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
-    drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
+  $form['#attached']['js'][] = array(
+    'data' => drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_value_grab.js',
+    'type' => 'file',
+  );
+
+  $form['#attached']['js'][] = array(
+    'data' => drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_preview_add.js',
+    'type' => 'file',
   );
 
   // START Feed Settings Block
@@ -1097,8 +1116,15 @@ function broadcast_dashboard_settings_form($form_state) {
     // START Delete Message Block
 
     // Include confirmation popup content
-    $form['#attached']['js'][] = drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_confirm_delete.js';
-    $form['#attached']['css'][] = drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_confirm_delete.css';
+    $form['#attached']['js'][] = array(
+      'data' => drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_confirm_delete.js',
+      'type' => 'file',
+    );
+
+    $form['#attached']['css'][] = array(
+      'data' => drupal_get_path('module', 'broadcast_dashboard') . '/broadcast_dashboard_confirm_delete.css',
+      'type' => 'file',
+    );
 
     $form['broadcast_dashboard_settings_delete_msg'] = array(
       '#type' => 'fieldset',
@@ -1706,11 +1732,15 @@ function broadcast_dashboard_cron() {
       // Change post date to current run
       $msg_date = date("m/d/Y h:i:sa");
       variable_set('broadcast_dashboard_date_message_posted', $msg_date);
+      // Remove the timestamp as we've used it now
+      variable_set('broadcast_dashboard_scheduler_publish_value', null);
       broadcast_dashboard_page_build($page);
     }
 
     if ((!empty($scheduler_unpub)) && ($current >= $scheduler_unpub)) {
       variable_set('broadcast_dashboard_active', 0);
+      // Remove the timestamp as we've used it now
+      variable_set('broadcast_dashboard_scheduler_unpublish_value', null);
       broadcast_dashboard_page_build($page);
     }
   }
