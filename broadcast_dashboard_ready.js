@@ -10,7 +10,7 @@
 
     // SECTION -- For scheduler reset
     $("#edit-broadcast-dashboard-scheduler-reset").on("click", function() {
-        console.log('fired');
+        //console.log('fired');
         $("#edit-broadcast-dashboard-scheduler").val('');
         $("#edit-broadcast-dashboard-unscheduler").val('');
       });
