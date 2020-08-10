@@ -1,7 +1,7 @@
 # Broadcast Dashboard
 <p align="center">
 ![Broadcast Dashboard working on a website](https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_cover_example.png)
-<caption>Broadcast Dashboard activated on a Drupal website</caption>
+<i>Broadcast Dashboard activated on a Drupal website</i>
 </p>
 
 A Drupal 7 module that broadcasts pre-written or custom inserted text to specified regions of a website when switched on, acting as an informational alert system.
