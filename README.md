@@ -11,6 +11,9 @@ A Drupal 7 module that broadcasts pre-written or custom inserted text to specifi
 * **Cross-server message deployment.** Both styled and plain-text RSS feed options are available for multi-server utilization.
 * **Built with security in mind.** Dual user roles come standard to ensure only authorized persons can publish or manage broadcasts.
 
+![Broadcast Dashboard Settings Page to publish](https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_1.png)
+![Broadcast Dashboard Settings Page to manage](https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_2.png)
+
 ## Getting Started
 
 After copying the module files to the appropriate Drupal module directory, simply go to the Modules section in your Drupal setup and enable the module. If there is a need to change what gets stored in the database (a table is created upon install), modify the *broadcast_dashboard.install* file as needed.
@@ -57,5 +60,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 ## Acknowledgments
 
-* [Spectrum](https://github.com/bgrins/spectrum) by [bgrins](https://github.com/bgrins) used for hex color picker
 * [Elizabeth Altman](https://library.csun.edu/ealtman)
+* [Spectrum](https://github.com/bgrins/spectrum) by [bgrins](https://github.com/bgrins) used for hex color picker
