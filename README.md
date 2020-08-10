@@ -1,13 +1,26 @@
 # Broadcast Dashboard
+<p align="center">
+<img alt="Broadcast Dashboard working on a website" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_cover_example.png" >
+<caption>Broadcast Dashboard activated on a Drupal website</caption>
+</p>
 
-A Drupal 7 module that broadcasts pre-written or custom inserted text to specified regions of a website when switched on, acting as an informational alert system.
+A Drupal 7 module that broadcasts pre-written or custom inserted text to specified regions of a website, acting as an informational alert system.
 
 ## Overview
 
-* **Quickly toggle alert messages.** Options for pre-written and custom message selection in a simple form setup allow for quick deployment from any device.
+* **Quickly toggle or schedule alert messages.** Options for pre-written and custom message selection in a simple form setup allow for quick deployment from any device. Messages can also be scheduled for publishing or unpublishing via Drupal's cron hook.
 * **Targeted display.** Set a specific site region to display your message, allowing you to control visibility.
 * **Cross-server message deployment.** Both styled and plain-text RSS feed options are available for multi-server utilization.
 * **Built with security in mind.** Dual user roles come standard to ensure only authorized persons can publish or manage broadcasts.
+
+<p align="center">
+<img alt="Broadcast Dashboard Settings Page to publish" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_1.png">
+<caption>Settings page to publish messages</caption>
+</p>
+<p align="center">
+<img alt="Broadcast Dashboard Settings Page to manage" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_2.png" >
+<caption>Settings page to manage</caption>
+</p>
 
 ## Getting Started
 
@@ -25,7 +38,7 @@ Broadcast Dashboard has two permission classes available: *Publish Messages* and
 
 ### Styling Messages
 
-Broadcast Dashboard supports both class (full manipulation) and hex (for background color) stylings. 
+Broadcast Dashboard supports both class (full manipulation) and hex (for background color) stylings.
 
 By default, the module comes with basic Bootstrap v3.3.7 CSS classes for [*alert*](https://getbootstrap.com/docs/3.3/components/#alerts) and [*jumbotron*](https://getbootstrap.com/docs/3.3/components/#jumbotron) in the *broadcast_dashboard_style.css* file. Alert color classes include *success* (green), *info* (blue), *warning* (yellow), and *danger* (red).
 
@@ -55,4 +68,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 ## Acknowledgments
 
+* [Elizabeth Altman](https://library.csun.edu/ealtman)
 * [Spectrum](https://github.com/bgrins/spectrum) by [bgrins](https://github.com/bgrins) used for hex color picker
