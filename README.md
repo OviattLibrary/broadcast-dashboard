@@ -1,6 +1,7 @@
 # Broadcast Dashboard
 <p align="center">
-![Broadcast Dashboard working on a website](https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_cover_example.png)
+<img alt="Broadcast Dashboard working on a website" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_cover_example.png" >
+<caption>Broadcast Dashboard activated on a Drupal website</caption>
 </p>
 <p align="center"><i>Broadcast Dashboard activated on a Drupal website</i></p>
 
@@ -13,8 +14,10 @@ A Drupal 7 module that broadcasts pre-written or custom inserted text to specifi
 * **Cross-server message deployment.** Both styled and plain-text RSS feed options are available for multi-server utilization.
 * **Built with security in mind.** Dual user roles come standard to ensure only authorized persons can publish or manage broadcasts.
 <p align="center">
-![Broadcast Dashboard Settings Page to publish](https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_1.png)
-![Broadcast Dashboard Settings Page to manage](https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_2.png)
+<img alt="Broadcast Dashboard Settings Page to publish" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_1.png)" >
+<caption>Settings page to publish messages</caption>
+<img alt="Broadcast Dashboard Settings Page to manage" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_2.png " >
+<caption>Settings page to manage</caption>
 </p>
 ## Getting Started
 
