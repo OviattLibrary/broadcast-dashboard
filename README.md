@@ -12,12 +12,16 @@ A Drupal 7 module that broadcasts pre-written or custom inserted text to specifi
 * **Targeted display.** Set a specific site region to display your message, allowing you to control visibility.
 * **Cross-server message deployment.** Both styled and plain-text RSS feed options are available for multi-server utilization.
 * **Built with security in mind.** Dual user roles come standard to ensure only authorized persons can publish or manage broadcasts.
+
 <p align="center">
 <img alt="Broadcast Dashboard Settings Page to publish" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_1.png">
 <caption>Settings page to publish messages</caption>
+</p>
+<p align="center">
 <img alt="Broadcast Dashboard Settings Page to manage" src="https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_settings_2.png" >
 <caption>Settings page to manage</caption>
 </p>
+
 ## Getting Started
 
 After copying the module files to the appropriate Drupal module directory, simply go to the Modules section in your Drupal setup and enable the module. If there is a need to change what gets stored in the database (a table is created upon install), modify the *broadcast_dashboard.install* file as needed.
