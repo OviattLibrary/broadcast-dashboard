@@ -1,10 +1,12 @@
 # Broadcast Dashboard
 
+![Broadcast Dashboard working on a website](https://library.csun.edu/sites/default/files/users/Web%20Assistant/bd_cover_example.png)
+
 A Drupal 7 module that broadcasts pre-written or custom inserted text to specified regions of a website when switched on, acting as an informational alert system.
 
 ## Overview
 
-* **Quickly toggle alert messages.** Options for pre-written and custom message selection in a simple form setup allow for quick deployment from any device.
+* **Quickly toggle or schedule alert messages.** Options for pre-written and custom message selection in a simple form setup allow for quick deployment from any device. Messages can also be scheduled for publishing or unpublishing via Drupal's cron hook.
 * **Targeted display.** Set a specific site region to display your message, allowing you to control visibility.
 * **Cross-server message deployment.** Both styled and plain-text RSS feed options are available for multi-server utilization.
 * **Built with security in mind.** Dual user roles come standard to ensure only authorized persons can publish or manage broadcasts.
@@ -25,7 +27,7 @@ Broadcast Dashboard has two permission classes available: *Publish Messages* and
 
 ### Styling Messages
 
-Broadcast Dashboard supports both class (full manipulation) and hex (for background color) stylings. 
+Broadcast Dashboard supports both class (full manipulation) and hex (for background color) stylings.
 
 By default, the module comes with basic Bootstrap v3.3.7 CSS classes for [*alert*](https://getbootstrap.com/docs/3.3/components/#alerts) and [*jumbotron*](https://getbootstrap.com/docs/3.3/components/#jumbotron) in the *broadcast_dashboard_style.css* file. Alert color classes include *success* (green), *info* (blue), *warning* (yellow), and *danger* (red).
 
@@ -56,3 +58,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 ## Acknowledgments
 
 * [Spectrum](https://github.com/bgrins/spectrum) by [bgrins](https://github.com/bgrins) used for hex color picker
+* [Elizabeth Altman](https://library.csun.edu/ealtman)
